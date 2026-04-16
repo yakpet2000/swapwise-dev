@@ -19,7 +19,7 @@
   --radius:12px;
 }
 html{scroll-behavior:smooth;font-size:16px}
-body{font-family:var(--font);color:var(--navy);background:var(--navy);line-height:1.6;overflow-x:hidden}
+body{font-family:var(--font);color:var(--navy);background:var(--white);line-height:1.6;overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:var(--gold);text-decoration:none}
 a:hover{color:var(--gold-light)}
@@ -61,7 +61,7 @@ nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.25)}
 /* ------------------------------------------------------------------ */
 .hero{
   margin-top:94px;
-  background:linear-gradient(165deg,var(--navy-dark) 0%,var(--navy) 50%,var(--navy-light) 100%);
+  background:#1a2744 !important;
   color:var(--white);padding:100px 24px 120px;text-align:center;
   position:relative;overflow:hidden;
 }
@@ -87,7 +87,7 @@ nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.25)}
 /* Section base                                                        */
 /* ------------------------------------------------------------------ */
 section{padding:80px 24px}
-section:nth-child(odd){background:var(--off-white)}
+section:nth-child(odd):not(.hero):not(.calc-section){background:var(--off-white)}
 .section-label{
   font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   color:var(--gold);margin-bottom:8px;
