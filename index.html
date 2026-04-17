@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Swapwise — You Don't Have to Sell to Diversify</title>
 <style>
-/* ------------------------------------------------------------------ */
-/* Reset & Base                                                        */
-/* ------------------------------------------------------------------ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --navy:#1a2744;--navy-light:#243352;--navy-dark:#111b30;
@@ -15,273 +12,110 @@
   --white:#ffffff;--off-white:#f5f6fa;--gray:#8a94a6;--light-gray:#e2e5ec;
   --red:#e74c3c;--green:#27ae60;--green-dark:#1e8c4c;--yellow:#fff3cd;
   --font:'Segoe UI',system-ui,-apple-system,sans-serif;
-  --max-w:1120px;
-  --radius:12px;
+  --max-w:1120px;--radius:12px;
 }
 html{scroll-behavior:smooth;font-size:16px}
 body{font-family:var(--font);color:var(--navy);background:var(--navy);line-height:1.6;overflow-x:hidden}
-img{max-width:100%;display:block}
-a{color:var(--gold);text-decoration:none}
-a:hover{color:var(--gold-light)}
+a{color:var(--gold);text-decoration:none}a:hover{color:var(--gold-light)}
 h1,h2,h3,h4{line-height:1.2}
 .container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
-
-/* ------------------------------------------------------------------ */
-/* Private-preview banner                                              */
-/* ------------------------------------------------------------------ */
-.banner{
-  background:var(--gold);color:var(--navy);text-align:center;
-  padding:10px 16px;font-size:.85rem;font-weight:700;letter-spacing:.5px;
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-}
-
-/* ------------------------------------------------------------------ */
-/* Nav                                                                 */
-/* ------------------------------------------------------------------ */
-nav{
-  position:fixed;top:38px;left:0;right:0;z-index:999;
-  background:rgba(26,39,68,.97);backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(255,255,255,.08);
-  transition:box-shadow .3s;
-}
+.banner{background:var(--gold);color:var(--navy);text-align:center;padding:10px 16px;font-size:.85rem;font-weight:700;letter-spacing:.5px;position:fixed;top:0;left:0;right:0;z-index:1000}
+nav{position:fixed;top:38px;left:0;right:0;z-index:999;background:rgba(26,39,68,.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08);transition:box-shadow .3s}
 nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.25)}
-.nav-inner{
-  max-width:var(--max-w);margin:0 auto;padding:0 24px;
-  display:flex;align-items:center;justify-content:space-between;height:56px;
-}
-.logo{font-size:1.25rem;font-weight:800;color:var(--white);letter-spacing:-.5px}
-.logo span{color:var(--gold)}
+.nav-inner{max-width:var(--max-w);margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{font-size:1.25rem;font-weight:800;color:var(--white);letter-spacing:-.5px}.logo span{color:var(--gold)}
 .nav-links{display:flex;gap:24px;list-style:none}
-.nav-links a{color:rgba(255,255,255,.75);font-size:.85rem;font-weight:500;transition:color .2s}
-.nav-links a:hover{color:var(--gold)}
+.nav-links a{color:rgba(255,255,255,.75);font-size:.85rem;font-weight:500;transition:color .2s}.nav-links a:hover{color:var(--gold)}
 .hamburger{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer}
-
-/* ------------------------------------------------------------------ */
-/* Hero                                                                */
-/* ------------------------------------------------------------------ */
-.hero{
-  margin-top:94px;
-  background:#1a2744 !important;
-  color:var(--white);padding:100px 24px 120px;text-align:center;
-  position:relative;overflow:hidden;
-}
-.hero::before{
-  content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;
-  background:radial-gradient(circle,rgba(201,168,76,.12) 0%,transparent 70%);
-  border-radius:50%;pointer-events:none;
-}
+.hero{margin-top:94px;background:#1a2744 !important;color:var(--white);padding:100px 24px 120px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,.12) 0%,transparent 70%);border-radius:50%;pointer-events:none}
 .hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;max-width:800px;margin:0 auto 20px}
 .hero h1 span{color:var(--gold)}
 .hero p{font-size:clamp(1rem,2.5vw,1.25rem);color:rgba(255,255,255,.75);max-width:600px;margin:0 auto 40px}
-.scroll-cta{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--gold);color:var(--navy);
-  padding:14px 32px;border-radius:50px;font-weight:700;font-size:1rem;
-  border:none;cursor:pointer;transition:all .25s;
-}
+.scroll-cta{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy);padding:14px 32px;border-radius:50px;font-weight:700;font-size:1rem;border:none;cursor:pointer;transition:all .25s}
 .scroll-cta:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.3)}
-.scroll-cta svg{width:18px;height:18px;transition:transform .25s}
-.scroll-cta:hover svg{transform:translateY(3px)}
-
-/* ------------------------------------------------------------------ */
-/* Section base                                                        */
-/* ------------------------------------------------------------------ */
+.scroll-cta svg{width:18px;height:18px;transition:transform .25s}.scroll-cta:hover svg{transform:translateY(3px)}
 section{padding:80px 24px}
 section:nth-child(odd):not(.hero):not(.calc-section){background:var(--off-white)}
-.section-label{
-  font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--gold);margin-bottom:8px;
-}
+.section-label{font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
 .section-title{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:var(--navy);margin-bottom:16px}
 .section-sub{font-size:1.05rem;color:var(--gray);max-width:620px;margin-bottom:48px}
 .section-sub.center{margin-left:auto;margin-right:auto;text-align:center}
 .section-title.center,.section-label.center{text-align:center}
-
-/* ------------------------------------------------------------------ */
-/* Who This Is For — cards                                             */
-/* ------------------------------------------------------------------ */
 .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-.card{
-  background:var(--white);border-radius:var(--radius);padding:36px 28px;
-  border:1px solid var(--light-gray);transition:all .3s;position:relative;overflow:hidden;
-}
+.card{background:var(--white);border-radius:var(--radius);padding:36px 28px;border:1px solid var(--light-gray);transition:all .3s;position:relative;overflow:hidden}
 .card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(26,39,68,.1);border-color:var(--gold)}
-.card-icon{
-  width:52px;height:52px;border-radius:12px;
-  background:linear-gradient(135deg,var(--navy),var(--navy-light));
-  display:flex;align-items:center;justify-content:center;margin-bottom:20px;
-  color:var(--gold);font-size:1.5rem;
-}
-.card h3{font-size:1.15rem;margin-bottom:10px;color:var(--navy)}
-.card p{font-size:.95rem;color:var(--gray);line-height:1.65}
-
-/* ------------------------------------------------------------------ */
-/* How It Works — steps                                                */
-/* ------------------------------------------------------------------ */
+.card-icon{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--navy-light));display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--gold);font-size:1.5rem}
+.card h3{font-size:1.15rem;margin-bottom:10px;color:var(--navy)}.card p{font-size:.95rem;color:var(--gray);line-height:1.65}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:32px;margin-bottom:40px}
 .step{text-align:center;position:relative}
-.step-num{
-  width:44px;height:44px;border-radius:50%;
-  background:var(--gold);color:var(--navy);font-weight:800;font-size:1.1rem;
-  display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;
-}
-.step h4{font-size:1.05rem;margin-bottom:8px}
-.step p{font-size:.9rem;color:var(--gray)}
-.risk-callout{
-  background:linear-gradient(135deg,var(--navy-dark),var(--navy));
-  color:var(--white);border-radius:var(--radius);padding:28px 32px;
-  border-left:4px solid var(--gold);display:flex;align-items:flex-start;gap:16px;
-  max-width:800px;margin:0 auto;
-}
+.step-num{width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--navy);font-weight:800;font-size:1.1rem;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px}
+.step h4{font-size:1.05rem;margin-bottom:8px}.step p{font-size:.9rem;color:var(--gray)}
+.risk-callout{background:linear-gradient(135deg,var(--navy-dark),var(--navy));color:var(--white);border-radius:var(--radius);padding:28px 32px;border-left:4px solid var(--gold);display:flex;align-items:flex-start;gap:16px;max-width:800px;margin:0 auto}
 .risk-callout .icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
 .risk-callout h4{color:var(--gold);margin-bottom:6px;font-size:1rem}
 .risk-callout p{font-size:.9rem;color:rgba(255,255,255,.8);line-height:1.6}
-
-/* ------------------------------------------------------------------ */
-/* Strategies by size                                                  */
-/* ------------------------------------------------------------------ */
 .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-.tier{
-  border-radius:var(--radius);padding:36px 28px;
-  border:1px solid var(--light-gray);background:var(--white);position:relative;
-}
+.tier{border-radius:var(--radius);padding:36px 28px;border:1px solid var(--light-gray);background:var(--white);position:relative}
 .tier.featured{border-color:var(--gold);box-shadow:0 4px 24px rgba(201,168,76,.15)}
-.tier-badge{
-  position:absolute;top:-12px;left:24px;
-  background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:700;
-  padding:4px 14px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;
-}
+.tier-badge{position:absolute;top:-12px;left:24px;background:var(--gold);color:var(--navy);font-size:.7rem;font-weight:700;padding:4px 14px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase}
 .tier h3{font-size:1.2rem;color:var(--navy);margin-bottom:4px}
 .tier .range{font-size:.85rem;color:var(--gold);font-weight:700;margin-bottom:16px}
 .tier ul{list-style:none;margin-bottom:0}
-.tier li{
-  font-size:.9rem;color:var(--gray);padding:6px 0;padding-left:22px;position:relative;
-}
-.tier li::before{
-  content:'';position:absolute;left:0;top:12px;width:8px;height:8px;
-  border-radius:50%;background:var(--gold);opacity:.6;
-}
-
-/* ------------------------------------------------------------------ */
-/* Calculator                                                          */
-/* ------------------------------------------------------------------ */
+.tier li{font-size:.9rem;color:var(--gray);padding:6px 0;padding-left:22px;position:relative}
+.tier li::before{content:'';position:absolute;left:0;top:12px;width:8px;height:8px;border-radius:50%;background:var(--gold);opacity:.6}
 .calc-section{background:var(--navy)!important;color:var(--white)}
-.calc-section .section-label{color:var(--gold)}
-.calc-section .section-title{color:var(--white)}
-.calc-section .section-sub{color:rgba(255,255,255,.6)}
-
-.calc-wrap{
-  display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:start;
-}
-.calc-form{
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  border-radius:var(--radius);padding:32px;
-}
+.calc-section .section-label{color:var(--gold)}.calc-section .section-title{color:var(--white)}.calc-section .section-sub{color:rgba(255,255,255,.6)}
+.calc-wrap{display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:start}
+.calc-form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:32px}
 .form-group{margin-bottom:20px}
 .form-group label{display:block;font-size:.8rem;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-select,input[type=number],input[type=text]{
-  width:100%;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.15);
-  background:rgba(255,255,255,.08);color:var(--white);font-size:.95rem;
-  font-family:var(--font);transition:border-color .2s;
-}
+select,input[type=number],input[type=text]{width:100%;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:var(--white);font-size:.95rem;font-family:var(--font);transition:border-color .2s}
 select option{background:var(--navy);color:var(--white)}
 select:focus,input:focus{outline:none;border-color:var(--gold)}
 input::placeholder{color:rgba(255,255,255,.3)}
-
 .positions-list{margin-top:16px}
-.position-tag{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);
-  color:var(--gold-light);padding:6px 12px;border-radius:20px;font-size:.8rem;
-  margin:4px 4px 4px 0;font-weight:600;
-}
-.position-tag button{
-  background:none;border:none;color:var(--gold);cursor:pointer;font-size:1rem;
-  line-height:1;padding:0 0 0 4px;
-}
-.add-pos-btn{
-  background:rgba(255,255,255,.08);border:1px dashed rgba(255,255,255,.2);
-  color:rgba(255,255,255,.5);padding:10px;border-radius:8px;width:100%;
-  cursor:pointer;font-size:.85rem;transition:all .2s;margin-top:8px;
-}
+.position-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:var(--gold-light);padding:6px 12px;border-radius:20px;font-size:.8rem;margin:4px 4px 4px 0;font-weight:600}
+.position-tag button{background:none;border:none;color:var(--gold);cursor:pointer;font-size:1rem;line-height:1;padding:0 0 0 4px}
+.add-pos-btn{background:rgba(255,255,255,.08);border:1px dashed rgba(255,255,255,.2);color:rgba(255,255,255,.5);padding:10px;border-radius:8px;width:100%;cursor:pointer;font-size:.85rem;transition:all .2s;margin-top:8px}
 .add-pos-btn:hover{border-color:var(--gold);color:var(--gold)}
-
-/* Compliance bar */
-.compliance{
-  margin-top:24px;padding:16px;border-radius:8px;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
-}
+.compliance{margin-top:24px;padding:16px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
 .compliance h4{font-size:.85rem;font-weight:700;margin-bottom:12px;color:rgba(255,255,255,.7)}
 .rule{display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:.85rem}
-.rule-label{color:rgba(255,255,255,.6)}
-.rule-val{font-weight:700}
-.rule-val.pass{color:var(--green)}
-.rule-val.fail{color:var(--red)}
+.rule-label{color:rgba(255,255,255,.6)}.rule-val{font-weight:700}.rule-val.pass{color:var(--green)}.rule-val.fail{color:var(--red)}
 .rule-bar{height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:4px;overflow:hidden}
 .rule-bar-fill{height:100%;border-radius:2px;transition:width .4s,background .4s}
-
-.swap-btn{
-  width:100%;padding:16px;border-radius:8px;border:none;font-size:1.05rem;
-  font-weight:700;cursor:pointer;margin-top:20px;transition:all .3s;
-  font-family:var(--font);letter-spacing:.5px;
-}
+.swap-btn{width:100%;padding:16px;border-radius:8px;border:none;font-size:1.05rem;font-weight:700;cursor:pointer;margin-top:20px;transition:all .3s;font-family:var(--font);letter-spacing:.5px}
 .swap-btn.fail{background:var(--red);color:var(--white);opacity:.7;cursor:not-allowed}
 .swap-btn.pass{background:var(--green);color:var(--white)}
 .swap-btn.pass:hover{background:var(--green-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(39,174,96,.3)}
-
-/* Donut chart panel */
-.chart-panel{
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  border-radius:var(--radius);padding:32px;text-align:center;
-  position:sticky;top:110px;
-}
+.chart-panel{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:32px;text-align:center;position:sticky;top:110px}
 .chart-panel h4{font-size:.9rem;color:rgba(255,255,255,.5);margin-bottom:20px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 .donut-wrap{position:relative;width:240px;height:240px;margin:0 auto 24px}
 .donut-wrap canvas{width:100%!important;height:100%!important}
-.donut-center{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  text-align:center;
-}
+.donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
 .donut-center .total{font-size:1.4rem;font-weight:800;color:var(--white)}
 .donut-center .label{font-size:.7rem;color:var(--gray);text-transform:uppercase;letter-spacing:.5px}
 .legend{text-align:left}
 .legend-item{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:.8rem;color:rgba(255,255,255,.7)}
 .legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
-
-/* ------------------------------------------------------------------ */
-/* Results                                                             */
-/* ------------------------------------------------------------------ */
-.results-section{display:none}
-.results-section.show{display:block}
-.savings-card{
-  background:linear-gradient(135deg,var(--navy-dark),var(--navy));
-  color:var(--white);border-radius:var(--radius);padding:40px;text-align:center;
-  margin-bottom:48px;border:1px solid rgba(201,168,76,.2);
-}
+/* Results */
+.results-section{display:none}.results-section.show{display:block}
+.savings-card{background:linear-gradient(135deg,var(--navy-dark),var(--navy));color:var(--white);border-radius:var(--radius);padding:40px;text-align:center;margin-bottom:48px;border:1px solid rgba(201,168,76,.2)}
 .savings-card .big-num{font-size:clamp(2rem,5vw,3rem);font-weight:800;color:var(--gold);margin:8px 0}
 .savings-card .detail{font-size:.9rem;color:rgba(255,255,255,.6)}
-
-/* Featured provider cards — top 3 */
+.savings-card .disclaimer-line{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:12px;font-style:italic}
 .featured-label{font-size:.8rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
 .featured-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px}
-.featured-card{
-  background:var(--white);border-radius:var(--radius);padding:28px 24px;
-  border:2px solid var(--light-gray);transition:all .3s;position:relative;overflow:hidden;
-}
+.featured-card{background:var(--white);border-radius:var(--radius);padding:28px 24px;border:2px solid var(--light-gray);transition:all .3s;position:relative;overflow:hidden;cursor:pointer}
 .featured-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(26,39,68,.1)}
 .featured-card.gold-border{border-color:var(--gold);box-shadow:0 4px 20px rgba(201,168,76,.15)}
-.featured-card .award-icon{
-  width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-  margin-bottom:14px;font-size:1.2rem;
-}
+.featured-card .award-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:1.2rem}
 .featured-card .award-icon.best{background:linear-gradient(135deg,#c9a84c,#e0c97a);color:var(--navy)}
 .featured-card .award-icon.fees{background:linear-gradient(135deg,#27ae60,#2ecc71);color:var(--white)}
 .featured-card .award-icon.trust{background:linear-gradient(135deg,#3498db,#5dade2);color:var(--white)}
-.featured-card .award-label{
-  font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;
-  margin-bottom:12px;padding:3px 10px;border-radius:12px;display:inline-block;
-}
+.featured-card .award-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;padding:3px 10px;border-radius:12px;display:inline-block}
 .featured-card .award-label.best{background:rgba(201,168,76,.12);color:var(--gold-dark)}
 .featured-card .award-label.fees{background:rgba(39,174,96,.1);color:var(--green)}
 .featured-card .award-label.trust{background:rgba(52,152,219,.1);color:#2980b9}
@@ -289,839 +123,649 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .featured-card .ticker{font-size:.8rem;color:var(--gold);font-weight:700;margin-bottom:14px}
 .featured-card .meta{font-size:.82rem;color:var(--gray);line-height:1.7}
 .featured-card .meta strong{color:var(--navy)}
-.featured-card .score-bar{margin-top:14px;display:flex;align-items:center;gap:8px}
-.featured-card .score-bar .bar-track{flex:1;height:6px;background:var(--light-gray);border-radius:3px;overflow:hidden}
-.featured-card .score-bar .bar-fill{height:100%;border-radius:3px;transition:width .6s}
-.featured-card .score-bar .score-num{font-size:.75rem;font-weight:800;min-width:28px}
-
-/* Remaining provider cards */
+.featured-card .score-bar,.provider-card .score-bar{margin-top:14px;display:flex;align-items:center;gap:8px}
+.featured-card .score-bar .bar-track,.provider-card .score-bar .bar-track{flex:1;height:6px;background:var(--light-gray);border-radius:3px;overflow:hidden}
+.featured-card .score-bar .bar-fill,.provider-card .score-bar .bar-fill{height:100%;border-radius:3px;transition:width .6s}
+.featured-card .score-bar .score-num,.provider-card .score-bar .score-num{font-size:.75rem;font-weight:800;min-width:28px}
 .remaining-label{font-size:.8rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
 .provider-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:32px}
-.provider-card{
-  background:var(--white);border:1px solid var(--light-gray);border-radius:var(--radius);padding:20px;
-  transition:all .3s;display:flex;gap:14px;align-items:flex-start;
-}
+.provider-card{background:var(--white);border:1px solid var(--light-gray);border-radius:var(--radius);padding:20px;transition:all .3s;display:flex;gap:14px;align-items:flex-start;cursor:pointer}
 .provider-card:hover{border-color:var(--gold);box-shadow:0 6px 18px rgba(26,39,68,.06)}
-.provider-card .pcard-icon{
-  width:36px;height:36px;border-radius:8px;background:var(--off-white);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  font-size:.75rem;font-weight:800;color:var(--navy);
-}
+.provider-card .pcard-icon{width:36px;height:36px;border-radius:8px;background:var(--off-white);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.75rem;font-weight:800;color:var(--navy)}
 .provider-card .pcard-body{flex:1;min-width:0}
 .provider-card h4{font-size:.95rem;color:var(--navy);margin-bottom:2px}
 .provider-card .ticker{font-size:.75rem;color:var(--gold);font-weight:700;margin-bottom:8px}
 .provider-card .meta{font-size:.8rem;color:var(--gray);line-height:1.55}
 .provider-card .meta strong{color:var(--navy)}
-.match-badge{
-  display:inline-block;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:10px;
-  text-transform:uppercase;letter-spacing:.5px;
-}
+.match-badge{display:inline-block;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.5px}
 .match-badge.high{background:rgba(39,174,96,.1);color:var(--green)}
 .match-badge.med{background:rgba(201,168,76,.12);color:var(--gold-dark)}
 .match-badge.low{background:rgba(231,76,60,.08);color:var(--red)}
-
-.disclaimer{
-  background:rgba(26,39,68,.04);border:1px solid var(--light-gray);border-radius:var(--radius);
-  padding:20px 24px;font-size:.78rem;color:var(--gray);line-height:1.7;
-}
+.disclaimer{background:rgba(26,39,68,.04);border:1px solid var(--light-gray);border-radius:var(--radius);padding:20px 24px;font-size:.78rem;color:var(--gray);line-height:1.7}
 .disclaimer strong{color:var(--navy)}
-
-/* ------------------------------------------------------------------ */
-/* Footer                                                              */
-/* ------------------------------------------------------------------ */
-footer{
-  background:var(--navy-dark);color:rgba(255,255,255,.5);
-  padding:48px 24px;text-align:center;font-size:.8rem;
-}
-footer .logo-footer{font-size:1.2rem;font-weight:800;color:var(--white);margin-bottom:8px}
-footer .logo-footer span{color:var(--gold)}
+/* Modal */
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:2000;overflow-y:auto;padding:40px 16px}
+.modal-overlay.show{display:flex;justify-content:center;align-items:flex-start}
+.modal{background:var(--white);border-radius:var(--radius);max-width:800px;width:100%;position:relative;animation:modalIn .3s}
+@keyframes modalIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.modal-close{position:absolute;top:16px;right:16px;background:var(--off-white);border:none;width:36px;height:36px;border-radius:50%;font-size:1.2rem;cursor:pointer;color:var(--navy);display:flex;align-items:center;justify-content:center;z-index:1;transition:all .2s}
+.modal-close:hover{background:var(--red);color:var(--white)}
+.modal-header{background:linear-gradient(135deg,var(--navy-dark),var(--navy));color:var(--white);padding:32px 32px 24px;border-radius:var(--radius) var(--radius) 0 0}
+.modal-header h2{font-size:1.4rem;margin-bottom:4px}.modal-header .m-ticker{color:var(--gold);font-size:.85rem;font-weight:700}
+.modal-header .m-strategy{color:rgba(255,255,255,.7);font-size:.9rem;margin-top:8px;line-height:1.5}
+.modal-body{padding:28px 32px}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.modal-stat{background:var(--off-white);border-radius:8px;padding:16px}
+.modal-stat .stat-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin-bottom:4px}
+.modal-stat .stat-val{font-size:1.1rem;font-weight:800;color:var(--navy)}
+.modal-divider{height:1px;background:var(--light-gray);margin:24px 0}
+.modal-section-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:16px}
+.modal-donuts{display:grid;grid-template-columns:1fr 40px 1fr;align-items:center;gap:0}
+.modal-donut-col{text-align:center}
+.modal-donut-col h5{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin-bottom:12px}
+.modal-arrow{text-align:center;font-size:1.5rem;color:var(--gold)}
+.modal-donut-wrap{position:relative;width:180px;height:180px;margin:0 auto 12px}
+.modal-donut-wrap canvas{width:100%!important;height:100%!important}
+.modal-legend{display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center}
+.modal-legend span{font-size:.65rem;color:var(--gray);display:flex;align-items:center;gap:4px}
+.modal-legend .dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.data-badge{display:inline-block;font-size:.6rem;font-weight:600;padding:2px 8px;border-radius:8px;margin-top:8px;text-transform:uppercase;letter-spacing:.5px}
+.data-badge.actual{background:rgba(39,174,96,.1);color:var(--green)}
+.data-badge.proxy{background:rgba(52,152,219,.1);color:#2980b9}
+.data-badge.estimate{background:rgba(201,168,76,.15);color:var(--gold-dark)}
+/* Compare Paths */
+.paths-section{display:none;background:var(--off-white)!important}.paths-section.show{display:block}
+.paths-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.path-card{background:var(--white);border-radius:var(--radius);padding:24px;border:1px solid var(--light-gray);position:relative}
+.path-card.recommended{border-color:var(--gold);box-shadow:0 4px 20px rgba(201,168,76,.12)}
+.path-card .path-badge{position:absolute;top:-10px;left:20px;background:var(--gold);color:var(--navy);font-size:.6rem;font-weight:700;padding:3px 10px;border-radius:12px;text-transform:uppercase;letter-spacing:.5px}
+.path-card h4{font-size:1.05rem;color:var(--navy);margin-bottom:8px}
+.path-card .path-desc{font-size:.85rem;color:var(--gray);line-height:1.55;margin-bottom:14px}
+.path-card .pros-cons{list-style:none;margin-bottom:12px}
+.path-card .pros-cons li{font-size:.8rem;padding:3px 0 3px 18px;position:relative;color:var(--gray)}
+.path-card .pros-cons li::before{position:absolute;left:0;font-size:.75rem}
+.path-card .pros-cons li.pro::before{content:'+';color:var(--green);font-weight:800}
+.path-card .pros-cons li.con::before{content:'\2013';color:var(--red);font-weight:800}
+.path-card .path-metric{background:var(--off-white);border-radius:8px;padding:12px;font-size:.82rem;color:var(--navy);line-height:1.5}
+.path-card .path-metric strong{color:var(--gold-dark)}
+.path-card .path-note{font-size:.72rem;color:var(--gray);font-style:italic;margin-top:8px;line-height:1.4}
+/* Projection Table */
+.proj-section{display:none;background:var(--white)!important}.proj-section.show{display:block}
+.proj-controls{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:24px;align-items:end}
+.proj-ctrl{flex:1;min-width:200px}
+.proj-ctrl label{display:block;font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.proj-ctrl input[type=range]{width:100%;accent-color:var(--gold);height:6px;cursor:pointer}
+.proj-ctrl .range-val{font-size:.85rem;font-weight:700;color:var(--navy)}
+.proj-ctrl select{padding:10px 12px;border:1px solid var(--light-gray);border-radius:8px;font-size:.85rem;background:var(--white);color:var(--navy);font-family:var(--font);width:100%}
+.proj-table-wrap{overflow-x:auto;margin-bottom:24px}
+.proj-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.proj-table th{background:var(--navy);color:var(--white);padding:10px 12px;text-align:right;white-space:nowrap;font-size:.7rem;text-transform:uppercase;letter-spacing:.5px}
+.proj-table th:first-child{text-align:center;width:50px}
+.proj-table td{padding:8px 12px;text-align:right;border-bottom:1px solid var(--light-gray);white-space:nowrap}
+.proj-table td:first-child{text-align:center;font-weight:700;color:var(--gray)}
+.proj-table tr:nth-child(even){background:var(--off-white)}
+.proj-table .gold-cell{background:rgba(201,168,76,.12)!important;font-weight:700;color:var(--gold-dark)}
+.proj-table .crossover{position:relative}
+.proj-table .crossover::after{content:'CROSSOVER';position:absolute;right:4px;top:2px;font-size:.5rem;font-weight:700;color:var(--gold);letter-spacing:.5px}
+.proj-note{font-size:.72rem;color:var(--gray);font-style:italic}
+footer{background:var(--navy-dark);color:rgba(255,255,255,.5);padding:48px 24px;text-align:center;font-size:.8rem}
+footer .logo-footer{font-size:1.2rem;font-weight:800;color:var(--white);margin-bottom:8px}footer .logo-footer span{color:var(--gold)}
 footer p{max-width:500px;margin:0 auto 8px;line-height:1.6}
 footer .links{margin-top:16px;display:flex;justify-content:center;gap:24px;flex-wrap:wrap}
-footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}
-footer .links a:hover{color:var(--gold)}
-
-/* ------------------------------------------------------------------ */
-/* Mobile                                                              */
-/* ------------------------------------------------------------------ */
+footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hover{color:var(--gold)}
 @media(max-width:768px){
-  .nav-links{
-    display:none;flex-direction:column;position:absolute;top:56px;left:0;right:0;
-    background:var(--navy);padding:16px 24px;gap:16px;border-bottom:1px solid rgba(255,255,255,.1);
-  }
-  .nav-links.open{display:flex}
-  .hamburger{display:block}
-  .calc-wrap{grid-template-columns:1fr}
-  .chart-panel{position:static}
-  .form-row{grid-template-columns:1fr}
-  section{padding:60px 16px}
-  .hero{padding:72px 16px 80px}
-  .featured-cards{grid-template-columns:1fr}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:56px;left:0;right:0;background:var(--navy);padding:16px 24px;gap:16px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .nav-links.open{display:flex}.hamburger{display:block}
+  .calc-wrap{grid-template-columns:1fr}.chart-panel{position:static}.form-row{grid-template-columns:1fr}
+  section{padding:60px 16px}.hero{padding:72px 16px 80px}
+  .featured-cards{grid-template-columns:1fr}.paths-grid{grid-template-columns:1fr}
+  .modal-grid{grid-template-columns:1fr}.modal-donuts{grid-template-columns:1fr;gap:16px}.modal-arrow{transform:rotate(90deg)}
+  .modal-overlay{padding:16px 8px}
 }
-
-/* Animations */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{opacity:0;transform:translateY(24px);transition:all .6s cubic-bezier(.22,1,.36,1)}
 .fade-up.visible{opacity:1;transform:translateY(0)}
 </style>
 </head>
 <body>
-
-<!-- ================================================================ -->
-<!-- Banner                                                            -->
-<!-- ================================================================ -->
 <div class="banner">Private Preview — Not for Public Distribution</div>
+<nav id="nav"><div class="nav-inner">
+  <div class="logo">Swap<span>wise</span></div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#who">Who It's For</a></li><li><a href="#how">How It Works</a></li>
+    <li><a href="#strategies">Strategies</a></li><li><a href="#calculator">Calculator</a></li>
+  </ul>
+</div></nav>
 
-<!-- ================================================================ -->
-<!-- Nav                                                               -->
-<!-- ================================================================ -->
-<nav id="nav">
-  <div class="nav-inner">
-    <div class="logo">Swap<span>wise</span></div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#who">Who It's For</a></li>
-      <li><a href="#how">How It Works</a></li>
-      <li><a href="#strategies">Strategies</a></li>
-      <li><a href="#calculator">Calculator</a></li>
-    </ul>
+<section class="hero"><div class="container">
+  <h1>You Don't Have to <span>Sell</span> to Diversify.</h1>
+  <p>There's a legal, IRS-recognized way to turn a concentrated stock position into a diversified portfolio — without triggering a tax bill. We'll show you how.</p>
+  <button class="scroll-cta" onclick="document.getElementById('who').scrollIntoView({behavior:'smooth'})">See How It Works
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </button>
+</div></section>
+
+<section id="who"><div class="container">
+  <div class="section-label center">Who This Is For</div>
+  <h2 class="section-title center">Sound Familiar?</h2>
+  <p class="section-sub center">Millions of people are sitting on large stock positions they can't sell without a massive tax hit. If any of these sound like you, keep reading.</p>
+  <div class="cards-grid">
+    <div class="card fade-up"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg></div><h3>Long-Term Employee</h3><p>You've accumulated company stock over years through RSUs, ESPP, or options. It's done well — but now 40%, 60%, or more of your net worth is in one ticker. Selling means a six-figure tax bill.</p></div>
+    <div class="card fade-up"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M9 21V9h6v12"/></svg></div><h3>Inherited Stock</h3><p>You inherited shares from a parent or grandparent. The stock has grown significantly since, and you'd like to spread the risk — but capital gains taxes make that expensive.</p></div>
+    <div class="card fade-up"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h3>Concentrated Position</h3><p>Maybe you bought early in a company that took off, or your portfolio has drifted over time. Either way, too much of your wealth depends on one company's future.</p></div>
   </div>
-</nav>
+</div></section>
 
-<!-- ================================================================ -->
-<!-- 1. Hero                                                           -->
-<!-- ================================================================ -->
-<section class="hero">
-  <div class="container">
-    <h1>You Don't Have to <span>Sell</span> to Diversify.</h1>
-    <p>There's a legal, IRS-recognized way to turn a concentrated stock position into a diversified portfolio — without triggering a tax bill. We'll show you how.</p>
-    <button class="scroll-cta" onclick="document.getElementById('who').scrollIntoView({behavior:'smooth'})">
-      See How It Works
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-    </button>
+<section id="how" style="background:var(--off-white)"><div class="container">
+  <div class="section-label center">How It Works</div>
+  <h2 class="section-title center">A Legal Path to Diversification — Without Selling</h2>
+  <p class="section-sub center">Section 351 of the IRS tax code allows you to contribute stock into a new, diversified fund and receive shares of that fund in return — without owing taxes on the exchange. Here's the process, in plain English.</p>
+  <div class="steps">
+    <div class="step fade-up"><div class="step-num">1</div><h4>A New Fund Opens</h4><p>A fund manager files to create a brand-new ETF and opens a window where investors can contribute stock before it launches.</p></div>
+    <div class="step fade-up"><div class="step-num">2</div><h4>You Contribute Your Stock</h4><p>You transfer your appreciated shares — along with other investors doing the same — into the new fund. No sale happens, so no taxes are triggered.</p></div>
+    <div class="step fade-up"><div class="step-num">3</div><h4>You Receive ETF Shares</h4><p>In exchange, you get shares of the new ETF equal in value to what you put in. You now own a diversified fund instead of a single stock.</p></div>
+    <div class="step fade-up"><div class="step-num">4</div><h4>Sell Whenever You Want</h4><p>There's no lockup period on most 351 ETFs. You can hold long-term or sell ETF shares on the open market whenever it suits you.</p></div>
   </div>
-</section>
+  <div class="risk-callout fade-up"><div class="icon">&#9888;&#65039;</div><div>
+    <h4>Important: This Isn't Risk-Free</h4>
+    <p>To qualify, your contribution must pass IRS diversification rules — no single stock over 25% of what you contribute, and your top 5 can't exceed 50%. If your position is too concentrated, you may need to add other holdings to balance it out. Also, while this defers your taxes, it doesn't eliminate them — you'll owe capital gains when you eventually sell the ETF shares. We help you understand exactly where you stand before you commit.</p>
+  </div></div>
+</div></section>
 
-<!-- ================================================================ -->
-<!-- 2. Who This Is For                                                -->
-<!-- ================================================================ -->
-<section id="who">
-  <div class="container">
-    <div class="section-label center">Who This Is For</div>
-    <h2 class="section-title center">Sound Familiar?</h2>
-    <p class="section-sub center">Millions of people are sitting on large stock positions they can't sell without a massive tax hit. If any of these sound like you, keep reading.</p>
-    <div class="cards-grid">
-      <div class="card fade-up">
-        <div class="card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>
-        </div>
-        <h3>Long-Term Employee</h3>
-        <p>You've accumulated company stock over years through RSUs, ESPP, or options. It's done well — but now 40%, 60%, or more of your net worth is in one ticker. Selling means a six-figure tax bill.</p>
+<section id="strategies"><div class="container">
+  <div class="section-label center">Strategy Guide</div>
+  <h2 class="section-title center">Approaches by Position Size</h2>
+  <p class="section-sub center">The right strategy depends on how much stock you're working with. Here's a starting point based on typical position sizes.</p>
+  <div class="tiers">
+    <div class="tier fade-up"><h3>Starter</h3><div class="range">Under $250K</div><ul><li>Best fit for broad-market 351 ETFs with low minimums</li><li>Look for providers like Cambria or Alpha Architect that accept positions starting around $100K–$150K</li><li>Typically simple, low-cost index-style strategies (0.15%–0.30% expense ratios)</li><li>May need to add cash or additional positions to meet the 25/50 diversification test</li><li>Fewer provider options at this level — check exchange windows carefully</li></ul></div>
+    <div class="tier featured fade-up"><div class="tier-badge">Most Common</div><h3>Core</h3><div class="range">$250K – $2M</div><ul><li>The sweet spot — most 351 ETF providers are designed for this range</li><li>Wide selection of strategies: core equity, global, factor-based, thematic</li><li>Enough size to diversify naturally and pass compliance tests more easily</li><li>Consider splitting across multiple exchange windows for added diversification</li><li>Tax savings typically range from $50K–$400K depending on embedded gains</li></ul></div>
+    <div class="tier fade-up"><h3>Premium</h3><div class="range">$2M and Above</div><ul><li>Access to both 351 ETFs and traditional exchange funds (Goldman Sachs, Morgan Stanley)</li><li>Traditional exchange funds require 7-year lockup but have the longest IRS track record</li><li>May benefit from custom or white-label ETF structures</li><li>Higher fee tolerance opens options like Eagle Capital's concentrated value approach</li><li>Consider combining strategies — e.g., partial 351 ETF + partial exchange fund</li></ul></div>
+  </div>
+</div></section>
+
+<section id="calculator" class="calc-section"><div class="container">
+  <div class="section-label center">Portfolio Check</div>
+  <h2 class="section-title center">See If Your Position Qualifies</h2>
+  <p class="section-sub center">Add your holdings below. We'll check whether they meet the IRS diversification rules and estimate your potential tax savings.</p>
+  <div class="calc-wrap">
+    <div class="calc-form">
+      <div class="form-group"><label>Primary Stock Position</label><select id="stockSelect"><option value="">Choose a stock...</option></select></div>
+      <div class="form-row">
+        <div class="form-group"><label>Shares</label><input type="number" id="sharesInput" placeholder="e.g. 500" min="1"></div>
+        <div class="form-group"><label>Market Value</label><input type="number" id="valueInput" placeholder="$0.00" min="0" step="0.01"></div>
       </div>
-      <div class="card fade-up">
-        <div class="card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M9 21V9h6v12"/></svg>
-        </div>
-        <h3>Inherited Stock</h3>
-        <p>You inherited shares from a parent or grandparent. The stock has grown significantly since, and you'd like to spread the risk — but capital gains taxes make that expensive.</p>
+      <div class="form-row">
+        <div class="form-group"><label>Cost Basis (total)</label><input type="number" id="basisInput" placeholder="$0.00" min="0" step="0.01"></div>
+        <div class="form-group"><label>Total Unrealized Gain</label><input type="text" id="gainDisplay" readonly placeholder="$0.00"></div>
       </div>
-      <div class="card fade-up">
-        <div class="card-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <div class="form-group" style="margin-top:24px">
+        <label>Additional Positions (to help meet 25/50 rule)</label>
+        <div id="positionsList" class="positions-list"></div>
+        <div style="display:grid;grid-template-columns:1fr 70px 70px 80px auto;gap:8px;margin-top:8px;align-items:end">
+          <div><select id="addTicker" style="font-size:.85rem;padding:10px">
+            <optgroup label="— Other Assets —"><option value="CASH">Cash</option><option value="VTI">VTI (Total Market)</option><option value="VOO">VOO (S&P 500)</option><option value="QQQ">QQQ (Nasdaq 100)</option><option value="VEA">VEA (Intl Developed)</option><option value="BND">BND (Total Bond)</option><option value="GLD">GLD (Gold)</option><option value="AGG">AGG (Agg Bond)</option></optgroup>
+            <optgroup label="— Stocks —"><option value="AAPL">AAPL — Apple ($232.50)</option><option value="ABBV">ABBV — AbbVie ($195.40)</option><option value="ADBE">ADBE — Adobe ($485.60)</option><option value="AMD">AMD — AMD ($148.90)</option><option value="AMGN">AMGN — Amgen ($298.70)</option><option value="AMZN">AMZN — Amazon ($215.60)</option><option value="AVGO">AVGO — Broadcom ($205.15)</option><option value="BA">BA — Boeing ($188.50)</option><option value="BRK.B">BRK.B — Berkshire B ($498.30)</option><option value="CAT">CAT — Caterpillar ($378.60)</option><option value="CMCSA">CMCSA — Comcast ($38.90)</option><option value="COST">COST — Costco ($978.50)</option><option value="CRM">CRM — Salesforce ($312.80)</option><option value="CSCO">CSCO — Cisco ($62.80)</option><option value="DIS">DIS — Disney ($118.40)</option><option value="GOOGL">GOOGL — Alphabet A ($183.40)</option><option value="GS">GS — Goldman Sachs ($612.30)</option><option value="HD">HD — Home Depot ($415.20)</option><option value="INTC">INTC — Intel ($24.30)</option><option value="JNJ">JNJ — Johnson &amp; Johnson ($158.90)</option><option value="JPM">JPM — JPMorgan Chase ($268.70)</option><option value="KO">KO — Coca-Cola ($65.20)</option><option value="LLY">LLY — Eli Lilly ($892.40)</option><option value="MA">MA — Mastercard ($562.30)</option><option value="META">META — Meta Platforms ($625.80)</option><option value="MRK">MRK — Merck ($128.60)</option><option value="MSFT">MSFT — Microsoft ($465.20)</option><option value="NFLX">NFLX — Netflix ($1,042.30)</option><option value="NKE">NKE — Nike ($72.40)</option><option value="NVDA">NVDA — NVIDIA ($138.75)</option><option value="PEP">PEP — PepsiCo ($152.40)</option><option value="PG">PG — Procter &amp; Gamble ($172.30)</option><option value="SQ">SQ — Block ($78.50)</option><option value="TMO">TMO — Thermo Fisher ($568.40)</option><option value="TSLA">TSLA — Tesla ($268.90)</option><option value="UBER">UBER — Uber ($82.40)</option><option value="UNH">UNH — UnitedHealth ($512.60)</option><option value="V">V — Visa ($348.90)</option><option value="WMT">WMT — Walmart ($98.30)</option><option value="XOM">XOM — Exxon Mobil ($112.45)</option></optgroup>
+          </select></div>
+          <div><input type="number" id="addShares" placeholder="Qty" style="font-size:.85rem;padding:10px" min="1"></div>
+          <div><input type="number" id="addValue" placeholder="Value$" style="font-size:.85rem;padding:10px" min="0" step="0.01"></div>
+          <div><input type="number" id="addBasis" placeholder="Basis$" style="font-size:.85rem;padding:10px" min="0" step="0.01"></div>
+          <button class="add-pos-btn" style="width:auto;padding:10px 16px;margin-top:0" onclick="addPosition()">+ Add</button>
         </div>
-        <h3>Concentrated Position</h3>
-        <p>Maybe you bought early in a company that took off, or your portfolio has drifted over time. Either way, too much of your wealth depends on one company's future.</p>
       </div>
+      <div class="compliance"><h4>IRS Diversification Check (25/50 Rule)</h4>
+        <div class="rule"><span class="rule-label">Largest position</span><span class="rule-val" id="rule25Val">—</span></div>
+        <div class="rule-bar"><div class="rule-bar-fill" id="rule25Bar" style="width:0%;background:var(--gray)"></div></div>
+        <div class="rule" style="margin-top:8px"><span class="rule-label">Top 5 combined</span><span class="rule-val" id="rule50Val">—</span></div>
+        <div class="rule-bar"><div class="rule-bar-fill" id="rule50Bar" style="width:0%;background:var(--gray)"></div></div>
+      </div>
+      <button class="swap-btn fail" id="swapBtn" disabled>Portfolio Doesn't Qualify Yet</button>
+    </div>
+    <div class="chart-panel"><h4>Portfolio Breakdown</h4>
+      <div class="donut-wrap"><canvas id="donutCanvas" width="480" height="480"></canvas><div class="donut-center"><div class="total" id="donutTotal">$0</div><div class="label">Total Value</div></div></div>
+      <div class="legend" id="legend"></div>
     </div>
   </div>
-</section>
+</div></section>
 
-<!-- ================================================================ -->
-<!-- 3. How It Works                                                   -->
-<!-- ================================================================ -->
-<section id="how" style="background:var(--off-white)">
-  <div class="container">
-    <div class="section-label center">How It Works</div>
-    <h2 class="section-title center">A Legal Path to Diversification — Without Selling</h2>
-    <p class="section-sub center">Section 351 of the IRS tax code allows you to contribute stock into a new, diversified fund and receive shares of that fund in return — without owing taxes on the exchange. Here's the process, in plain English.</p>
-    <div class="steps">
-      <div class="step fade-up">
-        <div class="step-num">1</div>
-        <h4>A New Fund Opens</h4>
-        <p>A fund manager files to create a brand-new ETF and opens a window where investors can contribute stock before it launches.</p>
-      </div>
-      <div class="step fade-up">
-        <div class="step-num">2</div>
-        <h4>You Contribute Your Stock</h4>
-        <p>You transfer your appreciated shares — along with other investors doing the same — into the new fund. No sale happens, so no taxes are triggered.</p>
-      </div>
-      <div class="step fade-up">
-        <div class="step-num">3</div>
-        <h4>You Receive ETF Shares</h4>
-        <p>In exchange, you get shares of the new ETF equal in value to what you put in. You now own a diversified fund instead of a single stock.</p>
-      </div>
-      <div class="step fade-up">
-        <div class="step-num">4</div>
-        <h4>Sell Whenever You Want</h4>
-        <p>There's no lockup period on most 351 ETFs. You can hold long-term or sell ETF shares on the open market whenever it suits you.</p>
-      </div>
-    </div>
-    <div class="risk-callout fade-up">
-      <div class="icon">&#9888;&#65039;</div>
-      <div>
-        <h4>Important: This Isn't Risk-Free</h4>
-        <p>To qualify, your contribution must pass IRS diversification rules — no single stock over 25% of what you contribute, and your top 5 can't exceed 50%. If your position is too concentrated, you may need to add other holdings to balance it out. Also, while this defers your taxes, it doesn't eliminate them — you'll owe capital gains when you eventually sell the ETF shares. We help you understand exactly where you stand before you commit.</p>
-      </div>
-    </div>
+<section id="results" class="results-section"><div class="container">
+  <div class="section-label center">Your Results</div>
+  <h2 class="section-title center">Estimated Tax Savings & Matched Providers</h2>
+  <div class="savings-card fade-up">
+    <p style="font-size:.9rem;color:rgba(255,255,255,.5)">Estimated Federal Capital Gains Tax Deferred</p>
+    <div class="big-num" id="taxSavings">$0</div>
+    <p class="detail">Based on 23.8% combined federal rate (20% long-term capital gains + 3.8% NIIT). State taxes may apply. This is a deferral, not elimination.</p>
+    <p class="disclaimer-line">Assumes this portfolio is your primary source of capital gains. Other income may affect your actual rate.</p>
   </div>
-</section>
+  <div class="featured-label">Top Picks for Your Portfolio</div>
+  <div class="featured-cards" id="featuredCards"></div>
+  <div class="remaining-label" id="remainingLabel">All Compatible Providers</div>
+  <div class="provider-cards" id="providerCards"></div>
+  <div class="disclaimer"><strong>Important Disclaimer:</strong> Swapwise is an educational tool, not a financial advisor. The estimates shown are simplified illustrations based on publicly available data and assumed federal tax rates. Actual tax outcomes depend on your filing status, state of residence, holding periods, and other factors. Section 351 exchanges involve complex tax law — consult a qualified tax attorney or CPA before making any decisions. Provider information is based on public filings and may not reflect current availability or terms. Past exchange windows may be closed; future windows are not guaranteed.</div>
+</div></section>
 
-<!-- ================================================================ -->
-<!-- 4. Strategies by Position Size                                    -->
-<!-- ================================================================ -->
-<section id="strategies">
-  <div class="container">
-    <div class="section-label center">Strategy Guide</div>
-    <h2 class="section-title center">Approaches by Position Size</h2>
-    <p class="section-sub center">The right strategy depends on how much stock you're working with. Here's a starting point based on typical position sizes.</p>
-    <div class="tiers">
-      <div class="tier fade-up">
-        <h3>Starter</h3>
-        <div class="range">Under $250K</div>
-        <ul>
-          <li>Best fit for broad-market 351 ETFs with low minimums</li>
-          <li>Look for providers like Cambria or Alpha Architect that accept positions starting around $100K–$150K</li>
-          <li>Typically simple, low-cost index-style strategies (0.15%–0.30% expense ratios)</li>
-          <li>May need to add cash or additional positions to meet the 25/50 diversification test</li>
-          <li>Fewer provider options at this level — check exchange windows carefully</li>
-        </ul>
-      </div>
-      <div class="tier featured fade-up">
-        <div class="tier-badge">Most Common</div>
-        <h3>Core</h3>
-        <div class="range">$250K – $2M</div>
-        <ul>
-          <li>The sweet spot — most 351 ETF providers are designed for this range</li>
-          <li>Wide selection of strategies: core equity, global, factor-based, thematic</li>
-          <li>Enough size to diversify naturally and pass compliance tests more easily</li>
-          <li>Consider splitting across multiple exchange windows for added diversification</li>
-          <li>Tax savings typically range from $50K–$400K depending on embedded gains</li>
-        </ul>
-      </div>
-      <div class="tier fade-up">
-        <h3>Premium</h3>
-        <div class="range">$2M and Above</div>
-        <ul>
-          <li>Access to both 351 ETFs and traditional exchange funds (Goldman Sachs, Morgan Stanley)</li>
-          <li>Traditional exchange funds require 7-year lockup but have the longest IRS track record</li>
-          <li>May benefit from custom or white-label ETF structures</li>
-          <li>Higher fee tolerance opens options like Eagle Capital's concentrated value approach</li>
-          <li>Consider combining strategies — e.g., partial 351 ETF + partial exchange fund</li>
-        </ul>
-      </div>
-    </div>
+<section id="comparePaths" class="paths-section"><div class="container">
+  <div class="section-label center">Compare Your Options</div>
+  <h2 class="section-title center">Compare Your Paths</h2>
+  <div class="paths-grid" id="pathsGrid"></div>
+</div></section>
+
+<section id="projection" class="proj-section"><div class="container">
+  <div class="section-label center">Projections</div>
+  <h2 class="section-title center">Year-by-Year Projection</h2>
+  <div class="proj-controls">
+    <div class="proj-ctrl"><label>Diversified Growth Rate: <span class="range-val" id="divRateVal">7%</span></label><input type="range" id="divRate" min="4" max="12" value="7" step="0.5"></div>
+    <div class="proj-ctrl"><label>Concentrated Stock Return: <span class="range-val" id="concRateVal">7%</span></label><input type="range" id="concRate" min="0" max="20" value="7" step="0.5"></div>
+    <div class="proj-ctrl"><label>351 Exchange Provider</label><select id="projProvider"></select></div>
   </div>
-</section>
+  <div class="proj-table-wrap"><table class="proj-table" id="projTable"></table></div>
+  <p class="proj-note">Sell Gradually columns show portfolio value after selling 4%, 7%, or 10% of remaining shares each year, paying capital gains tax on each sale, and reinvesting proceeds at the diversified growth rate. Break-even crossover points are marked where 351 Exchange overtakes the alternative.</p>
+</div></section>
 
-<!-- ================================================================ -->
-<!-- 5. Calculator                                                     -->
-<!-- ================================================================ -->
-<section id="calculator" class="calc-section">
-  <div class="container">
-    <div class="section-label center">Portfolio Check</div>
-    <h2 class="section-title center">See If Your Position Qualifies</h2>
-    <p class="section-sub center">Add your holdings below. We'll check whether they meet the IRS diversification rules and estimate your potential tax savings.</p>
-    <div class="calc-wrap">
-      <!-- Left: Form -->
-      <div class="calc-form">
-        <div class="form-group">
-          <label>Primary Stock Position</label>
-          <select id="stockSelect">
-            <option value="">Choose a stock...</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Shares</label>
-            <input type="number" id="sharesInput" placeholder="e.g. 500" min="1">
-          </div>
-          <div class="form-group">
-            <label>Market Value</label>
-            <input type="text" id="valueDisplay" readonly placeholder="$0.00">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Cost Basis (total)</label>
-            <input type="number" id="basisInput" placeholder="$0.00" min="0" step="0.01">
-          </div>
-          <div class="form-group">
-            <label>Total Unrealized Gain</label>
-            <input type="text" id="gainDisplay" readonly placeholder="$0.00">
-          </div>
-        </div>
+<footer><div class="container">
+  <div class="logo-footer">Swap<span>wise</span></div>
+  <p>Helping investors understand tax-efficient diversification strategies for concentrated stock positions.</p>
+  <p style="margin-top:8px">&copy; 2026 Swapwise. Private preview. Not investment advice.</p>
+  <div class="links"><a href="#who">Who It's For</a><a href="#how">How It Works</a><a href="#strategies">Strategies</a><a href="#calculator">Calculator</a></div>
+</div></footer>
 
-        <div class="form-group" style="margin-top:24px">
-          <label>Additional Positions (to help meet 25/50 rule)</label>
-          <div id="positionsList" class="positions-list"></div>
-          <div style="display:grid;grid-template-columns:1fr 70px 70px 80px auto;gap:8px;margin-top:8px;align-items:end">
-            <div>
-              <select id="addTicker" style="font-size:.85rem;padding:10px">
-                <optgroup label="— Other Assets —">
-                  <option value="CASH">Cash</option>
-                  <option value="VTI">VTI (Total Market)</option>
-                  <option value="VOO">VOO (S&P 500)</option>
-                  <option value="QQQ">QQQ (Nasdaq 100)</option>
-                  <option value="VEA">VEA (Intl Developed)</option>
-                  <option value="BND">BND (Total Bond)</option>
-                  <option value="GLD">GLD (Gold)</option>
-                  <option value="AGG">AGG (Agg Bond)</option>
-                </optgroup>
-                <optgroup label="— Stocks —">
-                  <option value="AAPL">AAPL — Apple ($232.50)</option>
-                  <option value="ABBV">ABBV — AbbVie ($195.40)</option>
-                  <option value="ADBE">ADBE — Adobe ($485.60)</option>
-                  <option value="AMD">AMD — AMD ($148.90)</option>
-                  <option value="AMGN">AMGN — Amgen ($298.70)</option>
-                  <option value="AMZN">AMZN — Amazon ($215.60)</option>
-                  <option value="AVGO">AVGO — Broadcom ($205.15)</option>
-                  <option value="BA">BA — Boeing ($188.50)</option>
-                  <option value="BRK.B">BRK.B — Berkshire B ($498.30)</option>
-                  <option value="CAT">CAT — Caterpillar ($378.60)</option>
-                  <option value="CMCSA">CMCSA — Comcast ($38.90)</option>
-                  <option value="COST">COST — Costco ($978.50)</option>
-                  <option value="CRM">CRM — Salesforce ($312.80)</option>
-                  <option value="CSCO">CSCO — Cisco ($62.80)</option>
-                  <option value="DIS">DIS — Disney ($118.40)</option>
-                  <option value="GOOGL">GOOGL — Alphabet A ($183.40)</option>
-                  <option value="GS">GS — Goldman Sachs ($612.30)</option>
-                  <option value="HD">HD — Home Depot ($415.20)</option>
-                  <option value="INTC">INTC — Intel ($24.30)</option>
-                  <option value="JNJ">JNJ — Johnson & Johnson ($158.90)</option>
-                  <option value="JPM">JPM — JPMorgan Chase ($268.70)</option>
-                  <option value="KO">KO — Coca-Cola ($65.20)</option>
-                  <option value="LLY">LLY — Eli Lilly ($892.40)</option>
-                  <option value="MA">MA — Mastercard ($562.30)</option>
-                  <option value="META">META — Meta Platforms ($625.80)</option>
-                  <option value="MRK">MRK — Merck ($128.60)</option>
-                  <option value="MSFT">MSFT — Microsoft ($465.20)</option>
-                  <option value="NFLX">NFLX — Netflix ($1,042.30)</option>
-                  <option value="NKE">NKE — Nike ($72.40)</option>
-                  <option value="NVDA">NVDA — NVIDIA ($138.75)</option>
-                  <option value="PEP">PEP — PepsiCo ($152.40)</option>
-                  <option value="PG">PG — Procter & Gamble ($172.30)</option>
-                  <option value="SQ">SQ — Block ($78.50)</option>
-                  <option value="TMO">TMO — Thermo Fisher ($568.40)</option>
-                  <option value="TSLA">TSLA — Tesla ($268.90)</option>
-                  <option value="UBER">UBER — Uber ($82.40)</option>
-                  <option value="UNH">UNH — UnitedHealth ($512.60)</option>
-                  <option value="V">V — Visa ($348.90)</option>
-                  <option value="WMT">WMT — Walmart ($98.30)</option>
-                  <option value="XOM">XOM — Exxon Mobil ($112.45)</option>
-                </optgroup>
-              </select>
-            </div>
-            <div>
-              <input type="number" id="addShares" placeholder="Qty" style="font-size:.85rem;padding:10px" min="1">
-            </div>
-            <div>
-              <input type="number" id="addValue" placeholder="Value$" style="font-size:.85rem;padding:10px" min="0" step="0.01">
-            </div>
-            <div>
-              <input type="number" id="addBasis" placeholder="Basis$" style="font-size:.85rem;padding:10px" min="0" step="0.01">
-            </div>
-            <button class="add-pos-btn" style="width:auto;padding:10px 16px;margin-top:0" onclick="addPosition()">+ Add</button>
-          </div>
-        </div>
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalContent"></div>
+</div>
 
-        <!-- Compliance -->
-        <div class="compliance">
-          <h4>IRS Diversification Check (25/50 Rule)</h4>
-          <div class="rule">
-            <span class="rule-label">Largest position</span>
-            <span class="rule-val" id="rule25Val">—</span>
-          </div>
-          <div class="rule-bar"><div class="rule-bar-fill" id="rule25Bar" style="width:0%;background:var(--gray)"></div></div>
-          <div class="rule" style="margin-top:8px">
-            <span class="rule-label">Top 5 combined</span>
-            <span class="rule-val" id="rule50Val">—</span>
-          </div>
-          <div class="rule-bar"><div class="rule-bar-fill" id="rule50Bar" style="width:0%;background:var(--gray)"></div></div>
-        </div>
-
-        <button class="swap-btn fail" id="swapBtn" disabled>
-          Portfolio Doesn't Qualify Yet
-        </button>
-      </div>
-
-      <!-- Right: Chart -->
-      <div class="chart-panel">
-        <h4>Portfolio Breakdown</h4>
-        <div class="donut-wrap">
-          <canvas id="donutCanvas" width="480" height="480"></canvas>
-          <div class="donut-center">
-            <div class="total" id="donutTotal">$0</div>
-            <div class="label">Total Value</div>
-          </div>
-        </div>
-        <div class="legend" id="legend"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================ -->
-<!-- 6. Results                                                        -->
-<!-- ================================================================ -->
-<section id="results" class="results-section">
-  <div class="container">
-    <div class="section-label center">Your Results</div>
-    <h2 class="section-title center">Estimated Tax Savings & Matched Providers</h2>
-    <div class="savings-card fade-up">
-      <p style="font-size:.9rem;color:rgba(255,255,255,.5)">Estimated Federal Capital Gains Tax Deferred</p>
-      <div class="big-num" id="taxSavings">$0</div>
-      <p class="detail">Based on 23.8% combined federal rate (20% long-term capital gains + 3.8% NIIT). State taxes may apply. This is a deferral, not elimination.</p>
-    </div>
-    <div class="featured-label">Top Picks for Your Portfolio</div>
-    <div class="featured-cards" id="featuredCards"></div>
-    <div class="remaining-label" id="remainingLabel">All Compatible Providers</div>
-    <div class="provider-cards" id="providerCards"></div>
-    <div class="disclaimer">
-      <strong>Important Disclaimer:</strong> Swapwise is an educational tool, not a financial advisor. The estimates shown are simplified illustrations based on publicly available data and assumed federal tax rates. Actual tax outcomes depend on your filing status, state of residence, holding periods, and other factors. Section 351 exchanges involve complex tax law — consult a qualified tax attorney or CPA before making any decisions. Provider information is based on public filings and may not reflect current availability or terms. Past exchange windows may be closed; future windows are not guaranteed.
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================ -->
-<!-- 7. Footer                                                         -->
-<!-- ================================================================ -->
-<footer>
-  <div class="container">
-    <div class="logo-footer">Swap<span>wise</span></div>
-    <p>Helping investors understand tax-efficient diversification strategies for concentrated stock positions.</p>
-    <p style="margin-top:8px">&copy; 2026 Swapwise. Private preview. Not investment advice.</p>
-    <div class="links">
-      <a href="#who">Who It's For</a>
-      <a href="#how">How It Works</a>
-      <a href="#strategies">Strategies</a>
-      <a href="#calculator">Calculator</a>
-    </div>
-  </div>
-</footer>
-
-<!-- ================================================================ -->
-<!-- JavaScript                                                        -->
-<!-- ================================================================ -->
 <script>
-// ── Stock data (top 40, static prices as of April 15 2026) ──────────
-const STOCKS = [
-  {ticker:"AAPL",name:"Apple",price:232.50},
-  {ticker:"MSFT",name:"Microsoft",price:465.20},
-  {ticker:"NVDA",name:"NVIDIA",price:138.75},
-  {ticker:"GOOGL",name:"Alphabet A",price:183.40},
-  {ticker:"AMZN",name:"Amazon",price:215.60},
-  {ticker:"META",name:"Meta Platforms",price:625.80},
-  {ticker:"TSLA",name:"Tesla",price:268.90},
-  {ticker:"BRK.B",name:"Berkshire B",price:498.30},
-  {ticker:"LLY",name:"Eli Lilly",price:892.40},
-  {ticker:"AVGO",name:"Broadcom",price:205.15},
-  {ticker:"JPM",name:"JPMorgan Chase",price:268.70},
-  {ticker:"V",name:"Visa",price:348.90},
-  {ticker:"UNH",name:"UnitedHealth",price:512.60},
-  {ticker:"MA",name:"Mastercard",price:562.30},
-  {ticker:"XOM",name:"Exxon Mobil",price:112.45},
-  {ticker:"COST",name:"Costco",price:978.50},
-  {ticker:"HD",name:"Home Depot",price:415.20},
-  {ticker:"PG",name:"Procter & Gamble",price:172.30},
-  {ticker:"JNJ",name:"Johnson & Johnson",price:158.90},
-  {ticker:"ABBV",name:"AbbVie",price:195.40},
-  {ticker:"CRM",name:"Salesforce",price:312.80},
-  {ticker:"MRK",name:"Merck",price:128.60},
-  {ticker:"NFLX",name:"Netflix",price:1042.30},
-  {ticker:"AMD",name:"AMD",price:148.90},
-  {ticker:"PEP",name:"PepsiCo",price:152.40},
-  {ticker:"KO",name:"Coca-Cola",price:65.20},
-  {ticker:"TMO",name:"Thermo Fisher",price:568.40},
-  {ticker:"ADBE",name:"Adobe",price:485.60},
-  {ticker:"WMT",name:"Walmart",price:98.30},
-  {ticker:"DIS",name:"Disney",price:118.40},
-  {ticker:"CSCO",name:"Cisco",price:62.80},
-  {ticker:"INTC",name:"Intel",price:24.30},
-  {ticker:"CMCSA",name:"Comcast",price:38.90},
-  {ticker:"NKE",name:"Nike",price:72.40},
-  {ticker:"BA",name:"Boeing",price:188.50},
-  {ticker:"GS",name:"Goldman Sachs",price:612.30},
-  {ticker:"AMGN",name:"Amgen",price:298.70},
-  {ticker:"CAT",name:"Caterpillar",price:378.60},
-  {ticker:"UBER",name:"Uber",price:82.40},
-  {ticker:"SQ",name:"Block",price:78.50}
+// ── Stock data ──────────────────────────────────────────────────────
+const STOCKS=[{ticker:"AAPL",name:"Apple",price:232.50},{ticker:"MSFT",name:"Microsoft",price:465.20},{ticker:"NVDA",name:"NVIDIA",price:138.75},{ticker:"GOOGL",name:"Alphabet A",price:183.40},{ticker:"AMZN",name:"Amazon",price:215.60},{ticker:"META",name:"Meta Platforms",price:625.80},{ticker:"TSLA",name:"Tesla",price:268.90},{ticker:"BRK.B",name:"Berkshire B",price:498.30},{ticker:"LLY",name:"Eli Lilly",price:892.40},{ticker:"AVGO",name:"Broadcom",price:205.15},{ticker:"JPM",name:"JPMorgan Chase",price:268.70},{ticker:"V",name:"Visa",price:348.90},{ticker:"UNH",name:"UnitedHealth",price:512.60},{ticker:"MA",name:"Mastercard",price:562.30},{ticker:"XOM",name:"Exxon Mobil",price:112.45},{ticker:"COST",name:"Costco",price:978.50},{ticker:"HD",name:"Home Depot",price:415.20},{ticker:"PG",name:"Procter & Gamble",price:172.30},{ticker:"JNJ",name:"Johnson & Johnson",price:158.90},{ticker:"ABBV",name:"AbbVie",price:195.40},{ticker:"CRM",name:"Salesforce",price:312.80},{ticker:"MRK",name:"Merck",price:128.60},{ticker:"NFLX",name:"Netflix",price:1042.30},{ticker:"AMD",name:"AMD",price:148.90},{ticker:"PEP",name:"PepsiCo",price:152.40},{ticker:"KO",name:"Coca-Cola",price:65.20},{ticker:"TMO",name:"Thermo Fisher",price:568.40},{ticker:"ADBE",name:"Adobe",price:485.60},{ticker:"WMT",name:"Walmart",price:98.30},{ticker:"DIS",name:"Disney",price:118.40},{ticker:"CSCO",name:"Cisco",price:62.80},{ticker:"INTC",name:"Intel",price:24.30},{ticker:"CMCSA",name:"Comcast",price:38.90},{ticker:"NKE",name:"Nike",price:72.40},{ticker:"BA",name:"Boeing",price:188.50},{ticker:"GS",name:"Goldman Sachs",price:612.30},{ticker:"AMGN",name:"Amgen",price:298.70},{ticker:"CAT",name:"Caterpillar",price:378.60},{ticker:"UBER",name:"Uber",price:82.40},{ticker:"SQ",name:"Block",price:78.50}];
+const ETF_PRICES={VTI:295.40,VOO:548.20,QQQ:520.80,VEA:52.30,BND:71.60,GLD:298.50,AGG:98.70,CASH:1.00};
+
+// ── Provider data ───────────────────────────────────────────────────
+const PROVIDERS=[
+  {name:"Cambria Investment Management",tickers:"TAX / ENDW / GEW / USEW",er:"0.25–0.29%",erNum:0.27,placementPct:0,min:100000,strategy:"Broad Market / Global Equal Weight",fullDesc:"Cambria offers multiple 351 ETFs spanning tax-aware US equity (TAX), endowment-style multi-asset (ENDW), global equal weight (GEW), and US equal weight (USEW). Founded by Meb Faber, Cambria pioneered the 351 ETF exchange space with 4 completed launches and an upcoming GEQ fund.",plr:0.5,aum:530,yrs:18,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:15.5,Healthcare:19.7,Financials:9.7,Consumer:14.3,Industrials:21.7,Energy:0,Communications:7.2,Utilities:1.1,RealEstate:2.7,Materials:2},dataType:"actual",holdings:102},
+  {name:"Alpha Architect",tickers:"AAUS / AAEQ",er:"0.15%",erNum:0.15,placementPct:0,min:150000,strategy:"US Core Equity",fullDesc:"Alpha Architect's AAUS and AAEQ are US core equity ETFs that minimize dividend payments to reduce tax drag. With 23+ completed 351 exchanges and a white-label platform powering other advisors (Ritholtz, Raub Brock, Burke Wealth), they are the most active facilitator in the space.",plr:0.5,aum:950,yrs:14,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:34.6,Healthcare:7.6,Financials:9.6,Consumer:13.4,Industrials:6.7,Energy:2.6,Communications:6.4,Utilities:1.7,RealEstate:0.5,Materials:1.1},dataType:"actual",holdings:376},
+  {name:"Longview Research",tickers:"EBI",er:"0.25%",erNum:0.25,placementPct:0,min:250000,strategy:"Active US Equity",fullDesc:"Longview Advantage ETF (EBI) provides broad exposure to US large, mid, and small-cap companies while overweighting securities with lower valuations and higher profitability. Launched Feb 2025 with $440M raised. Also offers LVIG for fixed income.",plr:0.5,aum:440,yrs:12,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:21.9,Healthcare:7.1,Financials:14.4,Consumer:14.2,Industrials:11.6,Energy:6.8,Communications:8.8,Utilities:1.8,RealEstate:0.2,Materials:3.1},dataType:"actual",holdings:350},
+  {name:"Burney Wealth",tickers:"BRES",er:"0.79%",erNum:0.79,placementPct:0,min:250000,strategy:"US Factor Rotation",fullDesc:"Burney's BRES provides core US equity exposure through a systematic stock selection process refined over 50+ years. The factor rotation strategy dynamically weights value, momentum, and quality factors across 886 holdings. Raised $600M via 351 exchange.",plr:0.5,aum:600,yrs:50,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:31.2,Healthcare:10,Financials:14.7,Consumer:14.6,Industrials:11.5,Energy:3.5,Communications:8.1,Utilities:2.7,RealEstate:2.1,Materials:1.7},dataType:"actual",holdings:886},
+  {name:"Bluemonte ETFs",tickers:"BLUX / BINT",er:"0.23–0.25%",erNum:0.24,placementPct:0,min:250000,strategy:"Dynamic Total Market / Global Equity",fullDesc:"Bluemonte entered the ETF space in June 2025 with 9 ETFs. BLUX dynamically weights large/mid/small US equity via a fund-of-funds structure. BINT provides global equity exposure spanning US, developed international, and emerging markets.",plr:0.5,aum:458,yrs:3,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:25.1,Healthcare:12.4,Financials:15.3,Consumer:14.6,Industrials:11.2,Energy:4,Communications:6.9,Utilities:3,RealEstate:4.7,Materials:2.9},dataType:"actual",holdings:5},
+  {name:"JLens",tickers:"TOV",er:"0.18%",erNum:0.18,placementPct:0,min:100000,strategy:"Values-Based US Large Cap",fullDesc:"JLens 500 Jewish Advocacy US ETF (TOV) tracks an index of ~500 large-cap US stocks with a methodology aligned to Jewish value pillars. Extremely low 0.18% expense ratio. Raised $28M at launch (Feb 2025), now at $209M AUM.",plr:0.5,aum:209,yrs:8,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:34.5,Healthcare:8.8,Financials:12.2,Consumer:15.3,Industrials:8.4,Energy:2.9,Communications:9.7,Utilities:2.2,RealEstate:1.8,Materials:1.8},dataType:"actual",holdings:498},
+  {name:"NPF Investment Advisors",tickers:"NPFE",er:"0.40%",erNum:0.40,placementPct:0,min:250000,strategy:"Core Equity — Dividend Growth",fullDesc:"NPF Core Equity ETF focuses on high-quality companies with strong cash flows and growing dividends. Rooted in NPF's investment philosophy applied since 1933, making them one of the longest-tenured firms in the 351 space. 468 holdings, launched March 2026.",plr:0.5,aum:575,yrs:93,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:34.7,Healthcare:13.4,Financials:10.8,Consumer:14,Industrials:12.8,Energy:0.9,Communications:6,Utilities:0.1,RealEstate:0.1,Materials:6.9},dataType:"actual",holdings:468},
+  {name:"Polen Capital",tickers:"PCLG / PCGO",er:"0.45%",erNum:0.45,placementPct:0,min:250000,strategy:"Quality Growth — All Cap",fullDesc:"Polen Focus Growth ETF (PCLG) is a concentrated 26-stock portfolio of high-conviction large-cap growth names. Heavily tech-weighted (44.6%). PCGO launching June 2026 with an all-cap growth strategy. 35 years of active management experience.",plr:0.5,aum:110,yrs:35,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:44.6,Healthcare:18.8,Financials:16.2,Consumer:13.5,Industrials:0,Energy:0,Communications:5.4,Utilities:0,RealEstate:1.5,Materials:0},dataType:"actual",holdings:26},
+  {name:"Eagle Capital",tickers:"EAGL",er:"0.81%",erNum:0.81,placementPct:0,min:2000000,strategy:"Concentrated Value (20–35 stocks)",fullDesc:"Eagle Capital's EAGL is a highly concentrated 34-stock portfolio of high-conviction value picks including global names (LSEGY, TSM, SAP, MELI). Largest single 351 ETF launch at $1.8B. Each position represents a deep fundamental analysis by the Eagle Capital team.",plr:0.5,aum:1800,yrs:36,risk:"Medium",holdingPeriod:"None — freely tradeable",sectors:{Technology:11.8,Healthcare:11.9,Financials:7.3,Consumer:15.7,Industrials:7.3,Energy:5.5,Communications:12.6,Utilities:0,RealEstate:0,Materials:2},dataType:"actual",holdings:34},
+  {name:"Eaton Vance / Morgan Stanley",tickers:"Private Fund",er:"0.62% + 1.75% placement",erNum:0.62,placementPct:1.75,min:500000,strategy:"S&P 500 / S&P 1500 (7-yr lockup)",fullDesc:"The oldest exchange fund provider — Eaton Vance obtained the foundational IRS ruling in 1975 that established modern exchange funds. Now part of Morgan Stanley. Tracks S&P 500/1500 benchmarks. 7-year lockup required. Qualified Purchasers ($5M+ investable assets) only.",plr:1.0,aum:8000,yrs:51,risk:"Low",holdingPeriod:"7-year lockup",sectors:{Technology:32.5,Healthcare:8.9,Financials:12.6,Consumer:16,Industrials:9.5,Energy:2.9,Communications:7.7,Utilities:2.4,RealEstate:2.3,Materials:2.1},dataType:"proxy",holdings:500},
+  {name:"Goldman Sachs",tickers:"Private Fund",er:"~1.0% + 1.5% placement",erNum:1.0,placementPct:1.5,min:1000000,strategy:"Russell 1000 / Russell 3000 (7-yr lockup)",fullDesc:"Goldman Sachs has launched 10+ exchange funds tracking Russell 1000 and Russell 3000 benchmarks. 7-year lockup. Qualified Purchasers only. Fees are reportedly higher than Eaton Vance. 155+ year operating history provides maximum institutional credibility.",plr:1.0,aum:12000,yrs:155,risk:"Low",holdingPeriod:"7-year lockup",sectors:{Technology:32.4,Healthcare:8.9,Financials:12.6,Consumer:15.8,Industrials:9.2,Energy:2.9,Communications:8,Utilities:2.3,RealEstate:2.2,Materials:2.2},dataType:"proxy",holdings:1000},
+  {name:"Cache",tickers:"Private Fund",er:"0.40–0.95%",erNum:0.68,placementPct:0,min:100000,strategy:"S&P 500 / Nasdaq-100 (modern exchange fund)",fullDesc:"Cache is a modern fintech competitor to legacy exchange funds, offering $100K minimum (lowest in exchange fund space) and access for Accredited Investors, not just Qualified Purchasers. 'Index Sync' structure uses ETFs for tax-efficient rebalancing. Zero sales/servicing/performance fees.",plr:0.6,aum:400,yrs:4,risk:"Low",holdingPeriod:"7-yr for full tax benefit",sectors:{Technology:41.6,Healthcare:6.9,Financials:6.4,Consumer:18.7,Industrials:6.1,Energy:2.1,Communications:13.7,Utilities:2,RealEstate:1,Materials:1.7},dataType:"proxy",holdings:500},
+  {name:"Stance Capital",tickers:"CHGX",er:"0.49%",erNum:0.49,placementPct:0,min:100000,strategy:"Sustainable / ESG Active",fullDesc:"First 351 ETF launched (Nov 2024). CHGX is an ESG-screened portfolio of ~105 stocks excluding energy and utilities sectors entirely. Technology-heavy at 37%. Small AUM ($11M at launch) — verify current fund status.",plr:0.5,aum:11,yrs:8,risk:"Medium",holdingPeriod:"None — freely tradeable",sectors:{Technology:37,Healthcare:11.1,Financials:14.5,Consumer:16.4,Industrials:7.8,Energy:0,Communications:9.1,Utilities:0,RealEstate:2,Materials:2},dataType:"actual",holdings:105},
+  {name:"Amplius Wealth Advisors",tickers:"AAAA",er:"0.55%",erNum:0.55,placementPct:0,min:200000,strategy:"Global Active Asset Allocation",fullDesc:"Amplius Aggressive Asset Allocation ETF is a fund-of-funds holding ETFs like QQQ, IOO, OEF across US, international equities, fixed income, and alternatives. Multi-asset approach with 63% domestic stock, 22% foreign stock, 7% bonds, 7% cash. Launched July 2025.",plr:0.5,aum:140,yrs:2,risk:"Medium",holdingPeriod:"None — freely tradeable",sectors:{Technology:31.8,Healthcare:8.9,Financials:15.8,Consumer:15.4,Industrials:9.1,Energy:3.1,Communications:9.6,Utilities:1.6,RealEstate:1.9,Materials:3.1},dataType:"actual",holdings:47},
+  {name:"Ritholtz Wealth",tickers:"GTND",er:"0.50%",erNum:0.50,placementPct:0,min:250000,strategy:"Trend-Following US Equity",fullDesc:"Ritholtz Wealth Management's Goaltender ETF (GTND) adjusts US equity exposure based on price trends over 6-10 month periods. Maintains exposure during sustained runs and becomes defensive during downtrends. Sub-advised by Alpha Architect. Filed 2026.",plr:0.5,aum:0,yrs:13,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:30,Healthcare:9,Financials:12,Consumer:16,Industrials:9,Energy:4,Communications:11,Utilities:3.5,RealEstate:2.5,Materials:3},dataType:"estimate",holdings:500},
+  {name:"Astoria Portfolio Advisors",tickers:"LCOR",er:"0.35%",erNum:0.35,placementPct:0,min:200000,strategy:"US Enhanced Core Equity",fullDesc:"Astoria US Enhanced Core Equity ETF uses a multi-factor quantitative model (growth, value, profitability, momentum) on large-cap US equities. Rebalanced monthly to track and outperform the S&P 500. Launched October 2025 on ETF Architect platform.",plr:0.5,aum:180,yrs:8,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:31,Healthcare:9,Financials:13,Consumer:16.5,Industrials:9.5,Energy:3.5,Communications:10.5,Utilities:2.5,RealEstate:2.5,Materials:2.5},dataType:"proxy",holdings:350},
+  {name:"Toews Asset Management",tickers:"HQQQ",er:"0.65%",erNum:0.65,placementPct:0,min:250000,strategy:"Hedged Nasdaq-100 w/ Options Overlay",fullDesc:"Toews Agility Shares Hedged Nasdaq-100 ETF provides exposure to the Nasdaq-100 via ETFs, futures, and stocks combined with a managed-risk options overlay designed to moderate downside volatility. Launched March 2026. 30 years of firm operating history.",plr:0.5,aum:95,yrs:30,risk:"Medium",holdingPeriod:"None — freely tradeable",sectors:{Technology:49,Healthcare:6,Financials:2,Consumer:21,Industrials:4,Energy:0.8,Communications:15,Utilities:1.5,RealEstate:0.4,Materials:0.3},dataType:"estimate",holdings:100},
+  {name:"Castellan ETFs",tickers:"CTIF",er:"0.60%",erNum:0.60,placementPct:0,min:200000,strategy:"Targeted Income — Covered Call Overlay",fullDesc:"Castellan Targeted Income ETF is a 46-stock portfolio heavily weighted toward Industrials (43%) and Technology (26%). Uses a covered call overlay on ~20% of equity holdings for income, managed by Arin Risk Advisors. Unusual sector concentration for a 351 ETF.",plr:0.5,aum:130,yrs:5,risk:"Medium",holdingPeriod:"None — freely tradeable",sectors:{Technology:25.9,Healthcare:3.8,Financials:12.7,Consumer:10,Industrials:43,Energy:0.1,Communications:0.2,Utilities:0.1,RealEstate:0,Materials:4.3},dataType:"actual",holdings:46},
+  {name:"Twin Oaks ETFs",tickers:"TSPX",er:"0.43%",erNum:0.43,placementPct:0,min:250000,strategy:"Active Balanced (75% Equity / 14% Bond)",fullDesc:"Twin Oak Active Opportunities ETF is a multi-asset fund with approximately 75% domestic stock, 14% bonds, and 11% cash. Moderate allocation strategy is unusual for 351 ETFs. $450M raised via 351 exchange. Technology-heavy equity sleeve at 37%.",plr:0.5,aum:450,yrs:6,risk:"Medium",holdingPeriod:"None — freely tradeable",sectors:{Technology:37.2,Healthcare:8.9,Financials:12.5,Consumer:15.5,Industrials:6.9,Energy:2.8,Communications:10.5,Utilities:2.4,RealEstate:1.9,Materials:1.5},dataType:"actual",holdings:200},
+  {name:"Kurv Investments",tickers:"LCTO",er:"0.35%",erNum:0.35,placementPct:0,min:200000,strategy:"Broad Market Core",fullDesc:"Kurv's LCTO uses passive S&P 500 large-cap equity exposure combined with active collateral management in muni bonds and preferred stock ETFs for tax-optimized income. Estimated launch Q3 2025.",plr:0.5,aum:90,yrs:4,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:32.6,Healthcare:8.8,Financials:12.6,Consumer:16.1,Industrials:8.8,Energy:3.5,Communications:11.4,Utilities:2.4,RealEstate:1.9,Materials:2},dataType:"estimate",holdings:500},
+  {name:"Avantis / American Century",tickers:"AVTM",er:"0.22%",erNum:0.22,placementPct:0,min:500000,strategy:"Total Global Equity — All-Cap Developed + EM",fullDesc:"Avantis Total Equity Markets ETF invests across all market caps in US, developed, and emerging markets. 1,659 holdings with an emphasis on securities with higher expected returns. American Century (parent) was founded in 1958, providing 68 years of institutional credibility.",plr:0.5,aum:800,yrs:68,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:28.7,Healthcare:8.3,Financials:17,Consumer:15.7,Industrials:11.7,Energy:3.4,Communications:10.6,Utilities:1.2,RealEstate:1.1,Materials:2.5},dataType:"actual",holdings:1659},
+  {name:"Cambria Value & Momentum",tickers:"VAMO",er:"0.59%",erNum:0.59,placementPct:0,min:250000,strategy:"Hedged Value & Momentum",fullDesc:"Cambria Value and Momentum ETF (VAMO) holds ~104 stocks selected for value and momentum characteristics with a ~65% cash offset for hedging. Heavily Financials-weighted (26%). Distinct from Cambria's other 351 ETFs — this is an actively hedged long-short strategy.",plr:0.5,aum:590,yrs:18,risk:"Low",holdingPeriod:"None — freely tradeable",sectors:{Technology:6.2,Healthcare:9.9,Financials:26.3,Consumer:22.8,Industrials:15.5,Energy:6.1,Communications:5.9,Utilities:3.1,RealEstate:0,Materials:4.2},dataType:"actual",holdings:104},
+  {name:"Moonvest",tickers:"MNVT",er:"0.75%",erNum:0.75,placementPct:0,min:100000,strategy:"Concentrated Contrarian (15–35 positions)",fullDesc:"Moonvest ETF is a concentrated contrarian portfolio of 15-35 positions. Founded Dec 2025 by former Google engineer. Holdings span quantum computing (IONQ), space/defense (RDW, RCAT), clean energy (CLSK), and biotech (SRPT). Very short track record — highest risk profile.",plr:0.3,aum:35,yrs:1,risk:"High",holdingPeriod:"None — freely tradeable",sectors:{Technology:18.8,Healthcare:10.7,Financials:9.3,Consumer:10.5,Industrials:12.2,Energy:14.7,Communications:8.8,Utilities:2.5,RealEstate:3.5,Materials:5},dataType:"actual",holdings:25},
+  {name:"Cloverpoint Capital",tickers:"Filing Pending",er:"TBD",erNum:0.50,placementPct:0,min:250000,strategy:"Hedge Fund Best-Ideas Replication (4 funds filed)",fullDesc:"Cloverpoint screens 13F filings of hedge fund managers to identify high-conviction, high-consensus holdings. Four funds filed (US, International, Global, Energy Transition). Uses Alpha Architect's white-label platform. Strategy launched at Cloverfields Capital in 2020.",plr:0.3,aum:0,yrs:6,risk:"Medium",holdingPeriod:"None — freely tradeable",sectors:{Technology:13.9,Healthcare:24.6,Financials:10.1,Consumer:18.3,Industrials:12.9,Energy:3.2,Communications:5.5,Utilities:4.2,RealEstate:2.4,Materials:2.4},dataType:"estimate",holdings:50},
+  {name:"Fidelity",tickers:"Private Fund",er:"0.54% + 1.5% placement",erNum:0.54,placementPct:1.5,min:250000,strategy:"S&P 500 Exchange Fund (7-yr lockup)",fullDesc:"Fidelity's Congress Street Fund (relaunched 2023) is a traditional exchange fund tracking the S&P 500. $250K minimum with 3-year minimum lockup, 7-year holding for full tax benefit. Qualified Purchasers ($5M+ investable assets) only. Additional admin and servicing fees apply.",plr:0.8,aum:5000,yrs:78,risk:"Low",holdingPeriod:"7-year lockup",sectors:{Technology:32.6,Healthcare:8.8,Financials:12.6,Consumer:16.1,Industrials:8.8,Energy:3.5,Communications:11.4,Utilities:2.4,RealEstate:1.9,Materials:2},dataType:"proxy",holdings:500},
 ];
 
-const ETF_PRICES = {
-  VTI:295.40, VOO:548.20, QQQ:520.80, VEA:52.30,
-  BND:71.60, GLD:298.50, AGG:98.70, CASH:1.00
-};
-
-// ── Provider data for matching ──────────────────────────────────────
-// Trust score components: plr (IRS PLR backing 0-1), aum ($M), yrs (years operating)
-const PROVIDERS = [
-  {name:"Cambria Investment Management",tickers:"TAX / ENDW / GEW / USEW",er:"0.25–0.29%",erNum:0.27,placementPct:0,min:100000,strategy:"Broad Market / Global Equal Weight",plr:0.5,aum:530,yrs:18,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Alpha Architect",tickers:"AAUS / AAEQ",er:"0.15%",erNum:0.15,placementPct:0,min:150000,strategy:"US Core Equity",plr:0.5,aum:950,yrs:14,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Longview Research",tickers:"EBI",er:"0.25%",erNum:0.25,placementPct:0,min:250000,strategy:"Active US Equity",plr:0.5,aum:440,yrs:12,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Burney Wealth",tickers:"BRES",er:"0.79%",erNum:0.79,placementPct:0,min:250000,strategy:"US Factor Rotation",plr:0.5,aum:600,yrs:50,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Bluemonte ETFs",tickers:"BLUX / BINT",er:"0.23–0.25%",erNum:0.24,placementPct:0,min:250000,strategy:"Dynamic Total Market / Global Equity",plr:0.5,aum:458,yrs:3,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"JLens",tickers:"TOV",er:"0.18%",erNum:0.18,placementPct:0,min:100000,strategy:"Values-Based US Large Cap",plr:0.5,aum:209,yrs:8,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"NPF Investment Advisors",tickers:"NPFE",er:"0.40%",erNum:0.40,placementPct:0,min:250000,strategy:"Core Equity — Dividend Growth",plr:0.5,aum:120,yrs:93,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Polen Capital",tickers:"PCLG / PCGO",er:"0.45%",erNum:0.45,placementPct:0,min:250000,strategy:"Quality Growth — All Cap",plr:0.5,aum:110,yrs:35,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Eagle Capital",tickers:"EAGL",er:"0.81%",erNum:0.81,placementPct:0,min:2000000,strategy:"Concentrated Value (20–35 stocks)",plr:0.5,aum:1800,yrs:36,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Eaton Vance / Morgan Stanley",tickers:"Private Fund",er:"0.62% + 1.75% placement",erNum:0.62,placementPct:1.75,min:500000,strategy:"S&P 500 / S&P 1500 (7-yr lockup)",plr:1.0,aum:8000,yrs:51,risk:"Low",holdingPeriod:"7-year lockup"},
-  {name:"Goldman Sachs",tickers:"Private Fund",er:"~1.0% + 1.5% placement",erNum:1.0,placementPct:1.5,min:1000000,strategy:"Russell 1000 / Russell 3000 (7-yr lockup)",plr:1.0,aum:12000,yrs:155,risk:"Low",holdingPeriod:"7-year lockup"},
-  {name:"Cache",tickers:"Private Fund",er:"0.40–0.95%",erNum:0.68,placementPct:0,min:100000,strategy:"S&P 500 / Nasdaq-100 (modern exchange fund)",plr:0.6,aum:400,yrs:4,risk:"Low",holdingPeriod:"7-yr for full tax benefit"},
-  {name:"Stance Capital",tickers:"CHGX",er:"0.49%",erNum:0.49,placementPct:0,min:100000,strategy:"Sustainable / ESG Active",plr:0.5,aum:11,yrs:8,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Amplius Wealth Advisors",tickers:"AAAA",er:"0.55%",erNum:0.55,placementPct:0,min:200000,strategy:"Global Active Asset Allocation",plr:0.5,aum:140,yrs:2,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Ritholtz Wealth",tickers:"GTND",er:"0.50%",erNum:0.50,placementPct:0,min:250000,strategy:"Trend-Following US Equity",plr:0.5,aum:0,yrs:13,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Astoria Portfolio Advisors",tickers:"LCOR",er:"0.35%",erNum:0.35,placementPct:0,min:200000,strategy:"US Enhanced Core Equity",plr:0.5,aum:180,yrs:8,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Toews Asset Management",tickers:"HQQQ",er:"0.65%",erNum:0.65,placementPct:0,min:250000,strategy:"Hedged Nasdaq-100 w/ Options Overlay",plr:0.5,aum:95,yrs:30,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Castellan ETFs",tickers:"CTIF",er:"0.60%",erNum:0.60,placementPct:0,min:200000,strategy:"Targeted Income — Covered Call Overlay",plr:0.5,aum:130,yrs:5,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Twin Oaks ETFs",tickers:"TSPX",er:"0.43%",erNum:0.43,placementPct:0,min:250000,strategy:"Active Balanced (75% Equity / 14% Bond)",plr:0.5,aum:450,yrs:6,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Kurv Investments",tickers:"LCTO",er:"0.35%",erNum:0.35,placementPct:0,min:200000,strategy:"Broad Market Core",plr:0.5,aum:90,yrs:4,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Avantis / American Century",tickers:"AVTM",er:"0.22%",erNum:0.22,placementPct:0,min:500000,strategy:"Total Global Equity — All-Cap Developed + EM",plr:0.5,aum:800,yrs:68,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Cambria Value & Momentum",tickers:"CAMV",er:"0.59%",erNum:0.59,placementPct:0,min:250000,strategy:"Large-Cap Value & Momentum",plr:0.5,aum:590,yrs:18,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Moonvest",tickers:"MNVT",er:"0.75%",erNum:0.75,placementPct:0,min:100000,strategy:"Concentrated Contrarian (15–35 positions)",plr:0.3,aum:35,yrs:1,risk:"High",holdingPeriod:"None — freely tradeable"},
-  {name:"Cloverpoint Capital",tickers:"Filing Pending",er:"TBD",erNum:0.50,placementPct:0,min:250000,strategy:"Hedge Fund Best-Ideas Replication (4 funds filed)",plr:0.3,aum:0,yrs:6,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Fidelity",tickers:"Private Fund",er:"0.54% + 1.5% placement",erNum:0.54,placementPct:1.5,min:250000,strategy:"S&P 500 Exchange Fund (7-yr lockup)",plr:0.8,aum:5000,yrs:78,risk:"Low",holdingPeriod:"7-year lockup"},
-];
-
-// ── Trust score calculation ─────────────────────────────────────────
-// PLR backing: 40%, AUM: 30%, Years in operation: 30%
-function calcTrustScore(p) {
-  const plrScore = p.plr; // 0-1
-  const aumScore = Math.min(p.aum / 5000, 1); // cap at 5B
-  const yrsScore = Math.min(p.yrs / 50, 1);   // cap at 50 yrs
-  return Math.round((plrScore * 40 + aumScore * 30 + yrsScore * 30));
-}
+function calcTrustScore(p){const pl=p.plr,au=Math.min(p.aum/5000,1),yr=Math.min(p.yrs/50,1);return Math.round(pl*40+au*30+yr*30)}
 
 // ── State ───────────────────────────────────────────────────────────
-let primaryStock = null;
-let primaryShares = 0;
-let primaryBasis = 0;
-let positions = []; // {ticker, name, shares, value}
+let primaryStock=null,primaryShares=0,primaryBasis=0,positions=[];
+let lastTotalVal=0,lastTotalGain=0,lastMatched=[],lastFeatured=[];
 
-// ── DOM refs ────────────────────────────────────────────────────────
-const stockSelect = document.getElementById('stockSelect');
-const sharesInput = document.getElementById('sharesInput');
-const valueDisplay = document.getElementById('valueDisplay');
-const basisInput = document.getElementById('basisInput');
-const gainDisplay = document.getElementById('gainDisplay');
-const positionsList = document.getElementById('positionsList');
-const rule25Val = document.getElementById('rule25Val');
-const rule50Val = document.getElementById('rule50Val');
-const rule25Bar = document.getElementById('rule25Bar');
-const rule50Bar = document.getElementById('rule50Bar');
-const swapBtn = document.getElementById('swapBtn');
-const donutCanvas = document.getElementById('donutCanvas');
-const donutTotal = document.getElementById('donutTotal');
-const legendEl = document.getElementById('legend');
+const stockSelect=document.getElementById('stockSelect'),sharesInput=document.getElementById('sharesInput');
+const valueInput=document.getElementById('valueInput'),basisInput=document.getElementById('basisInput');
+const gainDisplay=document.getElementById('gainDisplay'),positionsList=document.getElementById('positionsList');
+const rule25Val=document.getElementById('rule25Val'),rule50Val=document.getElementById('rule50Val');
+const rule25Bar=document.getElementById('rule25Bar'),rule50Bar=document.getElementById('rule50Bar');
+const swapBtn=document.getElementById('swapBtn'),donutCanvas=document.getElementById('donutCanvas');
+const donutTotal=document.getElementById('donutTotal'),legendEl=document.getElementById('legend');
 
-// ── Populate stock dropdown ─────────────────────────────────────────
-STOCKS.forEach(s => {
-  const opt = document.createElement('option');
-  opt.value = s.ticker;
-  opt.textContent = `${s.ticker} — ${s.name} ($${s.price.toFixed(2)})`;
-  stockSelect.appendChild(opt);
+STOCKS.forEach(s=>{const o=document.createElement('option');o.value=s.ticker;o.textContent=`${s.ticker} — ${s.name} ($${s.price.toFixed(2)})`;stockSelect.appendChild(o)});
+
+// ── Two-way shares/value binding ────────────────────────────────────
+let updatingFromShares=false,updatingFromValue=false;
+stockSelect.addEventListener('change',()=>{primaryStock=STOCKS.find(s=>s.ticker===stockSelect.value)||null;recalc()});
+sharesInput.addEventListener('input',()=>{
+  if(updatingFromValue)return;
+  updatingFromShares=true;
+  primaryShares=parseInt(sharesInput.value)||0;
+  if(primaryStock&&primaryShares>0){valueInput.value=(primaryStock.price*primaryShares).toFixed(2)}
+  else{valueInput.value=''}
+  updatingFromShares=false;recalc();
 });
+valueInput.addEventListener('input',()=>{
+  if(updatingFromShares)return;
+  updatingFromValue=true;
+  const v=parseFloat(valueInput.value)||0;
+  if(primaryStock&&primaryStock.price>0&&v>0){primaryShares=Math.round(v/primaryStock.price);sharesInput.value=primaryShares}
+  else{primaryShares=0;sharesInput.value=''}
+  updatingFromValue=false;recalc();
+});
+basisInput.addEventListener('input',()=>{primaryBasis=parseFloat(basisInput.value)||0;recalc()});
 
-// ── Event listeners ─────────────────────────────────────────────────
-stockSelect.addEventListener('change', () => { primaryStock = STOCKS.find(s => s.ticker === stockSelect.value) || null; recalc(); });
-sharesInput.addEventListener('input', () => { primaryShares = parseInt(sharesInput.value) || 0; recalc(); });
-basisInput.addEventListener('input', () => { primaryBasis = parseFloat(basisInput.value) || 0; recalc(); });
+function fmt(n){if(n>=1e6)return '$'+(n/1e6).toFixed(2)+'M';return '$'+n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}
 
-function fmt(n) {
-  if (n >= 1e6) return '$' + (n / 1e6).toFixed(2) + 'M';
-  return '$' + n.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0});
+function recalc(){
+  const pVal=primaryStock?primaryStock.price*primaryShares:0;
+  const primaryGain=(pVal>0&&primaryBasis>0)?Math.max(0,pVal-primaryBasis):0;
+  const addlGains=positions.reduce((s,p)=>p.basis>0?s+Math.max(0,p.value-p.basis):s,0);
+  gainDisplay.value=(primaryGain+addlGains)>0?fmt(primaryGain+addlGains):'$0.00';
+  const all=[];
+  if(primaryStock&&pVal>0)all.push({ticker:primaryStock.ticker,name:primaryStock.name,value:pVal});
+  positions.forEach(p=>{if(p.value>0)all.push(p)});
+  const totalVal=all.reduce((s,p)=>s+p.value,0);
+  const sorted=[...all].sort((a,b)=>b.value-a.value);
+  const largestPct=totalVal>0?(sorted[0]?.value||0)/totalVal*100:0;
+  const top5Pct=totalVal>0?sorted.slice(0,5).reduce((s,p)=>s+p.value,0)/totalVal*100:0;
+  const pass25=largestPct<=25,pass50=top5Pct<=50;
+  rule25Val.textContent=totalVal>0?largestPct.toFixed(1)+'% of portfolio':'—';
+  rule25Val.className='rule-val '+(totalVal>0?(pass25?'pass':'fail'):'');
+  rule25Bar.style.width=Math.min(largestPct/25*100,100)+'%';rule25Bar.style.background=pass25?'var(--green)':'var(--red)';
+  rule50Val.textContent=totalVal>0?top5Pct.toFixed(1)+'% of portfolio':'—';
+  rule50Val.className='rule-val '+(totalVal>0?(pass50?'pass':'fail'):'');
+  rule50Bar.style.width=Math.min(top5Pct/50*100,100)+'%';rule50Bar.style.background=pass50?'var(--green)':'var(--red)';
+  const qualifies=pass25&&pass50&&totalVal>0;
+  swapBtn.className='swap-btn '+(qualifies?'pass':'fail');swapBtn.disabled=!qualifies;
+  swapBtn.textContent=qualifies?'Swapwise It \u2192':"Portfolio Doesn't Qualify Yet";
+  drawDonut(all,totalVal);
 }
 
-function recalc() {
-  const pVal = primaryStock ? primaryStock.price * primaryShares : 0;
-  valueDisplay.value = pVal > 0 ? fmt(pVal) : '$0.00';
-  // Show total unrealized gain across all positions
-  const primaryGain = (pVal > 0 && primaryBasis > 0) ? Math.max(0, pVal - primaryBasis) : 0;
-  const addlGains = positions.reduce((s, p) => p.basis > 0 ? s + Math.max(0, p.value - p.basis) : s, 0);
-  const totalGain = primaryGain + addlGains;
-  gainDisplay.value = totalGain > 0 ? fmt(totalGain) : '$0.00';
-
-  // Build all positions array
-  const all = [];
-  if (primaryStock && pVal > 0) {
-    all.push({ticker: primaryStock.ticker, name: primaryStock.name, value: pVal});
-  }
-  positions.forEach(p => { if (p.value > 0) all.push(p); });
-
-  const totalVal = all.reduce((s, p) => s + p.value, 0);
-
-  // Sort by value desc for 25/50
-  const sorted = [...all].sort((a, b) => b.value - a.value);
-  const largestPct = totalVal > 0 ? (sorted[0]?.value || 0) / totalVal * 100 : 0;
-  const top5Pct = totalVal > 0 ? sorted.slice(0, 5).reduce((s, p) => s + p.value, 0) / totalVal * 100 : 0;
-
-  const pass25 = largestPct <= 25;
-  const pass50 = top5Pct <= 50;
-
-  rule25Val.textContent = totalVal > 0 ? largestPct.toFixed(1) + '% of portfolio' : '—';
-  rule25Val.className = 'rule-val ' + (totalVal > 0 ? (pass25 ? 'pass' : 'fail') : '');
-  rule25Bar.style.width = Math.min(largestPct / 25 * 100, 100) + '%';
-  rule25Bar.style.background = pass25 ? 'var(--green)' : 'var(--red)';
-
-  rule50Val.textContent = totalVal > 0 ? top5Pct.toFixed(1) + '% of portfolio' : '—';
-  rule50Val.className = 'rule-val ' + (totalVal > 0 ? (pass50 ? 'pass' : 'fail') : '');
-  rule50Bar.style.width = Math.min(top5Pct / 50 * 100, 100) + '%';
-  rule50Bar.style.background = pass50 ? 'var(--green)' : 'var(--red)';
-
-  const qualifies = pass25 && pass50 && totalVal > 0;
-  swapBtn.className = 'swap-btn ' + (qualifies ? 'pass' : 'fail');
-  swapBtn.disabled = !qualifies;
-  swapBtn.textContent = qualifies ? 'Swapwise It \u2192' : "Portfolio Doesn't Qualify Yet";
-
-  // Draw donut
-  drawDonut(all, totalVal);
+function addPosition(){
+  const ticker=document.getElementById('addTicker').value;
+  const shares=parseInt(document.getElementById('addShares').value)||0;
+  let val=parseFloat(document.getElementById('addValue').value)||0;
+  const basis=parseFloat(document.getElementById('addBasis').value)||0;
+  const stockMatch=STOCKS.find(s=>s.ticker===ticker);
+  const price=ETF_PRICES[ticker]||(stockMatch?stockMatch.price:1);
+  if(ticker==='CASH'){if(val<=0)return}else{if(shares<=0&&val<=0)return;if(val<=0)val=shares*price}
+  const name=ticker==='CASH'?'Cash':document.getElementById('addTicker').selectedOptions[0].textContent.split('(')[0].trim();
+  positions.push({ticker,name,shares,value:val,basis});renderPositions();recalc();
+  document.getElementById('addShares').value='';document.getElementById('addValue').value='';document.getElementById('addBasis').value='';
 }
-
-// ── Add position ────────────────────────────────────────────────────
-function addPosition() {
-  const ticker = document.getElementById('addTicker').value;
-  const shares = parseInt(document.getElementById('addShares').value) || 0;
-  let val = parseFloat(document.getElementById('addValue').value) || 0;
-  const basis = parseFloat(document.getElementById('addBasis').value) || 0;
-  const stockMatch = STOCKS.find(s => s.ticker === ticker);
-  const price = ETF_PRICES[ticker] || (stockMatch ? stockMatch.price : 1);
-  if (ticker === 'CASH') {
-    if (val <= 0) return;
-  } else {
-    if (shares <= 0 && val <= 0) return;
-    if (val <= 0) val = shares * price;
-  }
-  const name = ticker === 'CASH' ? 'Cash' :
-    document.getElementById('addTicker').selectedOptions[0].textContent.split('(')[0].trim();
-  positions.push({ticker, name, shares, value: val, basis: basis});
-  renderPositions();
-  recalc();
-  document.getElementById('addShares').value = '';
-  document.getElementById('addValue').value = '';
-  document.getElementById('addBasis').value = '';
-}
-
-function removePosition(i) {
-  positions.splice(i, 1);
-  renderPositions();
-  recalc();
-}
-
-function renderPositions() {
-  positionsList.innerHTML = positions.map((p, i) => {
-    const gain = p.value - (p.basis || 0);
-    const gainLabel = p.basis > 0 ? ` (gain: ${fmt(Math.max(0, gain))})` : '';
-    return `<span class="position-tag">${p.ticker} — ${fmt(p.value)}${gainLabel}<button onclick="removePosition(${i})">&times;</button></span>`;
+function removePosition(i){positions.splice(i,1);renderPositions();recalc()}
+function renderPositions(){
+  positionsList.innerHTML=positions.map((p,i)=>{
+    const gain=p.value-(p.basis||0);const gl=p.basis>0?` (gain: ${fmt(Math.max(0,gain))})`:'';
+    return `<span class="position-tag">${p.ticker} — ${fmt(p.value)}${gl}<button onclick="removePosition(${i})">&times;</button></span>`;
   }).join('');
 }
 
-// ── Donut chart (pure canvas) ───────────────────────────────────────
-const COLORS = ['#c9a84c','#4a90d9','#50c878','#e67e73','#9b59b6','#f39c12','#1abc9c','#e74c3c','#3498db','#2ecc71','#e84393','#00cec9','#fdcb6e','#6c5ce7'];
+// ── Donut chart ─────────────────────────────────────────────────────
+const COLORS=['#c9a84c','#4a90d9','#50c878','#e67e73','#9b59b6','#f39c12','#1abc9c','#e74c3c','#3498db','#2ecc71','#e84393','#00cec9','#fdcb6e','#6c5ce7'];
+const SECTOR_COLORS={Technology:'#4a90d9',Healthcare:'#50c878',Financials:'#e67e73',Consumer:'#9b59b6',Industrials:'#f39c12',Energy:'#1abc9c',Communications:'#3498db',Utilities:'#fdcb6e',RealEstate:'#e84393',Materials:'#00cec9'};
 
-function drawDonut(items, total) {
-  const ctx = donutCanvas.getContext('2d');
-  const W = 480, H = 480, cx = W / 2, cy = H / 2, R = 200, r = 130;
-  ctx.clearRect(0, 0, W, H);
-
-  donutTotal.textContent = total > 0 ? fmt(total) : '$0';
-
-  if (items.length === 0) {
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
-    ctx.arc(cx, cy, r, 0, Math.PI * 2, true);
-    ctx.fillStyle = 'rgba(255,255,255,0.08)'; ctx.fill();
-    legendEl.innerHTML = '';
-    return;
-  }
-
-  let angle = -Math.PI / 2;
-  const slices = items.map((item, i) => {
-    const pct = item.value / total;
-    const sweep = pct * Math.PI * 2;
-    const color = COLORS[i % COLORS.length];
-    const slice = {item, pct, start: angle, end: angle + sweep, color};
-    angle += sweep;
-    return slice;
-  });
-
-  slices.forEach(s => {
-    ctx.beginPath();
-    ctx.arc(cx, cy, R, s.start, s.end);
-    ctx.arc(cx, cy, r, s.end, s.start, true);
-    ctx.closePath();
-    ctx.fillStyle = s.color;
-    ctx.fill();
-    // gap
-    ctx.beginPath();
-    ctx.arc(cx, cy, R, s.end - 0.01, s.end + 0.01);
-    ctx.arc(cx, cy, r, s.end + 0.01, s.end - 0.01, true);
-    ctx.fillStyle = '#1a2744'; ctx.fill();
-  });
-
-  legendEl.innerHTML = slices.map(s =>
-    `<div class="legend-item"><div class="legend-dot" style="background:${s.color}"></div>${s.item.ticker} — ${(s.pct * 100).toFixed(1)}% (${fmt(s.item.value)})</div>`
-  ).join('');
+function drawDonut(items,total){
+  const ctx=donutCanvas.getContext('2d');const W=480,H=480,cx=W/2,cy=H/2,R=200,r=130;ctx.clearRect(0,0,W,H);
+  donutTotal.textContent=total>0?fmt(total):'$0';
+  if(!items.length){ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.arc(cx,cy,r,0,Math.PI*2,true);ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fill();legendEl.innerHTML='';return}
+  let angle=-Math.PI/2;
+  const slices=items.map((item,i)=>{const pct=item.value/total;const sweep=pct*Math.PI*2;const color=COLORS[i%COLORS.length];const slice={item,pct,start:angle,end:angle+sweep,color};angle+=sweep;return slice});
+  slices.forEach(s=>{ctx.beginPath();ctx.arc(cx,cy,R,s.start,s.end);ctx.arc(cx,cy,r,s.end,s.start,true);ctx.closePath();ctx.fillStyle=s.color;ctx.fill();ctx.beginPath();ctx.arc(cx,cy,R,s.end-.01,s.end+.01);ctx.arc(cx,cy,r,s.end+.01,s.end-.01,true);ctx.fillStyle='#1a2744';ctx.fill()});
+  legendEl.innerHTML=slices.map(s=>`<div class="legend-item"><div class="legend-dot" style="background:${s.color}"></div>${s.item.ticker} — ${(s.pct*100).toFixed(1)}% (${fmt(s.item.value)})</div>`).join('');
 }
+function drawMiniDonut(canvas,sectors,size){
+  const ctx=canvas.getContext('2d');const W=size*2,H=size*2,cx=W/2,cy=H/2,R=size*.85,r=size*.55;
+  canvas.width=W;canvas.height=H;ctx.clearRect(0,0,W,H);
+  const entries=Object.entries(sectors).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]);
+  const total=entries.reduce((s,[,v])=>s+v,0);if(total<=0)return[];
+  let angle=-Math.PI/2;const slices=[];
+  entries.forEach(([name,val])=>{const pct=val/total;const sweep=pct*Math.PI*2;const color=SECTOR_COLORS[name]||'#8a94a6';
+    ctx.beginPath();ctx.arc(cx,cy,R,angle,angle+sweep);ctx.arc(cx,cy,r,angle+sweep,angle,true);ctx.closePath();ctx.fillStyle=color;ctx.fill();
+    slices.push({name,pct,color});angle+=sweep});
+  return slices;
+}
+drawDonut([],0);
 
-// Initial empty donut
-drawDonut([], 0);
+// ── Modal ───────────────────────────────────────────────────────────
+const modalOverlay=document.getElementById('modalOverlay');
+const modalContent=document.getElementById('modalContent');
+modalOverlay.addEventListener('click',e=>{if(e.target===modalOverlay)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+function closeModal(){modalOverlay.classList.remove('show');document.body.style.overflow=''}
 
-// ── Swapwise It button ──────────────────────────────────────────────
-swapBtn.addEventListener('click', () => {
-  if (swapBtn.disabled) return;
-  const pVal = primaryStock.price * primaryShares;
-  const totalVal = pVal + positions.reduce((s, p) => s + p.value, 0);
+function openProviderModal(idx){
+  const p=lastMatched[idx];if(!p)return;
+  const trustScore=p.trust;const trustCol=trustScore>=60?'var(--green)':trustScore>=35?'var(--gold)':'var(--red)';
+  const cost=Math.round(lastTotalVal*(p.erNum+p.placementPct)/100);
+  const dataBadge=p.dataType==='actual'?'<span class="data-badge actual">Live Holdings</span>':p.dataType==='proxy'?'<span class="data-badge proxy">Benchmark Proxy</span>':'<span class="data-badge estimate">Strategy Estimate</span>';
+  // Build user's concentrated position for "before" donut
+  const userTicker=primaryStock?primaryStock.ticker:'Stock';
+  const beforeSectors={[userTicker]:100};
 
-  // Sum unrealized gains across ALL positions
-  const primaryGain = Math.max(0, pVal - primaryBasis);
-  const additionalGains = positions.reduce((s, p) => {
-    if (p.basis > 0) return s + Math.max(0, p.value - p.basis);
-    return s; // no basis entered = no gain counted
-  }, 0);
-  const totalGain = primaryGain + additionalGains;
-  const taxRate = 0.238; // 20% LTCG + 3.8% NIIT
-  const taxSaved = totalGain * taxRate;
-
-  // All-in first-year cost: (erNum/100 * totalVal) + (placementPct/100 * totalVal)
-  function allInCost(p) {
-    return Math.round(totalVal * (p.erNum + p.placementPct) / 100);
-  }
-
-  // Show results
-  document.getElementById('taxSavings').textContent = fmt(Math.round(taxSaved));
-
-  // Match providers — filter by minimum, compute trust scores
-  const matched = PROVIDERS.filter(p => totalVal >= p.min).map(p => {
-    const trust = calcTrustScore(p);
-    let sizeMatch = 0;
-    if (totalVal >= p.min * 5) sizeMatch = 3;
-    else if (totalVal >= p.min * 2) sizeMatch = 2;
-    else sizeMatch = 1;
-    // Overall match: weighted combo of trust + size fit + low risk
-    const riskPenalty = p.risk === 'High' ? 15 : p.risk === 'Medium' ? 5 : 0;
-    const overall = trust + sizeMatch * 5 - riskPenalty;
-    return {...p, trust, sizeMatch, overall};
-  });
-
-  // Pick featured 3: Best Overall, Lowest Fees, Highest Trust
-  const byOverall = [...matched].sort((a, b) => b.overall - a.overall);
-  const byFees = [...matched].sort((a, b) => a.erNum - b.erNum);
-  const byTrust = [...matched].sort((a, b) => b.trust - a.trust);
-
-  const bestOverall = byOverall[0];
-  let lowestFees = byFees.find(p => p !== bestOverall) || byFees[0];
-  let highestTrust = byTrust.find(p => p !== bestOverall && p !== lowestFees) || byTrust[0];
-  // Deduplicate: if all three ended up the same, spread them
-  if (highestTrust === bestOverall || highestTrust === lowestFees) {
-    highestTrust = byTrust.find(p => p !== bestOverall && p !== lowestFees) || byTrust[1] || byTrust[0];
-  }
-
-  const featured = [
-    {provider: bestOverall, label: 'Best Overall Match', labelClass: 'best', icon: '\u2B50'},
-    {provider: lowestFees, label: 'Lowest Fees', labelClass: 'fees', icon: '\uD83D\uDCB0'},
-    {provider: highestTrust, label: 'Highest Trust Score', labelClass: 'trust', icon: '\uD83D\uDEE1\uFE0F'},
-  ];
-
-  const featuredSet = new Set([bestOverall, lowestFees, highestTrust]);
-  const remaining = matched.filter(p => !featuredSet.has(p)).sort((a, b) => b.overall - a.overall);
-
-  function trustColor(score) {
-    if (score >= 60) return 'var(--green)';
-    if (score >= 35) return 'var(--gold)';
-    return 'var(--red)';
-  }
-  function riskBadge(risk) {
-    const cls = risk === 'Low' ? 'high' : risk === 'Medium' ? 'med' : 'low';
-    return `<span class="match-badge ${cls}">${risk} Risk</span>`;
-  }
-
-  // Render featured cards
-  const featuredEl = document.getElementById('featuredCards');
-  featuredEl.innerHTML = featured.map(f => {
-    const p = f.provider;
-    if (!p) return '';
-    const trust = p.trust;
-    return `
-    <div class="featured-card ${f.labelClass === 'best' ? 'gold-border' : ''}">
-      <div class="award-icon ${f.labelClass}">${f.icon}</div>
-      <div class="award-label ${f.labelClass}">${f.label}</div>
-      <h4>${p.name}</h4>
-      <div class="ticker">${p.tickers}</div>
-      <div class="meta">
-        <strong>Strategy:</strong> ${p.strategy}<br>
-        <strong>Expense Ratio:</strong> ${p.er}<br>
-        <strong>Min. Position:</strong> ${fmt(p.min)}<br>
-        <strong>Holding Period:</strong> ${p.holdingPeriod}<br>
-        <strong>Est. First-Year Cost:</strong> <span style="color:var(--navy);font-weight:700">${fmt(allInCost(p))}</span>${p.placementPct > 0 ? ' <span style="font-size:.7rem">(incl. ' + p.placementPct + '% placement fee)</span>' : ''}<br>
-        ${riskBadge(p.risk)}
+  modalContent.innerHTML=`
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-header">
+      <h2>${p.name}</h2>
+      <div class="m-ticker">${p.tickers}</div>
+      <div class="m-strategy">${p.fullDesc||p.strategy}</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-grid">
+        <div class="modal-stat"><div class="stat-label">Expense Ratio</div><div class="stat-val">${p.er}</div></div>
+        <div class="modal-stat"><div class="stat-label">Est. First-Year Cost</div><div class="stat-val">${fmt(cost)}${p.placementPct>0?' <span style="font-size:.7rem;color:var(--gray)">(incl. '+p.placementPct+'% placement)</span>':''}</div></div>
+        <div class="modal-stat"><div class="stat-label">Minimum Position</div><div class="stat-val">${fmt(p.min)}</div></div>
+        <div class="modal-stat"><div class="stat-label">Holding Period</div><div class="stat-val">${p.holdingPeriod}</div></div>
+        <div class="modal-stat"><div class="stat-label">Risk Rating</div><div class="stat-val"><span class="match-badge ${p.risk==='Low'?'high':p.risk==='Medium'?'med':'low'}">${p.risk}</span></div></div>
+        <div class="modal-stat"><div class="stat-label">Trust Score</div><div class="stat-val" style="color:${trustCol}">${trustScore}/100</div></div>
       </div>
-      <div class="score-bar">
-        <span style="font-size:.7rem;color:var(--gray)">Trust</span>
-        <div class="bar-track"><div class="bar-fill" style="width:${trust}%;background:${trustColor(trust)}"></div></div>
-        <span class="score-num" style="color:${trustColor(trust)}">${trust}</span>
-      </div>
-    </div>`;
-  }).join('');
-
-  // Render remaining providers
-  const cardsEl = document.getElementById('providerCards');
-  const remLabel = document.getElementById('remainingLabel');
-  if (remaining.length > 0) {
-    remLabel.style.display = 'block';
-    cardsEl.innerHTML = remaining.map(p => `
-      <div class="provider-card">
-        <div class="pcard-icon">${p.tickers.slice(0,3)}</div>
-        <div class="pcard-body">
-          <h4>${p.name}</h4>
-          <div class="ticker">${p.tickers}</div>
-          <div class="meta">
-            <strong>Strategy:</strong> ${p.strategy}<br>
-            <strong>ER:</strong> ${p.er} &middot; <strong>Min:</strong> ${fmt(p.min)} &middot; <strong>Est. First-Year Cost:</strong> <span style="color:var(--navy);font-weight:700">${fmt(allInCost(p))}</span>${p.placementPct > 0 ? ' <span style="font-size:.65rem">(+' + p.placementPct + '% placement)</span>' : ''} &middot; ${riskBadge(p.risk)}
-            <div class="score-bar" style="margin-top:6px">
-              <span style="font-size:.65rem;color:var(--gray)">Trust</span>
-              <div class="bar-track"><div class="bar-fill" style="width:${p.trust}%;background:${trustColor(p.trust)}"></div></div>
-              <span class="score-num" style="color:${trustColor(p.trust)};font-size:.7rem">${p.trust}</span>
-            </div>
-          </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section-title">Before & After Diversification</div>
+      <div class="modal-donuts">
+        <div class="modal-donut-col">
+          <h5>Your Position Today</h5>
+          <div class="modal-donut-wrap"><canvas id="modalBeforeCanvas"></canvas></div>
+          <div style="font-size:.85rem;font-weight:700;color:var(--navy)">${userTicker}: 100%</div>
+          <div style="font-size:.7rem;color:var(--gray);margin-top:4px">Single-stock concentration</div>
+        </div>
+        <div class="modal-arrow">\u2192</div>
+        <div class="modal-donut-col">
+          <h5>After 351 Exchange</h5>
+          <div class="modal-donut-wrap"><canvas id="modalAfterCanvas"></canvas></div>
+          <div class="modal-legend" id="modalLegend"></div>
+          ${dataBadge}
+          <div style="font-size:.65rem;color:var(--gray);margin-top:4px">${p.holdings?p.holdings+' holdings':'Diversified portfolio'}</div>
         </div>
       </div>
-    `).join('');
-  } else {
-    remLabel.style.display = 'none';
-    cardsEl.innerHTML = '';
+    </div>`;
+
+  modalOverlay.classList.add('show');document.body.style.overflow='hidden';
+
+  // Draw before donut (single color)
+  setTimeout(()=>{
+    const bc=document.getElementById('modalBeforeCanvas');
+    if(bc){bc.width=360;bc.height=360;const bctx=bc.getContext('2d');
+      bctx.beginPath();bctx.arc(180,180,153,0,Math.PI*2);bctx.arc(180,180,99,0,Math.PI*2,true);bctx.closePath();bctx.fillStyle='#e74c3c';bctx.fill()}
+    // Draw after donut
+    const ac=document.getElementById('modalAfterCanvas');
+    if(ac&&p.sectors){
+      const slices=drawMiniDonut(ac,p.sectors,180);
+      const leg=document.getElementById('modalLegend');
+      if(leg)leg.innerHTML=slices.filter(s=>s.pct>.02).map(s=>`<span><span class="dot" style="background:${s.color}"></span>${s.name} ${(s.pct*100).toFixed(0)}%</span>`).join('');
+    }
+  },50);
+}
+
+// ── Swapwise It button ──────────────────────────────────────────────
+swapBtn.addEventListener('click',()=>{
+  if(swapBtn.disabled)return;
+  const pVal=primaryStock.price*primaryShares;
+  const totalVal=pVal+positions.reduce((s,p)=>s+p.value,0);
+  const primaryGain=Math.max(0,pVal-primaryBasis);
+  const additionalGains=positions.reduce((s,p)=>p.basis>0?s+Math.max(0,p.value-p.basis):s,0);
+  const totalGain=primaryGain+additionalGains;
+  const taxRate=0.238;const taxSaved=totalGain*taxRate;
+  lastTotalVal=totalVal;lastTotalGain=totalGain;
+
+  function allInCost(p){return Math.round(totalVal*(p.erNum+p.placementPct)/100)}
+  document.getElementById('taxSavings').textContent=fmt(Math.round(taxSaved));
+
+  const matched=PROVIDERS.filter(p=>totalVal>=p.min).map((p,origIdx)=>{
+    const trust=calcTrustScore(p);let sizeMatch=totalVal>=p.min*5?3:totalVal>=p.min*2?2:1;
+    const riskPenalty=p.risk==='High'?15:p.risk==='Medium'?5:0;
+    const overall=trust+sizeMatch*5-riskPenalty;
+    return {...p,trust,sizeMatch,overall,origIdx:PROVIDERS.indexOf(p)};
+  });
+  lastMatched=matched;
+
+  const byOverall=[...matched].sort((a,b)=>b.overall-a.overall);
+  const byFees=[...matched].sort((a,b)=>a.erNum-b.erNum);
+  const byTrust=[...matched].sort((a,b)=>b.trust-a.trust);
+  const bestOverall=byOverall[0];
+  let lowestFees=byFees.find(p=>p!==bestOverall)||byFees[0];
+  let highestTrust=byTrust.find(p=>p!==bestOverall&&p!==lowestFees)||byTrust[0];
+  if(highestTrust===bestOverall||highestTrust===lowestFees)highestTrust=byTrust.find(p=>p!==bestOverall&&p!==lowestFees)||byTrust[1]||byTrust[0];
+
+  const featured=[
+    {provider:bestOverall,label:'Best Overall Match',labelClass:'best',icon:'\u2B50'},
+    {provider:lowestFees,label:'Lowest Fees',labelClass:'fees',icon:'\uD83D\uDCB0'},
+    {provider:highestTrust,label:'Highest Trust Score',labelClass:'trust',icon:'\uD83D\uDEE1\uFE0F'},
+  ];
+  lastFeatured=featured;
+  const featuredSet=new Set([bestOverall,lowestFees,highestTrust]);
+  const remaining=matched.filter(p=>!featuredSet.has(p)).sort((a,b)=>b.overall-a.overall);
+
+  function trustColor(s){return s>=60?'var(--green)':s>=35?'var(--gold)':'var(--red)'}
+  function riskBadge(r){return `<span class="match-badge ${r==='Low'?'high':r==='Medium'?'med':'low'}">${r} Risk</span>`}
+
+  document.getElementById('featuredCards').innerHTML=featured.map((f,fi)=>{
+    const p=f.provider;if(!p)return '';const mi=matched.indexOf(p);
+    return `<div class="featured-card ${f.labelClass==='best'?'gold-border':''}" onclick="openProviderModal(${mi})">
+      <div class="award-icon ${f.labelClass}">${f.icon}</div><div class="award-label ${f.labelClass}">${f.label}</div>
+      <h4>${p.name}</h4><div class="ticker">${p.tickers}</div>
+      <div class="meta"><strong>Strategy:</strong> ${p.strategy}<br><strong>ER:</strong> ${p.er}<br><strong>Min:</strong> ${fmt(p.min)}<br>
+        <strong>Est. First-Year Cost:</strong> <span style="color:var(--navy);font-weight:700">${fmt(allInCost(p))}</span>${p.placementPct>0?' <span style="font-size:.7rem">(incl. '+p.placementPct+'% placement)</span>':''}<br>${riskBadge(p.risk)}</div>
+      <div class="score-bar"><span style="font-size:.7rem;color:var(--gray)">Trust</span><div class="bar-track"><div class="bar-fill" style="width:${p.trust}%;background:${trustColor(p.trust)}"></div></div><span class="score-num" style="color:${trustColor(p.trust)}">${p.trust}</span></div>
+    </div>`}).join('');
+
+  const cardsEl=document.getElementById('providerCards');const remLabel=document.getElementById('remainingLabel');
+  if(remaining.length>0){remLabel.style.display='block';
+    cardsEl.innerHTML=remaining.map(p=>{const mi=matched.indexOf(p);return `<div class="provider-card" onclick="openProviderModal(${mi})">
+      <div class="pcard-icon">${p.tickers.slice(0,3)}</div><div class="pcard-body"><h4>${p.name}</h4><div class="ticker">${p.tickers}</div>
+      <div class="meta"><strong>Strategy:</strong> ${p.strategy}<br><strong>ER:</strong> ${p.er} &middot; <strong>Min:</strong> ${fmt(p.min)} &middot; <strong>Cost:</strong> <span style="color:var(--navy);font-weight:700">${fmt(allInCost(p))}</span> &middot; ${riskBadge(p.risk)}
+        <div class="score-bar" style="margin-top:6px"><span style="font-size:.65rem;color:var(--gray)">Trust</span><div class="bar-track"><div class="bar-fill" style="width:${p.trust}%;background:${trustColor(p.trust)}"></div></div><span class="score-num" style="color:${trustColor(p.trust)};font-size:.7rem">${p.trust}</span></div></div></div></div>`}).join('');
+  }else{remLabel.style.display='none';cardsEl.innerHTML=''}
+
+  // ── Compare Paths ─────────────────────────────────────────────────
+  const divR=0.07,concR=0.07;
+  const bestER=bestOverall?bestOverall.erNum/100:0.003;
+  // Break-even: 351 vs Sell — find year where 351 portfolio > sell portfolio
+  let p351=totalVal,pSell=totalVal*(1-totalGain/totalVal*taxRate);let be351='-';
+  for(let y=1;y<=30;y++){p351=p351*(1+divR)*(1-bestER);pSell=pSell*(1+divR);if(p351>=pSell){be351='~Year '+y;break}}
+  // Step-up projections
+  const su5=fmt(Math.round(totalVal*Math.pow(1+concR,5)));
+  const su10=fmt(Math.round(totalVal*Math.pow(1+concR,10)));
+  const su15=fmt(Math.round(totalVal*Math.pow(1+concR,15)));
+
+  document.getElementById('pathsGrid').innerHTML=`
+    <div class="path-card recommended"><div class="path-badge">Recommended</div><h4>351 Exchange</h4>
+      <p class="path-desc">Transfer your stock into a diversified ETF without triggering taxes today. You defer all capital gains until you sell the ETF shares.</p>
+      <ul class="pros-cons"><li class="pro">No immediate tax bill — full portfolio stays invested</li><li class="pro">Instant diversification across hundreds of holdings</li><li class="con">Annual expense ratio reduces returns slightly</li><li class="con">Defers taxes — doesn't eliminate them</li></ul>
+      <div class="path-metric"><strong>Break-even vs. Sell Gradually:</strong> ${be351}</div></div>
+    <div class="path-card"><h4>Sell Gradually</h4>
+      <p class="path-desc">Sell a portion of your stock each year and reinvest in a diversified portfolio. You pay capital gains tax on each sale but diversify over time.</p>
+      <ul class="pros-cons"><li class="pro">Simple — no special exchange process needed</li><li class="pro">Spreads tax payments over multiple years</li><li class="con">Tax drag reduces compounding from day one</li><li class="con">Concentrated risk persists until fully sold</li></ul>
+      <div class="path-metric"><strong>Tax drag vs. 351:</strong> You start with ${fmt(Math.round(taxSaved))} less capital after tax on first sale</div></div>
+    <div class="path-card"><h4>Step-Up & Hold</h4>
+      <p class="path-desc">Keep your concentrated stock position and wait for a step-up in basis at death. Heirs inherit at current market value with zero capital gains tax.</p>
+      <ul class="pros-cons"><li class="pro">Zero tax drag — maximum compounding</li><li class="pro">At death, all accumulated gains are eliminated</li><li class="con">Full concentration risk — one stock determines your wealth</li><li class="con">Only works if you never need to sell</li></ul>
+      <div class="path-metric"><strong>Projected value at ${concR*100}% return:</strong><br>Year 5: ${su5} &middot; Year 10: ${su10} &middot; Year 15: ${su15}</div>
+      <p class="path-note">At death, heirs inherit at current market value — eliminating all accumulated capital gains tax.</p></div>`;
+
+  // Show sections
+  document.getElementById('results').classList.add('show');
+  document.getElementById('comparePaths').classList.add('show');
+  document.getElementById('projection').classList.add('show');
+
+  // ── Projection table ──────────────────────────────────────────────
+  populateProviderDropdown(matched,featured);
+  renderProjection();
+  setTimeout(()=>document.getElementById('results').scrollIntoView({behavior:'smooth'}),100);
+});
+
+// ── Projection ──────────────────────────────────────────────────────
+const divRateSlider=document.getElementById('divRate'),concRateSlider=document.getElementById('concRate');
+const divRateVal=document.getElementById('divRateVal'),concRateVal=document.getElementById('concRateVal');
+const projProviderSel=document.getElementById('projProvider');
+divRateSlider.addEventListener('input',()=>{divRateVal.textContent=divRateSlider.value+'%';renderProjection()});
+concRateSlider.addEventListener('input',()=>{concRateVal.textContent=concRateSlider.value+'%';renderProjection()});
+projProviderSel.addEventListener('change',()=>renderProjection());
+
+function populateProviderDropdown(matched,featured){
+  projProviderSel.innerHTML='';
+  const featuredNames=new Set(featured.map(f=>f.provider?.name).filter(Boolean));
+  const grpF=document.createElement('optgroup');grpF.label='— Featured Picks —';
+  featured.forEach(f=>{if(!f.provider)return;const o=document.createElement('option');o.value=f.provider.erNum+'|'+f.provider.placementPct;o.textContent=f.provider.name+' ('+f.provider.er+')';grpF.appendChild(o)});
+  projProviderSel.appendChild(grpF);
+  const grpA=document.createElement('optgroup');grpA.label='— All Compatible —';
+  matched.filter(p=>!featuredNames.has(p.name)).forEach(p=>{const o=document.createElement('option');o.value=p.erNum+'|'+p.placementPct;o.textContent=p.name+' ('+p.er+')';grpA.appendChild(o)});
+  projProviderSel.appendChild(grpA);
+}
+
+function renderProjection(){
+  if(!lastTotalVal)return;
+  const divR=parseFloat(divRateSlider.value)/100;
+  const concR=parseFloat(concRateSlider.value)/100;
+  const taxRate=0.238;
+  const parts=(projProviderSel.value||'0.27|0').split('|');
+  const provER=parseFloat(parts[0])/100;const provPlace=parseFloat(parts[1])/100;
+  const totalVal=lastTotalVal;const totalGain=lastTotalGain;
+  const gainPct=totalVal>0?totalGain/totalVal:0;
+
+  // 351 Exchange: start with full value, deduct ER annually, grow at divR
+  // Sell Gradually: sell X% of remaining each year, pay tax on gain portion, reinvest at divR
+  // Step-Up: grow at concR, no tax
+  const withdrawRates=[0.04,0.07,0.10];
+  let p351=totalVal*(1-provPlace); // placement fee upfront
+  let pSell=[totalVal,totalVal,totalVal]; // one per withdraw rate
+  let pHold=totalVal;
+  let prev351=null;
+
+  let html='<thead><tr><th>Year</th><th>351 Exchange</th>';
+  withdrawRates.forEach(r=>html+=`<th>Sell ${(r*100).toFixed(0)}%/yr</th>`);
+  html+='<th>Hold & Step-Up</th></tr></thead><tbody>';
+
+  for(let y=1;y<=15;y++){
+    p351=p351*(1+divR)*(1-provER);
+    pHold=pHold*(1+concR);
+    const vals=[Math.round(p351)];
+    withdrawRates.forEach((wr,wi)=>{
+      const sellAmt=pSell[wi]*wr;
+      const taxOnSale=sellAmt*gainPct*taxRate;
+      const afterTax=sellAmt-taxOnSale;
+      const remaining=pSell[wi]-sellAmt;
+      // Remaining stays concentrated (grows at concR), sold portion diversified (grows at divR)
+      // Simplification: remaining grows at concR, afterTax grows at divR
+      pSell[wi]=remaining*(1+concR)+afterTax*(1+divR);
+      vals.push(Math.round(pSell[wi]));
+    });
+    vals.push(Math.round(pHold));
+
+    const maxVal=Math.max(...vals);
+    html+='<tr>';
+    html+=`<td>${y}</td>`;
+    vals.forEach((v,vi)=>{
+      const isGold=v===maxVal;
+      let cls=isGold?'gold-cell':'';
+      // Check crossover for 351 vs hold
+      if(vi===0&&prev351!==null&&prev351<pHold&&v>=pHold)cls+=' crossover';
+      html+=`<td class="${cls}">${fmt(v)}</td>`;
+    });
+    html+='</tr>';
+    prev351=p351;
   }
+  html+='</tbody>';
+  document.getElementById('projTable').innerHTML=html;
+}
 
-  const resultsSection = document.getElementById('results');
-  resultsSection.classList.add('show');
-  setTimeout(() => resultsSection.scrollIntoView({behavior: 'smooth'}), 100);
-});
-
-// ── Nav scroll effect ───────────────────────────────────────────────
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-});
-
-// ── Mobile hamburger ────────────────────────────────────────────────
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
-});
-document.querySelectorAll('.nav-links a').forEach(a => {
-  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
-});
-
-// ── Scroll animations ───────────────────────────────────────────────
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, {threshold: 0.15});
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+// ── Nav/UI ──────────────────────────────────────────────────────────
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
+document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.15});
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
 </script>
 </body>
 </html>
