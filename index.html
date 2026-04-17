@@ -257,26 +257,68 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .savings-card{
   background:linear-gradient(135deg,var(--navy-dark),var(--navy));
   color:var(--white);border-radius:var(--radius);padding:40px;text-align:center;
-  margin-bottom:40px;border:1px solid rgba(201,168,76,.2);
+  margin-bottom:48px;border:1px solid rgba(201,168,76,.2);
 }
 .savings-card .big-num{font-size:clamp(2rem,5vw,3rem);font-weight:800;color:var(--gold);margin:8px 0}
 .savings-card .detail{font-size:.9rem;color:rgba(255,255,255,.6)}
 
-.provider-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-bottom:32px}
-.provider-card{
-  background:var(--white);border:1px solid var(--light-gray);border-radius:var(--radius);padding:24px;
-  transition:all .3s;
+/* Featured provider cards — top 3 */
+.featured-label{font-size:.8rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.featured-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px}
+.featured-card{
+  background:var(--white);border-radius:var(--radius);padding:28px 24px;
+  border:2px solid var(--light-gray);transition:all .3s;position:relative;overflow:hidden;
 }
-.provider-card:hover{border-color:var(--gold);box-shadow:0 8px 24px rgba(26,39,68,.08)}
-.provider-card h4{font-size:1.05rem;color:var(--navy);margin-bottom:4px}
-.provider-card .ticker{font-size:.8rem;color:var(--gold);font-weight:700;margin-bottom:12px}
-.provider-card .meta{font-size:.85rem;color:var(--gray);line-height:1.6}
+.featured-card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(26,39,68,.1)}
+.featured-card.gold-border{border-color:var(--gold);box-shadow:0 4px 20px rgba(201,168,76,.15)}
+.featured-card .award-icon{
+  width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px;font-size:1.2rem;
+}
+.featured-card .award-icon.best{background:linear-gradient(135deg,#c9a84c,#e0c97a);color:var(--navy)}
+.featured-card .award-icon.fees{background:linear-gradient(135deg,#27ae60,#2ecc71);color:var(--white)}
+.featured-card .award-icon.trust{background:linear-gradient(135deg,#3498db,#5dade2);color:var(--white)}
+.featured-card .award-label{
+  font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;
+  margin-bottom:12px;padding:3px 10px;border-radius:12px;display:inline-block;
+}
+.featured-card .award-label.best{background:rgba(201,168,76,.12);color:var(--gold-dark)}
+.featured-card .award-label.fees{background:rgba(39,174,96,.1);color:var(--green)}
+.featured-card .award-label.trust{background:rgba(52,152,219,.1);color:#2980b9}
+.featured-card h4{font-size:1.1rem;color:var(--navy);margin-bottom:4px}
+.featured-card .ticker{font-size:.8rem;color:var(--gold);font-weight:700;margin-bottom:14px}
+.featured-card .meta{font-size:.82rem;color:var(--gray);line-height:1.7}
+.featured-card .meta strong{color:var(--navy)}
+.featured-card .score-bar{margin-top:14px;display:flex;align-items:center;gap:8px}
+.featured-card .score-bar .bar-track{flex:1;height:6px;background:var(--light-gray);border-radius:3px;overflow:hidden}
+.featured-card .score-bar .bar-fill{height:100%;border-radius:3px;transition:width .6s}
+.featured-card .score-bar .score-num{font-size:.75rem;font-weight:800;min-width:28px}
+
+/* Remaining provider cards */
+.remaining-label{font-size:.8rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.provider-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:32px}
+.provider-card{
+  background:var(--white);border:1px solid var(--light-gray);border-radius:var(--radius);padding:20px;
+  transition:all .3s;display:flex;gap:14px;align-items:flex-start;
+}
+.provider-card:hover{border-color:var(--gold);box-shadow:0 6px 18px rgba(26,39,68,.06)}
+.provider-card .pcard-icon{
+  width:36px;height:36px;border-radius:8px;background:var(--off-white);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  font-size:.75rem;font-weight:800;color:var(--navy);
+}
+.provider-card .pcard-body{flex:1;min-width:0}
+.provider-card h4{font-size:.95rem;color:var(--navy);margin-bottom:2px}
+.provider-card .ticker{font-size:.75rem;color:var(--gold);font-weight:700;margin-bottom:8px}
+.provider-card .meta{font-size:.8rem;color:var(--gray);line-height:1.55}
 .provider-card .meta strong{color:var(--navy)}
 .match-badge{
-  display:inline-block;background:rgba(39,174,96,.1);color:var(--green);
-  font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:12px;
-  margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px;
+  display:inline-block;font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:10px;
+  text-transform:uppercase;letter-spacing:.5px;
 }
+.match-badge.high{background:rgba(39,174,96,.1);color:var(--green)}
+.match-badge.med{background:rgba(201,168,76,.12);color:var(--gold-dark)}
+.match-badge.low{background:rgba(231,76,60,.08);color:var(--red)}
 
 .disclaimer{
   background:rgba(26,39,68,.04);border:1px solid var(--light-gray);border-radius:var(--radius);
@@ -313,6 +355,7 @@ footer .links a:hover{color:var(--gold)}
   .form-row{grid-template-columns:1fr}
   section{padding:60px 16px}
   .hero{padding:72px 16px 80px}
+  .featured-cards{grid-template-columns:1fr}
 }
 
 /* Animations */
@@ -635,6 +678,9 @@ footer .links a:hover{color:var(--gold)}
       <div class="big-num" id="taxSavings">$0</div>
       <p class="detail">Based on 23.8% combined federal rate (20% long-term capital gains + 3.8% NIIT). State taxes may apply. This is a deferral, not elimination.</p>
     </div>
+    <div class="featured-label">Top Picks for Your Portfolio</div>
+    <div class="featured-cards" id="featuredCards"></div>
+    <div class="remaining-label" id="remainingLabel">All Compatible Providers</div>
     <div class="provider-cards" id="providerCards"></div>
     <div class="disclaimer">
       <strong>Important Disclaimer:</strong> Swapwise is an educational tool, not a financial advisor. The estimates shown are simplified illustrations based on publicly available data and assumed federal tax rates. Actual tax outcomes depend on your filing status, state of residence, holding periods, and other factors. Section 351 exchanges involve complex tax law — consult a qualified tax attorney or CPA before making any decisions. Provider information is based on public filings and may not reflect current availability or terms. Past exchange windows may be closed; future windows are not guaranteed.
@@ -713,20 +759,43 @@ const ETF_PRICES = {
 };
 
 // ── Provider data for matching ──────────────────────────────────────
+// Trust score components: plr (IRS PLR backing 0-1), aum ($M), yrs (years operating)
 const PROVIDERS = [
-  {name:"Cambria Investment Management",tickers:"TAX / ENDW / GEW / USEW",er:"0.25–0.29%",min:100000,strategy:"Broad Market / Global Equal Weight",match:""},
-  {name:"Alpha Architect",tickers:"AAUS / AAEQ",er:"0.15%",min:150000,strategy:"US Core Equity",match:""},
-  {name:"Longview Research",tickers:"EBI",er:"0.25%",min:250000,strategy:"Active US Equity",match:""},
-  {name:"Burney Wealth",tickers:"BRES",er:"0.79%",min:250000,strategy:"US Factor Rotation",match:""},
-  {name:"Bluemonte ETFs",tickers:"BLUX / BINT",er:"0.23–0.25%",min:250000,strategy:"Dynamic Total Market / Global Equity",match:""},
-  {name:"JLens",tickers:"TOV",er:"0.18%",min:100000,strategy:"Values-Based US Large Cap",match:""},
-  {name:"NPF Investment Advisors",tickers:"NPFE",er:"0.40%",min:250000,strategy:"Core Equity — Dividend Growth",match:""},
-  {name:"Polen Capital",tickers:"PCLG / PCGO",er:"0.45%",min:250000,strategy:"Quality Growth — All Cap",match:""},
-  {name:"Eagle Capital",tickers:"EAGL",er:"0.81%",min:2000000,strategy:"Concentrated Value (20–35 stocks)",match:""},
-  {name:"Eaton Vance / Morgan Stanley",tickers:"Private Fund",er:"0.54–0.70% + fees",min:500000,strategy:"S&P 500 / S&P 1500 (7-yr lockup)",match:""},
-  {name:"Goldman Sachs",tickers:"Private Fund",er:"~0.8–1.2% all-in",min:1000000,strategy:"Russell 1000 / Russell 3000 (7-yr lockup)",match:""},
-  {name:"Cache",tickers:"Private Fund",er:"0.40–0.95%",min:100000,strategy:"S&P 500 / Nasdaq-100 (modern exchange fund)",match:""},
+  {name:"Cambria Investment Management",tickers:"TAX / ENDW / GEW / USEW",er:"0.25–0.29%",erNum:0.27,min:100000,strategy:"Broad Market / Global Equal Weight",plr:0.5,aum:530,yrs:18,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Alpha Architect",tickers:"AAUS / AAEQ",er:"0.15%",erNum:0.15,min:150000,strategy:"US Core Equity",plr:0.5,aum:950,yrs:14,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Longview Research",tickers:"EBI",er:"0.25%",erNum:0.25,min:250000,strategy:"Active US Equity",plr:0.5,aum:440,yrs:12,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Burney Wealth",tickers:"BRES",er:"0.79%",erNum:0.79,min:250000,strategy:"US Factor Rotation",plr:0.5,aum:600,yrs:50,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Bluemonte ETFs",tickers:"BLUX / BINT",er:"0.23–0.25%",erNum:0.24,min:250000,strategy:"Dynamic Total Market / Global Equity",plr:0.5,aum:458,yrs:3,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"JLens",tickers:"TOV",er:"0.18%",erNum:0.18,min:100000,strategy:"Values-Based US Large Cap",plr:0.5,aum:209,yrs:8,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"NPF Investment Advisors",tickers:"NPFE",er:"0.40%",erNum:0.40,min:250000,strategy:"Core Equity — Dividend Growth",plr:0.5,aum:120,yrs:93,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Polen Capital",tickers:"PCLG / PCGO",er:"0.45%",erNum:0.45,min:250000,strategy:"Quality Growth — All Cap",plr:0.5,aum:110,yrs:35,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Eagle Capital",tickers:"EAGL",er:"0.81%",erNum:0.81,min:2000000,strategy:"Concentrated Value (20–35 stocks)",plr:0.5,aum:1800,yrs:36,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Eaton Vance / Morgan Stanley",tickers:"Private Fund",er:"0.54–0.70% + fees",erNum:0.62,min:500000,strategy:"S&P 500 / S&P 1500 (7-yr lockup)",plr:1.0,aum:8000,yrs:51,risk:"Low",holdingPeriod:"7-year lockup"},
+  {name:"Goldman Sachs",tickers:"Private Fund",er:"~0.8–1.2% all-in",erNum:1.0,min:1000000,strategy:"Russell 1000 / Russell 3000 (7-yr lockup)",plr:1.0,aum:12000,yrs:155,risk:"Low",holdingPeriod:"7-year lockup"},
+  {name:"Cache",tickers:"Private Fund",er:"0.40–0.95%",erNum:0.68,min:100000,strategy:"S&P 500 / Nasdaq-100 (modern exchange fund)",plr:0.6,aum:400,yrs:4,risk:"Low",holdingPeriod:"7-yr for full tax benefit"},
+  {name:"Stance Capital",tickers:"CHGX",er:"0.49%",erNum:0.49,min:100000,strategy:"Sustainable / ESG Active",plr:0.5,aum:11,yrs:8,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Amplius Wealth Advisors",tickers:"AAAA",er:"0.55%",erNum:0.55,min:200000,strategy:"Global Active Asset Allocation",plr:0.5,aum:140,yrs:2,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Ritholtz Wealth",tickers:"GTND",er:"0.50%",erNum:0.50,min:250000,strategy:"Trend-Following US Equity",plr:0.5,aum:0,yrs:13,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Astoria Portfolio Advisors",tickers:"LCOR",er:"0.35%",erNum:0.35,min:200000,strategy:"US Enhanced Core Equity",plr:0.5,aum:180,yrs:8,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Toews Asset Management",tickers:"HQQQ",er:"0.65%",erNum:0.65,min:250000,strategy:"Hedged Nasdaq-100 w/ Options Overlay",plr:0.5,aum:95,yrs:30,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Castellan ETFs",tickers:"CTIF",er:"0.60%",erNum:0.60,min:200000,strategy:"Targeted Income — Covered Call Overlay",plr:0.5,aum:130,yrs:5,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Twin Oaks ETFs",tickers:"TSPX",er:"0.43%",erNum:0.43,min:250000,strategy:"Active Balanced (75% Equity / 14% Bond)",plr:0.5,aum:450,yrs:6,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Kurv Investments",tickers:"LCTO",er:"0.35%",erNum:0.35,min:200000,strategy:"Broad Market Core",plr:0.5,aum:90,yrs:4,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Avantis / American Century",tickers:"AVTM",er:"0.22%",erNum:0.22,min:500000,strategy:"Total Global Equity — All-Cap Developed + EM",plr:0.5,aum:800,yrs:68,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Cambria Value & Momentum",tickers:"CAMV",er:"0.59%",erNum:0.59,min:250000,strategy:"Large-Cap Value & Momentum",plr:0.5,aum:590,yrs:18,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Moonvest",tickers:"MNVT",er:"0.75%",erNum:0.75,min:100000,strategy:"Concentrated Contrarian (15–35 positions)",plr:0.3,aum:35,yrs:1,risk:"High",holdingPeriod:"None — freely tradeable"},
+  {name:"Cloverpoint Capital",tickers:"Filing Pending",er:"TBD",erNum:0.50,min:250000,strategy:"Hedge Fund Best-Ideas Replication (4 funds filed)",plr:0.3,aum:0,yrs:6,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Fidelity",tickers:"Private Fund",er:"0.54% + 1.5% placement",erNum:0.79,min:250000,strategy:"S&P 500 Exchange Fund (7-yr lockup)",plr:0.8,aum:5000,yrs:78,risk:"Low",holdingPeriod:"7-year lockup"},
 ];
+
+// ── Trust score calculation ─────────────────────────────────────────
+// PLR backing: 40%, AUM: 30%, Years in operation: 30%
+function calcTrustScore(p) {
+  const plrScore = p.plr; // 0-1
+  const aumScore = Math.min(p.aum / 5000, 1); // cap at 5B
+  const yrsScore = Math.min(p.yrs / 50, 1);   // cap at 50 yrs
+  return Math.round((plrScore * 40 + aumScore * 30 + yrsScore * 30));
+}
 
 // ── State ───────────────────────────────────────────────────────────
 let primaryStock = null;
@@ -906,27 +975,105 @@ swapBtn.addEventListener('click', () => {
   // Show results
   document.getElementById('taxSavings').textContent = fmt(Math.round(taxSaved));
 
-  // Match providers
+  // Match providers — filter by minimum, compute trust scores
   const matched = PROVIDERS.filter(p => totalVal >= p.min).map(p => {
-    let matchLevel = 'Compatible';
-    if (totalVal >= p.min * 2) matchLevel = 'Strong Match';
-    if (totalVal >= p.min * 5) matchLevel = 'Ideal Fit';
-    return {...p, match: matchLevel};
+    const trust = calcTrustScore(p);
+    let sizeMatch = 0;
+    if (totalVal >= p.min * 5) sizeMatch = 3;
+    else if (totalVal >= p.min * 2) sizeMatch = 2;
+    else sizeMatch = 1;
+    // Overall match: weighted combo of trust + size fit + low risk
+    const riskPenalty = p.risk === 'High' ? 15 : p.risk === 'Medium' ? 5 : 0;
+    const overall = trust + sizeMatch * 5 - riskPenalty;
+    return {...p, trust, sizeMatch, overall};
   });
 
-  const cardsEl = document.getElementById('providerCards');
-  cardsEl.innerHTML = matched.map(p => `
-    <div class="provider-card">
-      <div class="match-badge">${p.match}</div>
+  // Pick featured 3: Best Overall, Lowest Fees, Highest Trust
+  const byOverall = [...matched].sort((a, b) => b.overall - a.overall);
+  const byFees = [...matched].sort((a, b) => a.erNum - b.erNum);
+  const byTrust = [...matched].sort((a, b) => b.trust - a.trust);
+
+  const bestOverall = byOverall[0];
+  let lowestFees = byFees.find(p => p !== bestOverall) || byFees[0];
+  let highestTrust = byTrust.find(p => p !== bestOverall && p !== lowestFees) || byTrust[0];
+  // Deduplicate: if all three ended up the same, spread them
+  if (highestTrust === bestOverall || highestTrust === lowestFees) {
+    highestTrust = byTrust.find(p => p !== bestOverall && p !== lowestFees) || byTrust[1] || byTrust[0];
+  }
+
+  const featured = [
+    {provider: bestOverall, label: 'Best Overall Match', labelClass: 'best', icon: '\u2B50'},
+    {provider: lowestFees, label: 'Lowest Fees', labelClass: 'fees', icon: '\uD83D\uDCB0'},
+    {provider: highestTrust, label: 'Highest Trust Score', labelClass: 'trust', icon: '\uD83D\uDEE1\uFE0F'},
+  ];
+
+  const featuredSet = new Set([bestOverall, lowestFees, highestTrust]);
+  const remaining = matched.filter(p => !featuredSet.has(p)).sort((a, b) => b.overall - a.overall);
+
+  function trustColor(score) {
+    if (score >= 60) return 'var(--green)';
+    if (score >= 35) return 'var(--gold)';
+    return 'var(--red)';
+  }
+  function riskBadge(risk) {
+    const cls = risk === 'Low' ? 'high' : risk === 'Medium' ? 'med' : 'low';
+    return `<span class="match-badge ${cls}">${risk} Risk</span>`;
+  }
+
+  // Render featured cards
+  const featuredEl = document.getElementById('featuredCards');
+  featuredEl.innerHTML = featured.map(f => {
+    const p = f.provider;
+    if (!p) return '';
+    const trust = p.trust;
+    return `
+    <div class="featured-card ${f.labelClass === 'best' ? 'gold-border' : ''}">
+      <div class="award-icon ${f.labelClass}">${f.icon}</div>
+      <div class="award-label ${f.labelClass}">${f.label}</div>
       <h4>${p.name}</h4>
       <div class="ticker">${p.tickers}</div>
       <div class="meta">
         <strong>Strategy:</strong> ${p.strategy}<br>
         <strong>Expense Ratio:</strong> ${p.er}<br>
-        <strong>Min. Position:</strong> ${fmt(p.min)}
+        <strong>Min. Position:</strong> ${fmt(p.min)}<br>
+        <strong>Holding Period:</strong> ${p.holdingPeriod}<br>
+        ${riskBadge(p.risk)}
       </div>
-    </div>
-  `).join('');
+      <div class="score-bar">
+        <span style="font-size:.7rem;color:var(--gray)">Trust</span>
+        <div class="bar-track"><div class="bar-fill" style="width:${trust}%;background:${trustColor(trust)}"></div></div>
+        <span class="score-num" style="color:${trustColor(trust)}">${trust}</span>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Render remaining providers
+  const cardsEl = document.getElementById('providerCards');
+  const remLabel = document.getElementById('remainingLabel');
+  if (remaining.length > 0) {
+    remLabel.style.display = 'block';
+    cardsEl.innerHTML = remaining.map(p => `
+      <div class="provider-card">
+        <div class="pcard-icon">${p.tickers.slice(0,3)}</div>
+        <div class="pcard-body">
+          <h4>${p.name}</h4>
+          <div class="ticker">${p.tickers}</div>
+          <div class="meta">
+            <strong>Strategy:</strong> ${p.strategy}<br>
+            <strong>ER:</strong> ${p.er} &middot; <strong>Min:</strong> ${fmt(p.min)} &middot; ${riskBadge(p.risk)}
+            <div class="score-bar" style="margin-top:6px">
+              <span style="font-size:.65rem;color:var(--gray)">Trust</span>
+              <div class="bar-track"><div class="bar-fill" style="width:${p.trust}%;background:${trustColor(p.trust)}"></div></div>
+              <span class="score-num" style="color:${trustColor(p.trust)};font-size:.7rem">${p.trust}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  } else {
+    remLabel.style.display = 'none';
+    cardsEl.innerHTML = '';
+  }
 
   const resultsSection = document.getElementById('results');
   resultsSection.classList.add('show');
