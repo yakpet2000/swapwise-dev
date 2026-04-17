@@ -555,7 +555,7 @@ footer .links a:hover{color:var(--gold)}
             <input type="number" id="basisInput" placeholder="$0.00" min="0" step="0.01">
           </div>
           <div class="form-group">
-            <label>Unrealized Gain</label>
+            <label>Total Unrealized Gain</label>
             <input type="text" id="gainDisplay" readonly placeholder="$0.00">
           </div>
         </div>
@@ -563,7 +563,7 @@ footer .links a:hover{color:var(--gold)}
         <div class="form-group" style="margin-top:24px">
           <label>Additional Positions (to help meet 25/50 rule)</label>
           <div id="positionsList" class="positions-list"></div>
-          <div style="display:grid;grid-template-columns:1fr 80px 80px auto;gap:8px;margin-top:8px;align-items:end">
+          <div style="display:grid;grid-template-columns:1fr 70px 70px 80px auto;gap:8px;margin-top:8px;align-items:end">
             <div>
               <select id="addTicker" style="font-size:.85rem;padding:10px">
                 <optgroup label="— Other Assets —">
@@ -624,7 +624,10 @@ footer .links a:hover{color:var(--gold)}
               <input type="number" id="addShares" placeholder="Qty" style="font-size:.85rem;padding:10px" min="1">
             </div>
             <div>
-              <input type="number" id="addValue" placeholder="$" style="font-size:.85rem;padding:10px" min="0" step="0.01">
+              <input type="number" id="addValue" placeholder="Value$" style="font-size:.85rem;padding:10px" min="0" step="0.01">
+            </div>
+            <div>
+              <input type="number" id="addBasis" placeholder="Basis$" style="font-size:.85rem;padding:10px" min="0" step="0.01">
             </div>
             <button class="add-pos-btn" style="width:auto;padding:10px 16px;margin-top:0" onclick="addPosition()">+ Add</button>
           </div>
@@ -761,31 +764,31 @@ const ETF_PRICES = {
 // ── Provider data for matching ──────────────────────────────────────
 // Trust score components: plr (IRS PLR backing 0-1), aum ($M), yrs (years operating)
 const PROVIDERS = [
-  {name:"Cambria Investment Management",tickers:"TAX / ENDW / GEW / USEW",er:"0.25–0.29%",erNum:0.27,min:100000,strategy:"Broad Market / Global Equal Weight",plr:0.5,aum:530,yrs:18,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Alpha Architect",tickers:"AAUS / AAEQ",er:"0.15%",erNum:0.15,min:150000,strategy:"US Core Equity",plr:0.5,aum:950,yrs:14,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Longview Research",tickers:"EBI",er:"0.25%",erNum:0.25,min:250000,strategy:"Active US Equity",plr:0.5,aum:440,yrs:12,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Burney Wealth",tickers:"BRES",er:"0.79%",erNum:0.79,min:250000,strategy:"US Factor Rotation",plr:0.5,aum:600,yrs:50,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Bluemonte ETFs",tickers:"BLUX / BINT",er:"0.23–0.25%",erNum:0.24,min:250000,strategy:"Dynamic Total Market / Global Equity",plr:0.5,aum:458,yrs:3,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"JLens",tickers:"TOV",er:"0.18%",erNum:0.18,min:100000,strategy:"Values-Based US Large Cap",plr:0.5,aum:209,yrs:8,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"NPF Investment Advisors",tickers:"NPFE",er:"0.40%",erNum:0.40,min:250000,strategy:"Core Equity — Dividend Growth",plr:0.5,aum:120,yrs:93,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Polen Capital",tickers:"PCLG / PCGO",er:"0.45%",erNum:0.45,min:250000,strategy:"Quality Growth — All Cap",plr:0.5,aum:110,yrs:35,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Eagle Capital",tickers:"EAGL",er:"0.81%",erNum:0.81,min:2000000,strategy:"Concentrated Value (20–35 stocks)",plr:0.5,aum:1800,yrs:36,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Eaton Vance / Morgan Stanley",tickers:"Private Fund",er:"0.54–0.70% + fees",erNum:0.62,min:500000,strategy:"S&P 500 / S&P 1500 (7-yr lockup)",plr:1.0,aum:8000,yrs:51,risk:"Low",holdingPeriod:"7-year lockup"},
-  {name:"Goldman Sachs",tickers:"Private Fund",er:"~0.8–1.2% all-in",erNum:1.0,min:1000000,strategy:"Russell 1000 / Russell 3000 (7-yr lockup)",plr:1.0,aum:12000,yrs:155,risk:"Low",holdingPeriod:"7-year lockup"},
-  {name:"Cache",tickers:"Private Fund",er:"0.40–0.95%",erNum:0.68,min:100000,strategy:"S&P 500 / Nasdaq-100 (modern exchange fund)",plr:0.6,aum:400,yrs:4,risk:"Low",holdingPeriod:"7-yr for full tax benefit"},
-  {name:"Stance Capital",tickers:"CHGX",er:"0.49%",erNum:0.49,min:100000,strategy:"Sustainable / ESG Active",plr:0.5,aum:11,yrs:8,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Amplius Wealth Advisors",tickers:"AAAA",er:"0.55%",erNum:0.55,min:200000,strategy:"Global Active Asset Allocation",plr:0.5,aum:140,yrs:2,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Ritholtz Wealth",tickers:"GTND",er:"0.50%",erNum:0.50,min:250000,strategy:"Trend-Following US Equity",plr:0.5,aum:0,yrs:13,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Astoria Portfolio Advisors",tickers:"LCOR",er:"0.35%",erNum:0.35,min:200000,strategy:"US Enhanced Core Equity",plr:0.5,aum:180,yrs:8,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Toews Asset Management",tickers:"HQQQ",er:"0.65%",erNum:0.65,min:250000,strategy:"Hedged Nasdaq-100 w/ Options Overlay",plr:0.5,aum:95,yrs:30,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Castellan ETFs",tickers:"CTIF",er:"0.60%",erNum:0.60,min:200000,strategy:"Targeted Income — Covered Call Overlay",plr:0.5,aum:130,yrs:5,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Twin Oaks ETFs",tickers:"TSPX",er:"0.43%",erNum:0.43,min:250000,strategy:"Active Balanced (75% Equity / 14% Bond)",plr:0.5,aum:450,yrs:6,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Kurv Investments",tickers:"LCTO",er:"0.35%",erNum:0.35,min:200000,strategy:"Broad Market Core",plr:0.5,aum:90,yrs:4,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Avantis / American Century",tickers:"AVTM",er:"0.22%",erNum:0.22,min:500000,strategy:"Total Global Equity — All-Cap Developed + EM",plr:0.5,aum:800,yrs:68,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Cambria Value & Momentum",tickers:"CAMV",er:"0.59%",erNum:0.59,min:250000,strategy:"Large-Cap Value & Momentum",plr:0.5,aum:590,yrs:18,risk:"Low",holdingPeriod:"None — freely tradeable"},
-  {name:"Moonvest",tickers:"MNVT",er:"0.75%",erNum:0.75,min:100000,strategy:"Concentrated Contrarian (15–35 positions)",plr:0.3,aum:35,yrs:1,risk:"High",holdingPeriod:"None — freely tradeable"},
-  {name:"Cloverpoint Capital",tickers:"Filing Pending",er:"TBD",erNum:0.50,min:250000,strategy:"Hedge Fund Best-Ideas Replication (4 funds filed)",plr:0.3,aum:0,yrs:6,risk:"Medium",holdingPeriod:"None — freely tradeable"},
-  {name:"Fidelity",tickers:"Private Fund",er:"0.54% + 1.5% placement",erNum:0.79,min:250000,strategy:"S&P 500 Exchange Fund (7-yr lockup)",plr:0.8,aum:5000,yrs:78,risk:"Low",holdingPeriod:"7-year lockup"},
+  {name:"Cambria Investment Management",tickers:"TAX / ENDW / GEW / USEW",er:"0.25–0.29%",erNum:0.27,placementPct:0,min:100000,strategy:"Broad Market / Global Equal Weight",plr:0.5,aum:530,yrs:18,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Alpha Architect",tickers:"AAUS / AAEQ",er:"0.15%",erNum:0.15,placementPct:0,min:150000,strategy:"US Core Equity",plr:0.5,aum:950,yrs:14,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Longview Research",tickers:"EBI",er:"0.25%",erNum:0.25,placementPct:0,min:250000,strategy:"Active US Equity",plr:0.5,aum:440,yrs:12,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Burney Wealth",tickers:"BRES",er:"0.79%",erNum:0.79,placementPct:0,min:250000,strategy:"US Factor Rotation",plr:0.5,aum:600,yrs:50,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Bluemonte ETFs",tickers:"BLUX / BINT",er:"0.23–0.25%",erNum:0.24,placementPct:0,min:250000,strategy:"Dynamic Total Market / Global Equity",plr:0.5,aum:458,yrs:3,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"JLens",tickers:"TOV",er:"0.18%",erNum:0.18,placementPct:0,min:100000,strategy:"Values-Based US Large Cap",plr:0.5,aum:209,yrs:8,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"NPF Investment Advisors",tickers:"NPFE",er:"0.40%",erNum:0.40,placementPct:0,min:250000,strategy:"Core Equity — Dividend Growth",plr:0.5,aum:120,yrs:93,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Polen Capital",tickers:"PCLG / PCGO",er:"0.45%",erNum:0.45,placementPct:0,min:250000,strategy:"Quality Growth — All Cap",plr:0.5,aum:110,yrs:35,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Eagle Capital",tickers:"EAGL",er:"0.81%",erNum:0.81,placementPct:0,min:2000000,strategy:"Concentrated Value (20–35 stocks)",plr:0.5,aum:1800,yrs:36,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Eaton Vance / Morgan Stanley",tickers:"Private Fund",er:"0.62% + 1.75% placement",erNum:0.62,placementPct:1.75,min:500000,strategy:"S&P 500 / S&P 1500 (7-yr lockup)",plr:1.0,aum:8000,yrs:51,risk:"Low",holdingPeriod:"7-year lockup"},
+  {name:"Goldman Sachs",tickers:"Private Fund",er:"~1.0% + 1.5% placement",erNum:1.0,placementPct:1.5,min:1000000,strategy:"Russell 1000 / Russell 3000 (7-yr lockup)",plr:1.0,aum:12000,yrs:155,risk:"Low",holdingPeriod:"7-year lockup"},
+  {name:"Cache",tickers:"Private Fund",er:"0.40–0.95%",erNum:0.68,placementPct:0,min:100000,strategy:"S&P 500 / Nasdaq-100 (modern exchange fund)",plr:0.6,aum:400,yrs:4,risk:"Low",holdingPeriod:"7-yr for full tax benefit"},
+  {name:"Stance Capital",tickers:"CHGX",er:"0.49%",erNum:0.49,placementPct:0,min:100000,strategy:"Sustainable / ESG Active",plr:0.5,aum:11,yrs:8,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Amplius Wealth Advisors",tickers:"AAAA",er:"0.55%",erNum:0.55,placementPct:0,min:200000,strategy:"Global Active Asset Allocation",plr:0.5,aum:140,yrs:2,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Ritholtz Wealth",tickers:"GTND",er:"0.50%",erNum:0.50,placementPct:0,min:250000,strategy:"Trend-Following US Equity",plr:0.5,aum:0,yrs:13,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Astoria Portfolio Advisors",tickers:"LCOR",er:"0.35%",erNum:0.35,placementPct:0,min:200000,strategy:"US Enhanced Core Equity",plr:0.5,aum:180,yrs:8,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Toews Asset Management",tickers:"HQQQ",er:"0.65%",erNum:0.65,placementPct:0,min:250000,strategy:"Hedged Nasdaq-100 w/ Options Overlay",plr:0.5,aum:95,yrs:30,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Castellan ETFs",tickers:"CTIF",er:"0.60%",erNum:0.60,placementPct:0,min:200000,strategy:"Targeted Income — Covered Call Overlay",plr:0.5,aum:130,yrs:5,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Twin Oaks ETFs",tickers:"TSPX",er:"0.43%",erNum:0.43,placementPct:0,min:250000,strategy:"Active Balanced (75% Equity / 14% Bond)",plr:0.5,aum:450,yrs:6,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Kurv Investments",tickers:"LCTO",er:"0.35%",erNum:0.35,placementPct:0,min:200000,strategy:"Broad Market Core",plr:0.5,aum:90,yrs:4,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Avantis / American Century",tickers:"AVTM",er:"0.22%",erNum:0.22,placementPct:0,min:500000,strategy:"Total Global Equity — All-Cap Developed + EM",plr:0.5,aum:800,yrs:68,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Cambria Value & Momentum",tickers:"CAMV",er:"0.59%",erNum:0.59,placementPct:0,min:250000,strategy:"Large-Cap Value & Momentum",plr:0.5,aum:590,yrs:18,risk:"Low",holdingPeriod:"None — freely tradeable"},
+  {name:"Moonvest",tickers:"MNVT",er:"0.75%",erNum:0.75,placementPct:0,min:100000,strategy:"Concentrated Contrarian (15–35 positions)",plr:0.3,aum:35,yrs:1,risk:"High",holdingPeriod:"None — freely tradeable"},
+  {name:"Cloverpoint Capital",tickers:"Filing Pending",er:"TBD",erNum:0.50,placementPct:0,min:250000,strategy:"Hedge Fund Best-Ideas Replication (4 funds filed)",plr:0.3,aum:0,yrs:6,risk:"Medium",holdingPeriod:"None — freely tradeable"},
+  {name:"Fidelity",tickers:"Private Fund",er:"0.54% + 1.5% placement",erNum:0.54,placementPct:1.5,min:250000,strategy:"S&P 500 Exchange Fund (7-yr lockup)",plr:0.8,aum:5000,yrs:78,risk:"Low",holdingPeriod:"7-year lockup"},
 ];
 
 // ── Trust score calculation ─────────────────────────────────────────
@@ -840,8 +843,11 @@ function fmt(n) {
 function recalc() {
   const pVal = primaryStock ? primaryStock.price * primaryShares : 0;
   valueDisplay.value = pVal > 0 ? fmt(pVal) : '$0.00';
-  const gain = pVal - primaryBasis;
-  gainDisplay.value = (pVal > 0 && primaryBasis > 0) ? fmt(Math.max(0, gain)) : '$0.00';
+  // Show total unrealized gain across all positions
+  const primaryGain = (pVal > 0 && primaryBasis > 0) ? Math.max(0, pVal - primaryBasis) : 0;
+  const addlGains = positions.reduce((s, p) => p.basis > 0 ? s + Math.max(0, p.value - p.basis) : s, 0);
+  const totalGain = primaryGain + addlGains;
+  gainDisplay.value = totalGain > 0 ? fmt(totalGain) : '$0.00';
 
   // Build all positions array
   const all = [];
@@ -884,6 +890,7 @@ function addPosition() {
   const ticker = document.getElementById('addTicker').value;
   const shares = parseInt(document.getElementById('addShares').value) || 0;
   let val = parseFloat(document.getElementById('addValue').value) || 0;
+  const basis = parseFloat(document.getElementById('addBasis').value) || 0;
   const stockMatch = STOCKS.find(s => s.ticker === ticker);
   const price = ETF_PRICES[ticker] || (stockMatch ? stockMatch.price : 1);
   if (ticker === 'CASH') {
@@ -894,11 +901,12 @@ function addPosition() {
   }
   const name = ticker === 'CASH' ? 'Cash' :
     document.getElementById('addTicker').selectedOptions[0].textContent.split('(')[0].trim();
-  positions.push({ticker, name, shares, value: val});
+  positions.push({ticker, name, shares, value: val, basis: basis});
   renderPositions();
   recalc();
   document.getElementById('addShares').value = '';
   document.getElementById('addValue').value = '';
+  document.getElementById('addBasis').value = '';
 }
 
 function removePosition(i) {
@@ -908,9 +916,11 @@ function removePosition(i) {
 }
 
 function renderPositions() {
-  positionsList.innerHTML = positions.map((p, i) =>
-    `<span class="position-tag">${p.ticker} — ${fmt(p.value)}<button onclick="removePosition(${i})">&times;</button></span>`
-  ).join('');
+  positionsList.innerHTML = positions.map((p, i) => {
+    const gain = p.value - (p.basis || 0);
+    const gainLabel = p.basis > 0 ? ` (gain: ${fmt(Math.max(0, gain))})` : '';
+    return `<span class="position-tag">${p.ticker} — ${fmt(p.value)}${gainLabel}<button onclick="removePosition(${i})">&times;</button></span>`;
+  }).join('');
 }
 
 // ── Donut chart (pure canvas) ───────────────────────────────────────
@@ -967,10 +977,22 @@ drawDonut([], 0);
 swapBtn.addEventListener('click', () => {
   if (swapBtn.disabled) return;
   const pVal = primaryStock.price * primaryShares;
-  const gain = Math.max(0, pVal - primaryBasis);
-  const taxRate = 0.238; // 20% LTCG + 3.8% NIIT
-  const taxSaved = gain * taxRate;
   const totalVal = pVal + positions.reduce((s, p) => s + p.value, 0);
+
+  // Sum unrealized gains across ALL positions
+  const primaryGain = Math.max(0, pVal - primaryBasis);
+  const additionalGains = positions.reduce((s, p) => {
+    if (p.basis > 0) return s + Math.max(0, p.value - p.basis);
+    return s; // no basis entered = no gain counted
+  }, 0);
+  const totalGain = primaryGain + additionalGains;
+  const taxRate = 0.238; // 20% LTCG + 3.8% NIIT
+  const taxSaved = totalGain * taxRate;
+
+  // All-in first-year cost: (erNum/100 * totalVal) + (placementPct/100 * totalVal)
+  function allInCost(p) {
+    return Math.round(totalVal * (p.erNum + p.placementPct) / 100);
+  }
 
   // Show results
   document.getElementById('taxSavings').textContent = fmt(Math.round(taxSaved));
@@ -1037,6 +1059,7 @@ swapBtn.addEventListener('click', () => {
         <strong>Expense Ratio:</strong> ${p.er}<br>
         <strong>Min. Position:</strong> ${fmt(p.min)}<br>
         <strong>Holding Period:</strong> ${p.holdingPeriod}<br>
+        <strong>Est. First-Year Cost:</strong> <span style="color:var(--navy);font-weight:700">${fmt(allInCost(p))}</span>${p.placementPct > 0 ? ' <span style="font-size:.7rem">(incl. ' + p.placementPct + '% placement fee)</span>' : ''}<br>
         ${riskBadge(p.risk)}
       </div>
       <div class="score-bar">
@@ -1060,7 +1083,7 @@ swapBtn.addEventListener('click', () => {
           <div class="ticker">${p.tickers}</div>
           <div class="meta">
             <strong>Strategy:</strong> ${p.strategy}<br>
-            <strong>ER:</strong> ${p.er} &middot; <strong>Min:</strong> ${fmt(p.min)} &middot; ${riskBadge(p.risk)}
+            <strong>ER:</strong> ${p.er} &middot; <strong>Min:</strong> ${fmt(p.min)} &middot; <strong>Est. First-Year Cost:</strong> <span style="color:var(--navy);font-weight:700">${fmt(allInCost(p))}</span>${p.placementPct > 0 ? ' <span style="font-size:.65rem">(+' + p.placementPct + '% placement)</span>' : ''} &middot; ${riskBadge(p.risk)}
             <div class="score-bar" style="margin-top:6px">
               <span style="font-size:.65rem;color:var(--gray)">Trust</span>
               <div class="bar-track"><div class="bar-fill" style="width:${p.trust}%;background:${trustColor(p.trust)}"></div></div>
