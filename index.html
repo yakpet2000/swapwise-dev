@@ -210,7 +210,7 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .proj-table tr:nth-child(even){background:var(--off-white)}
 .proj-table .gold-cell{background:rgba(201,168,76,.12)!important;font-weight:700;color:var(--gold-dark)}
 .proj-table .crossover{position:relative}
-.proj-table .crossover::after{content:'CROSSOVER';position:absolute;right:4px;top:2px;font-size:.5rem;font-weight:700;color:var(--gold);letter-spacing:.5px}
+.proj-table .crossover::after{content:'351 Wins';position:absolute;right:4px;top:2px;font-size:.5rem;font-weight:700;color:var(--gold);letter-spacing:.5px}
 .proj-note{font-size:.72rem;color:var(--gray);font-style:italic}
 footer{background:var(--navy-dark);color:rgba(255,255,255,.5);padding:48px 24px;text-align:center;font-size:.8rem}
 footer .logo-footer{font-size:1.2rem;font-weight:800;color:var(--white);margin-bottom:8px}footer .logo-footer span{color:var(--gold)}
@@ -272,8 +272,8 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
     <div class="step fade-up"><div class="step-num">4</div><h4>Sell Whenever You Want</h4><p>There's no lockup period on most 351 ETFs. You can hold long-term or sell ETF shares on the open market whenever it suits you.</p></div>
   </div>
   <div class="risk-callout fade-up"><div class="icon">&#9888;&#65039;</div><div>
-    <h4>Important: This Isn't Risk-Free</h4>
-    <p>To qualify, your contribution must pass IRS diversification rules — no single stock over 25% of what you contribute, and your top 5 can't exceed 50%. If your position is too heavily weighted in one stock, you may need to add other holdings to balance it out. Also, while this defers your taxes, it doesn't eliminate them — you'll owe capital gains when you eventually sell the ETF shares. We help you understand exactly where you stand before you commit.</p>
+    <h4>Important to Know</h4>
+    <p>This defers your taxes — it doesn't eliminate them. You'll owe capital gains when you eventually sell your ETF shares. Our eligibility check below will tell you if your portfolio qualifies.</p>
   </div></div>
 </div></section>
 
@@ -282,9 +282,9 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
   <h2 class="section-title center">Approaches by Position Size</h2>
   <p class="section-sub center">The right strategy depends on how much stock you're working with. Here's a starting point based on typical position sizes.</p>
   <div class="tiers">
-    <div class="tier fade-up"><h3>Starter</h3><div class="range">Under $250K</div><ul><li>Best fit for broad-market 351 ETFs with low minimums</li><li>Look for providers like Cambria or Alpha Architect that accept positions starting around $100K–$150K</li><li>Typically simple, low-cost index-style strategies (0.15%–0.30% expense ratios)</li><li>May need to add cash or additional positions to meet the 25/50 diversification test</li><li>Fewer provider options at this level — check exchange windows carefully</li></ul></div>
-    <div class="tier featured fade-up"><div class="tier-badge">Most Common</div><h3>Core</h3><div class="range">$250K – $2M</div><ul><li>The sweet spot — most 351 ETF providers are designed for this range</li><li>Wide selection of strategies: core equity, global, factor-based, thematic</li><li>Enough size to diversify naturally and pass compliance tests more easily</li><li>Consider splitting across multiple exchange windows for added diversification</li><li>Tax savings typically range from $50K–$400K depending on embedded gains</li></ul></div>
-    <div class="tier fade-up"><h3>Premium</h3><div class="range">$2M and Above</div><ul><li>Access to both 351 ETFs and traditional exchange funds (Goldman Sachs, Morgan Stanley)</li><li>Traditional exchange funds require 7-year lockup but have the longest IRS track record</li><li>May benefit from custom or white-label ETF structures</li><li>Higher fee tolerance opens options like Eagle Capital's high-conviction value approach</li><li>Consider combining strategies — e.g., partial 351 ETF + partial exchange fund</li></ul></div>
+    <div class="tier fade-up"><h3>Starter</h3><div class="range">Under $250K</div><ul><li>Broad-market ETFs with low minimums</li><li>Simple, low-cost strategies (0.15%–0.30%)</li><li>Fewer providers — check availability carefully</li></ul></div>
+    <div class="tier featured fade-up"><div class="tier-badge">Most Common</div><h3>Core</h3><div class="range">$250K – $2M</div><ul><li>Most providers designed for this range</li><li>Wide selection of strategies available</li><li>Typical tax savings: $50K–$400K</li></ul></div>
+    <div class="tier fade-up"><h3>Premium</h3><div class="range">$2M and Above</div><ul><li>Access to traditional exchange funds too</li><li>Custom or white-label ETF options</li><li>Can combine multiple strategies</li></ul></div>
   </div>
 </div></section>
 
@@ -355,7 +355,7 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
   </div>
   <div class="featured-label">Top Picks for Your Portfolio</div>
   <div class="featured-cards" id="featuredCards"></div>
-  <button class="see-more-btn" id="seeMoreBtn" style="display:none" onclick="document.getElementById('providerCards').classList.remove('collapsed');this.style.display='none';document.getElementById('remainingLabel').style.display='block'">See More Options</button>
+  <button class="see-more-btn" id="seeMoreBtn" style="display:none" onclick="const c=document.getElementById('providerCards'),r=document.getElementById('remainingLabel');if(c.classList.contains('collapsed')){c.classList.remove('collapsed');r.style.display='block';this.textContent='Show Less'}else{c.classList.add('collapsed');r.style.display='none';this.textContent=this.dataset.txt}">See More Options</button>
   <div class="remaining-label" id="remainingLabel" style="display:none">All Compatible Providers</div>
   <div class="provider-cards collapsed" id="providerCards"></div>
   <div class="disclaimer"><strong>Important Disclaimer:</strong> Swapwise is an educational tool, not a financial advisor. The estimates shown are simplified illustrations based on publicly available data and assumed federal tax rates. Actual tax outcomes depend on your filing status, state of residence, holding periods, and other factors. Section 351 exchanges involve complex tax law — consult a qualified tax attorney or CPA before making any decisions. Provider information is based on public filings and may not reflect current availability or terms. Past exchange windows may be closed; future windows are not guaranteed.</div>
@@ -687,7 +687,7 @@ swapBtn.addEventListener('click',()=>{
   const cardsEl=document.getElementById('providerCards');const remLabel=document.getElementById('remainingLabel');
   const seeMoreBtn=document.getElementById('seeMoreBtn');
   if(remaining.length>0){
-    seeMoreBtn.style.display='block';seeMoreBtn.textContent=`See ${remaining.length} More Options`;
+    seeMoreBtn.style.display='block';seeMoreBtn.textContent=`See ${remaining.length} More Options`;seeMoreBtn.dataset.txt=`See ${remaining.length} More Options`;
     remLabel.style.display='none';cardsEl.classList.add('collapsed');
     cardsEl.innerHTML=remaining.map(p=>{const mi=matched.indexOf(p);return `<div class="provider-card" onclick="openProviderModal(${mi})">
       <div class="pcard-icon">${p.tickers.slice(0,3)}</div><div class="pcard-body"><h4>${p.name}</h4><div class="ticker">${p.tickers}</div>
