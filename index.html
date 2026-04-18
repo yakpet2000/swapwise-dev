@@ -229,7 +229,13 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .fade-up{opacity:0;transform:translateY(24px);transition:all .6s cubic-bezier(.22,1,.36,1)}
 .fade-up.visible{opacity:1;transform:translateY(0)}
+.proj-chart-wrap{position:relative;width:100%;height:400px;margin-bottom:24px;background:var(--white);border-radius:var(--radius);border:1px solid var(--light-gray);padding:16px}
+.proj-toggle{display:block;width:100%;padding:12px;border-radius:8px;border:1px solid var(--light-gray);background:var(--white);color:var(--navy);font-size:.85rem;font-weight:700;cursor:pointer;margin-bottom:16px;transition:all .2s;font-family:var(--font)}
+.proj-toggle:hover{border-color:var(--gold);color:var(--gold)}
+.proj-table-wrap.collapsed{display:none}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js"></script>
 </head>
 <body>
 <div class="banner">Private Preview — Not for Public Distribution</div>
@@ -375,8 +381,10 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
     <div class="proj-ctrl"><label>Single-Stock Return: <span class="range-val" id="concRateVal">7%</span></label><input type="range" id="concRate" min="0" max="20" value="7" step="0.5"></div>
     <div class="proj-ctrl"><label>351 Exchange Provider</label><select id="projProvider"></select></div>
   </div>
-  <div class="proj-table-wrap"><table class="proj-table" id="projTable"></table></div>
-  <p class="proj-note">Sell Gradually columns show portfolio value after selling 4%, 7%, or 10% of remaining shares each year, paying capital gains tax on each sale, and reinvesting proceeds at the diversified growth rate. Break-even crossover points are marked where 351 Exchange overtakes the alternative.</p>
+  <div class="proj-chart-wrap"><canvas id="projChart"></canvas></div>
+  <button class="proj-toggle" id="projToggle" onclick="const w=document.getElementById('projTableWrap');const s=w.classList.toggle('collapsed');this.textContent=s?'Show Detailed Table':'Hide Detailed Table'">Show Detailed Table</button>
+  <div class="proj-table-wrap collapsed" id="projTableWrap"><table class="proj-table" id="projTable"></table></div>
+  <p class="proj-note">The shaded band on "Hold Single Stock" shows the range of outcomes from 0% to your selected return rate — reflecting the uncertainty of holding one stock. The 351 Exchange line shows steady, predictable growth after fees.</p>
 </div></section>
 
 <footer><div class="container">
@@ -752,6 +760,7 @@ function populateProviderDropdown(matched,featured){
   projProviderSel.appendChild(grpA);
 }
 
+let projChartInstance=null;
 function renderProjection(){
   if(!lastTotalVal)return;
   const divR=parseFloat(divRateSlider.value)/100;
@@ -762,50 +771,111 @@ function renderProjection(){
   const totalVal=lastTotalVal;const totalGain=lastTotalGain;
   const gainPct=totalVal>0?totalGain/totalVal:0;
 
-  // 351 Exchange: start with full value, deduct ER annually, grow at divR
-  // Sell Gradually: sell X% of remaining each year, pay tax on gain portion, reinvest at divR
-  // Step-Up: grow at concR, no tax
   const withdrawRates=[0.04,0.07,0.10];
-  let p351=totalVal*(1-provPlace); // placement fee upfront
-  let pSell=[totalVal,totalVal,totalVal]; // one per withdraw rate
-  let pHold=totalVal;
-  let prev351=null;
+  const labels=['0'];
+  const data351=[totalVal*(1-provPlace)];
+  const dataSell=[[totalVal],[totalVal],[totalVal]];
+  const dataHoldHi=[totalVal];
+  const dataHoldLo=[totalVal]; // 0% return floor
 
-  let html='<thead><tr><th>Year</th><th>351 Exchange</th>';
-  withdrawRates.forEach(r=>html+=`<th>Sell ${(r*100).toFixed(0)}%/yr</th>`);
-  html+='<th>Hold & Step-Up</th></tr></thead><tbody>';
+  let p351=totalVal*(1-provPlace);
+  let pSell=[totalVal,totalVal,totalVal];
+  let pHoldHi=totalVal,pHoldLo=totalVal;
+  let prev351=null,crossoverYear=null;
+
+  // Table data
+  let thtml='<thead><tr><th>Year</th><th>351 Exchange</th>';
+  withdrawRates.forEach(r=>thtml+=`<th>Sell ${(r*100).toFixed(0)}%/yr</th>`);
+  thtml+='<th>Hold & Step-Up</th></tr></thead><tbody>';
 
   for(let y=1;y<=15;y++){
+    labels.push(String(y));
     p351=p351*(1+divR)*(1-provER);
-    pHold=pHold*(1+concR);
-    const vals=[Math.round(p351)];
+    pHoldHi=pHoldHi*(1+concR);
+    pHoldLo=pHoldLo*1; // 0% return
+    data351.push(Math.round(p351));
+    dataHoldHi.push(Math.round(pHoldHi));
+    dataHoldLo.push(Math.round(pHoldLo));
+
+    const tvals=[Math.round(p351)];
     withdrawRates.forEach((wr,wi)=>{
       const sellAmt=pSell[wi]*wr;
       const taxOnSale=sellAmt*gainPct*taxRate;
       const afterTax=sellAmt-taxOnSale;
       const remaining=pSell[wi]-sellAmt;
-      // Remaining stays concentrated (grows at concR), sold portion diversified (grows at divR)
-      // Simplification: remaining grows at concR, afterTax grows at divR
       pSell[wi]=remaining*(1+concR)+afterTax*(1+divR);
-      vals.push(Math.round(pSell[wi]));
+      dataSell[wi].push(Math.round(pSell[wi]));
+      tvals.push(Math.round(pSell[wi]));
     });
-    vals.push(Math.round(pHold));
+    tvals.push(Math.round(pHoldHi));
 
-    const maxVal=Math.max(...vals);
-    html+='<tr>';
-    html+=`<td>${y}</td>`;
-    vals.forEach((v,vi)=>{
-      const isGold=v===maxVal;
-      let cls=isGold?'gold-cell':'';
-      // Check crossover for 351 vs hold
-      if(vi===0&&prev351!==null&&prev351<pHold&&v>=pHold)cls+=' crossover';
-      html+=`<td class="${cls}">${fmt(v)}</td>`;
+    // Crossover: 351 overtakes sell-7%
+    if(!crossoverYear&&prev351!==null&&data351[y]>=dataSell[1][y])crossoverYear=y;
+
+    const maxVal=Math.max(...tvals);
+    thtml+='<tr>';thtml+=`<td>${y}</td>`;
+    tvals.forEach((v,vi)=>{
+      const isGold=v===maxVal;let cls=isGold?'gold-cell':'';
+      if(vi===0&&prev351!==null&&prev351<pHoldHi&&v>=pHoldHi)cls+=' crossover';
+      thtml+=`<td class="${cls}">${fmt(v)}</td>`;
     });
-    html+='</tr>';
+    thtml+='</tr>';
     prev351=p351;
   }
-  html+='</tbody>';
-  document.getElementById('projTable').innerHTML=html;
+  thtml+='</tbody>';
+  document.getElementById('projTable').innerHTML=thtml;
+
+  // ── Chart.js line graph ───────────────────────────────────────────
+  if(projChartInstance){projChartInstance.destroy()}
+  const ctx=document.getElementById('projChart').getContext('2d');
+
+  const annotations={};
+  if(crossoverYear){
+    annotations.crossover={
+      type:'point',xValue:String(crossoverYear),yValue:data351[crossoverYear],
+      backgroundColor:'#c9a84c',borderColor:'#c9a84c',radius:6,
+      label:{display:true,content:'351 Wins',position:'end',backgroundColor:'#c9a84c',color:'#1a2744',
+        font:{weight:'bold',size:11},padding:4,yAdjust:-20}
+    };
+  }
+
+  projChartInstance=new Chart(ctx,{
+    type:'line',
+    data:{
+      labels,
+      datasets:[
+        {label:'351 Exchange',data:data351,borderColor:'#c9a84c',backgroundColor:'rgba(201,168,76,.1)',borderWidth:3,pointRadius:0,pointHoverRadius:5,tension:.3,order:1},
+        {label:'Sell 4%/yr',data:dataSell[0],borderColor:'#e67e73',borderWidth:1.5,borderDash:[6,3],pointRadius:0,tension:.3,order:2},
+        {label:'Sell 7%/yr',data:dataSell[1],borderColor:'#e74c3c',borderWidth:2,pointRadius:0,tension:.3,order:2},
+        {label:'Sell 10%/yr',data:dataSell[2],borderColor:'#c0392b',borderWidth:1.5,borderDash:[6,3],pointRadius:0,tension:.3,order:2},
+        {label:'Hold Single Stock (best case)',data:dataHoldHi,borderColor:'rgba(74,144,217,.6)',borderWidth:1,pointRadius:0,tension:.3,fill:'+1',backgroundColor:'rgba(74,144,217,.12)',order:3},
+        {label:'Hold Single Stock (worst case)',data:dataHoldLo,borderColor:'rgba(74,144,217,.3)',borderWidth:1,pointRadius:0,tension:.3,fill:false,order:3},
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{position:'bottom',labels:{usePointStyle:true,padding:16,font:{size:11},
+          filter:function(item){return item.text!=='Hold Single Stock (worst case)'}
+        }},
+        tooltip:{callbacks:{
+          label:function(c){
+            if(c.dataset.label==='Hold Single Stock (worst case)')return null;
+            return c.dataset.label+': '+fmt(c.parsed.y);
+          }
+        }},
+        annotation:{annotations}
+      },
+      scales:{
+        x:{title:{display:true,text:'Year',font:{size:12,weight:'bold'},color:'#8a94a6'},
+          grid:{display:false},ticks:{color:'#8a94a6'}},
+        y:{title:{display:true,text:'Portfolio Value',font:{size:12,weight:'bold'},color:'#8a94a6'},
+          grid:{color:'rgba(0,0,0,.06)'},ticks:{color:'#8a94a6',callback:function(v){return fmt(v)}},
+          beginAtZero:false}
+      }
+    }
+  });
 }
 
 // ── Nav/UI ──────────────────────────────────────────────────────────
