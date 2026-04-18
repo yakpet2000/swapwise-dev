@@ -209,8 +209,6 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .proj-table td:first-child{text-align:center;font-weight:700;color:var(--gray)}
 .proj-table tr:nth-child(even){background:var(--off-white)}
 .proj-table .gold-cell{background:rgba(201,168,76,.12)!important;font-weight:700;color:var(--gold-dark)}
-.proj-table .crossover{position:relative}
-.proj-table .crossover::after{content:'351 Wins';position:absolute;right:4px;top:2px;font-size:.5rem;font-weight:700;color:var(--gold);letter-spacing:.5px}
 .proj-note{font-size:.72rem;color:var(--gray);font-style:italic}
 footer{background:var(--navy-dark);color:rgba(255,255,255,.5);padding:48px 24px;text-align:center;font-size:.8rem}
 footer .logo-footer{font-size:1.2rem;font-weight:800;color:var(--white);margin-bottom:8px}footer .logo-footer span{color:var(--gold)}
@@ -816,7 +814,6 @@ function renderProjection(){
     thtml+='<tr>';thtml+=`<td>${y}</td>`;
     tvals.forEach((v,vi)=>{
       const isGold=v===maxVal;let cls=isGold?'gold-cell':'';
-      if(vi===0&&prev351!==null&&prev351<pHoldHi&&v>=pHoldHi)cls+=' crossover';
       thtml+=`<td class="${cls}">${fmt(v)}</td>`;
     });
     thtml+='</tr>';
@@ -872,7 +869,7 @@ function renderProjection(){
           grid:{display:false},ticks:{color:'#8a94a6'}},
         y:{title:{display:true,text:'Portfolio Value',font:{size:12,weight:'bold'},color:'#8a94a6'},
           grid:{color:'rgba(0,0,0,.06)'},ticks:{color:'#8a94a6',callback:function(v){return fmt(v)}},
-          beginAtZero:false}
+          min:Math.round(totalVal*0.95)}
       }
     }
   });
