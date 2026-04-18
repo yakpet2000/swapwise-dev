@@ -141,6 +141,10 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .match-badge.high{background:rgba(39,174,96,.1);color:var(--green)}
 .match-badge.med{background:rgba(201,168,76,.12);color:var(--gold-dark)}
 .match-badge.low{background:rgba(231,76,60,.08);color:var(--red)}
+.see-more-btn{display:block;width:100%;padding:14px;border-radius:8px;border:1px solid var(--light-gray);background:var(--white);color:var(--navy);font-size:.9rem;font-weight:700;cursor:pointer;margin-bottom:24px;transition:all .2s;font-family:var(--font)}
+.see-more-btn:hover{border-color:var(--gold);color:var(--gold)}
+.provider-cards.collapsed{display:none}
+.trust-explainer{font-size:.7rem;color:var(--gray);margin-top:4px;font-style:italic;line-height:1.3}
 .disclaimer{background:rgba(26,39,68,.04);border:1px solid var(--light-gray);border-radius:var(--radius);padding:20px 24px;font-size:.78rem;color:var(--gray);line-height:1.7}
 .disclaimer strong{color:var(--navy)}
 /* Modal */
@@ -240,7 +244,7 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
 
 <section class="hero"><div class="container">
   <h1>You Don't Have to <span>Sell</span> to Diversify.</h1>
-  <p>There's a legal, IRS-recognized way to turn a concentrated stock position into a diversified portfolio — without triggering a tax bill. We'll show you how.</p>
+  <p id="heroSub">The IRS has a legal path that lets you keep your full investment working for you — instead of writing a check to the government. Here's how it works.</p>
   <button class="scroll-cta" onclick="document.getElementById('who').scrollIntoView({behavior:'smooth'})">See How It Works
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </button>
@@ -253,7 +257,7 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
   <div class="cards-grid">
     <div class="card fade-up"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg></div><h3>Long-Term Employee</h3><p>You've accumulated company stock over years through RSUs, ESPP, or options. It's done well — but now 40%, 60%, or more of your net worth is in one ticker. Selling means a six-figure tax bill.</p></div>
     <div class="card fade-up"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M9 21V9h6v12"/></svg></div><h3>Inherited Stock</h3><p>You inherited shares from a parent or grandparent. The stock has grown significantly since, and you'd like to spread the risk — but capital gains taxes make that expensive.</p></div>
-    <div class="card fade-up"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h3>Concentrated Position</h3><p>Maybe you bought early in a company that took off, or your portfolio has drifted over time. Either way, too much of your wealth depends on one company's future.</p></div>
+    <div class="card fade-up"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h3>Too Much in One Stock</h3><p>Maybe you bought early in a company that took off, or your portfolio has drifted over time. Either way, too much of your wealth depends on one company's future.</p></div>
   </div>
 </div></section>
 
@@ -269,7 +273,7 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
   </div>
   <div class="risk-callout fade-up"><div class="icon">&#9888;&#65039;</div><div>
     <h4>Important: This Isn't Risk-Free</h4>
-    <p>To qualify, your contribution must pass IRS diversification rules — no single stock over 25% of what you contribute, and your top 5 can't exceed 50%. If your position is too concentrated, you may need to add other holdings to balance it out. Also, while this defers your taxes, it doesn't eliminate them — you'll owe capital gains when you eventually sell the ETF shares. We help you understand exactly where you stand before you commit.</p>
+    <p>To qualify, your contribution must pass IRS diversification rules — no single stock over 25% of what you contribute, and your top 5 can't exceed 50%. If your position is too heavily weighted in one stock, you may need to add other holdings to balance it out. Also, while this defers your taxes, it doesn't eliminate them — you'll owe capital gains when you eventually sell the ETF shares. We help you understand exactly where you stand before you commit.</p>
   </div></div>
 </div></section>
 
@@ -280,7 +284,7 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
   <div class="tiers">
     <div class="tier fade-up"><h3>Starter</h3><div class="range">Under $250K</div><ul><li>Best fit for broad-market 351 ETFs with low minimums</li><li>Look for providers like Cambria or Alpha Architect that accept positions starting around $100K–$150K</li><li>Typically simple, low-cost index-style strategies (0.15%–0.30% expense ratios)</li><li>May need to add cash or additional positions to meet the 25/50 diversification test</li><li>Fewer provider options at this level — check exchange windows carefully</li></ul></div>
     <div class="tier featured fade-up"><div class="tier-badge">Most Common</div><h3>Core</h3><div class="range">$250K – $2M</div><ul><li>The sweet spot — most 351 ETF providers are designed for this range</li><li>Wide selection of strategies: core equity, global, factor-based, thematic</li><li>Enough size to diversify naturally and pass compliance tests more easily</li><li>Consider splitting across multiple exchange windows for added diversification</li><li>Tax savings typically range from $50K–$400K depending on embedded gains</li></ul></div>
-    <div class="tier fade-up"><h3>Premium</h3><div class="range">$2M and Above</div><ul><li>Access to both 351 ETFs and traditional exchange funds (Goldman Sachs, Morgan Stanley)</li><li>Traditional exchange funds require 7-year lockup but have the longest IRS track record</li><li>May benefit from custom or white-label ETF structures</li><li>Higher fee tolerance opens options like Eagle Capital's concentrated value approach</li><li>Consider combining strategies — e.g., partial 351 ETF + partial exchange fund</li></ul></div>
+    <div class="tier fade-up"><h3>Premium</h3><div class="range">$2M and Above</div><ul><li>Access to both 351 ETFs and traditional exchange funds (Goldman Sachs, Morgan Stanley)</li><li>Traditional exchange funds require 7-year lockup but have the longest IRS track record</li><li>May benefit from custom or white-label ETF structures</li><li>Higher fee tolerance opens options like Eagle Capital's high-conviction value approach</li><li>Consider combining strategies — e.g., partial 351 ETF + partial exchange fund</li></ul></div>
   </div>
 </div></section>
 
@@ -296,7 +300,19 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
         <div class="form-group"><label>Market Value</label><input type="number" id="valueInput" placeholder="$0.00" min="0" step="0.01"></div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>Cost Basis (total)</label><input type="number" id="basisInput" placeholder="$0.00" min="0" step="0.01"></div>
+        <div class="form-group">
+          <label>Cost Basis (total)</label>
+          <div id="basisKnown"><input type="number" id="basisInput" placeholder="$0.00" min="0" step="0.01"></div>
+          <div id="basisUnknown" style="display:none"><select id="holdingPeriodSelect" style="font-size:.85rem;padding:10px">
+            <option value="">Select holding period...</option>
+            <option value="0.85">Under 2 years</option>
+            <option value="0.60">2–5 years</option>
+            <option value="0.40">5–10 years</option>
+            <option value="0.25">10–20 years</option>
+            <option value="0.10">20+ years</option>
+          </select></div>
+          <label style="margin-top:8px;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.7rem;letter-spacing:0;text-transform:none;font-weight:500"><input type="checkbox" id="basisToggle" style="width:auto;accent-color:var(--gold)"> I don't know my cost basis</label>
+        </div>
         <div class="form-group"><label>Total Unrealized Gain</label><input type="text" id="gainDisplay" readonly placeholder="$0.00"></div>
       </div>
       <div class="form-group" style="margin-top:24px">
@@ -313,7 +329,7 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
           <button class="add-pos-btn" style="width:auto;padding:10px 16px;margin-top:0" onclick="addPosition()">+ Add</button>
         </div>
       </div>
-      <div class="compliance"><h4>IRS Diversification Check (25/50 Rule)</h4>
+      <div class="compliance"><h4>Eligibility Check (25/50 Rule)</h4>
         <div class="rule"><span class="rule-label">Largest position</span><span class="rule-val" id="rule25Val">—</span></div>
         <div class="rule-bar"><div class="rule-bar-fill" id="rule25Bar" style="width:0%;background:var(--gray)"></div></div>
         <div class="rule" style="margin-top:8px"><span class="rule-label">Top 5 combined</span><span class="rule-val" id="rule50Val">—</span></div>
@@ -339,8 +355,9 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
   </div>
   <div class="featured-label">Top Picks for Your Portfolio</div>
   <div class="featured-cards" id="featuredCards"></div>
-  <div class="remaining-label" id="remainingLabel">All Compatible Providers</div>
-  <div class="provider-cards" id="providerCards"></div>
+  <button class="see-more-btn" id="seeMoreBtn" style="display:none" onclick="document.getElementById('providerCards').classList.remove('collapsed');this.style.display='none';document.getElementById('remainingLabel').style.display='block'">See More Options</button>
+  <div class="remaining-label" id="remainingLabel" style="display:none">All Compatible Providers</div>
+  <div class="provider-cards collapsed" id="providerCards"></div>
   <div class="disclaimer"><strong>Important Disclaimer:</strong> Swapwise is an educational tool, not a financial advisor. The estimates shown are simplified illustrations based on publicly available data and assumed federal tax rates. Actual tax outcomes depend on your filing status, state of residence, holding periods, and other factors. Section 351 exchanges involve complex tax law — consult a qualified tax attorney or CPA before making any decisions. Provider information is based on public filings and may not reflect current availability or terms. Past exchange windows may be closed; future windows are not guaranteed.</div>
 </div></section>
 
@@ -355,7 +372,7 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
   <h2 class="section-title center">Year-by-Year Projection</h2>
   <div class="proj-controls">
     <div class="proj-ctrl"><label>Diversified Growth Rate: <span class="range-val" id="divRateVal">7%</span></label><input type="range" id="divRate" min="4" max="12" value="7" step="0.5"></div>
-    <div class="proj-ctrl"><label>Concentrated Stock Return: <span class="range-val" id="concRateVal">7%</span></label><input type="range" id="concRate" min="0" max="20" value="7" step="0.5"></div>
+    <div class="proj-ctrl"><label>Single-Stock Return: <span class="range-val" id="concRateVal">7%</span></label><input type="range" id="concRate" min="0" max="20" value="7" step="0.5"></div>
     <div class="proj-ctrl"><label>351 Exchange Provider</label><select id="projProvider"></select></div>
   </div>
   <div class="proj-table-wrap"><table class="proj-table" id="projTable"></table></div>
@@ -364,7 +381,7 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
 
 <footer><div class="container">
   <div class="logo-footer">Swap<span>wise</span></div>
-  <p>Helping investors understand tax-efficient diversification strategies for concentrated stock positions.</p>
+  <p>Helping investors understand tax-efficient diversification strategies for large single-stock positions.</p>
   <p style="margin-top:8px">&copy; 2026 Swapwise. Private preview. Not investment advice.</p>
   <div class="links"><a href="#who">Who It's For</a><a href="#how">How It Works</a><a href="#strategies">Strategies</a><a href="#calculator">Calculator</a></div>
 </div></footer>
@@ -444,6 +461,34 @@ valueInput.addEventListener('input',()=>{
   updatingFromValue=false;recalc();
 });
 basisInput.addEventListener('input',()=>{primaryBasis=parseFloat(basisInput.value)||0;recalc()});
+
+// ── Basis toggle ────────────────────────────────────────────────────
+const basisToggle=document.getElementById('basisToggle');
+const basisKnownDiv=document.getElementById('basisKnown');
+const basisUnknownDiv=document.getElementById('basisUnknown');
+const holdingPeriodSel=document.getElementById('holdingPeriodSelect');
+basisToggle.addEventListener('change',()=>{
+  if(basisToggle.checked){basisKnownDiv.style.display='none';basisUnknownDiv.style.display='block';estimateBasis()}
+  else{basisUnknownDiv.style.display='none';basisKnownDiv.style.display='block';primaryBasis=parseFloat(basisInput.value)||0;recalc()}
+});
+holdingPeriodSel.addEventListener('change',estimateBasis);
+function estimateBasis(){
+  const pct=parseFloat(holdingPeriodSel.value)||0;
+  const pVal=primaryStock?primaryStock.price*primaryShares:0;
+  primaryBasis=Math.round(pVal*pct*100)/100;
+  basisInput.value=primaryBasis>0?primaryBasis:'';
+  recalc();
+}
+
+// ── Trust explainer ─────────────────────────────────────────────────
+function trustExplain(p){
+  const t=p.trust;
+  if(t>=70)return p.plr>=1.0?'IRS ruling obtained in 1975 — longest track record in the space.':'Large fund manager with strong institutional backing and decades of experience.';
+  if(t>=50)return p.yrs>=30?'Established firm with '+p.yrs+' years of experience and solid AUM.':'Well-established provider with growing track record.';
+  if(t>=35)return p.yrs>=10?'Mid-size provider with '+p.yrs+' years operating — building credibility.':'Growing provider — check exchange window availability.';
+  if(p.yrs<=2)return 'New fund launched '+(2026-p.yrs)+' — limited track record. Do extra due diligence.';
+  return p.aum<50?'Small fund with limited AUM — early-stage provider.':'Newer entrant — research thoroughly before committing.';
+}
 
 function fmt(n){if(n>=1e6)return '$'+(n/1e6).toFixed(2)+'M';return '$'+n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}
 
@@ -530,7 +575,7 @@ function openProviderModal(idx){
   const trustScore=p.trust;const trustCol=trustScore>=60?'var(--green)':trustScore>=35?'var(--gold)':'var(--red)';
   const cost=Math.round(lastTotalVal*(p.erNum+p.placementPct)/100);
   const dataBadge=p.dataType==='actual'?'<span class="data-badge actual">Live Holdings</span>':p.dataType==='proxy'?'<span class="data-badge proxy">Benchmark Proxy</span>':'<span class="data-badge estimate">Strategy Estimate</span>';
-  // Build user's concentrated position for "before" donut
+  // Build user's too much in one stock for "before" donut
   const userTicker=primaryStock?primaryStock.ticker:'Stock';
   const beforeSectors={[userTicker]:100};
 
@@ -557,7 +602,7 @@ function openProviderModal(idx){
           <h5>Your Position Today</h5>
           <div class="modal-donut-wrap"><canvas id="modalBeforeCanvas"></canvas></div>
           <div style="font-size:.85rem;font-weight:700;color:var(--navy)">${userTicker}: 100%</div>
-          <div style="font-size:.7rem;color:var(--gray);margin-top:4px">Single-stock concentration</div>
+          <div style="font-size:.7rem;color:var(--gray);margin-top:4px">All in one stock</div>
         </div>
         <div class="modal-arrow">\u2192</div>
         <div class="modal-donut-col">
@@ -634,18 +679,23 @@ swapBtn.addEventListener('click',()=>{
     return `<div class="featured-card ${f.labelClass==='best'?'gold-border':''}" onclick="openProviderModal(${mi})">
       <div class="award-icon ${f.labelClass}">${f.icon}</div><div class="award-label ${f.labelClass}">${f.label}</div>
       <h4>${p.name}</h4><div class="ticker">${p.tickers}</div>
-      <div class="meta"><strong>Strategy:</strong> ${p.strategy}<br><strong>ER:</strong> ${p.er}<br><strong>Min:</strong> ${fmt(p.min)}<br>
+      <div class="meta">${p.strategy}<br><strong>ER:</strong> ${p.er} &middot; <strong>Min:</strong> ${fmt(p.min)}<br>
         <strong>Est. First-Year Cost:</strong> <span style="color:var(--navy);font-weight:700">${fmt(allInCost(p))}</span>${p.placementPct>0?' <span style="font-size:.7rem">(incl. '+p.placementPct+'% placement)</span>':''}<br>${riskBadge(p.risk)}</div>
       <div class="score-bar"><span style="font-size:.7rem;color:var(--gray)">Trust</span><div class="bar-track"><div class="bar-fill" style="width:${p.trust}%;background:${trustColor(p.trust)}"></div></div><span class="score-num" style="color:${trustColor(p.trust)}">${p.trust}</span></div>
+      <div class="trust-explainer">${trustExplain(p)}</div>
     </div>`}).join('');
 
   const cardsEl=document.getElementById('providerCards');const remLabel=document.getElementById('remainingLabel');
-  if(remaining.length>0){remLabel.style.display='block';
+  const seeMoreBtn=document.getElementById('seeMoreBtn');
+  if(remaining.length>0){
+    seeMoreBtn.style.display='block';seeMoreBtn.textContent=`See ${remaining.length} More Options`;
+    remLabel.style.display='none';cardsEl.classList.add('collapsed');
     cardsEl.innerHTML=remaining.map(p=>{const mi=matched.indexOf(p);return `<div class="provider-card" onclick="openProviderModal(${mi})">
       <div class="pcard-icon">${p.tickers.slice(0,3)}</div><div class="pcard-body"><h4>${p.name}</h4><div class="ticker">${p.tickers}</div>
-      <div class="meta"><strong>Strategy:</strong> ${p.strategy}<br><strong>ER:</strong> ${p.er} &middot; <strong>Min:</strong> ${fmt(p.min)} &middot; <strong>Cost:</strong> <span style="color:var(--navy);font-weight:700">${fmt(allInCost(p))}</span> &middot; ${riskBadge(p.risk)}
-        <div class="score-bar" style="margin-top:6px"><span style="font-size:.65rem;color:var(--gray)">Trust</span><div class="bar-track"><div class="bar-fill" style="width:${p.trust}%;background:${trustColor(p.trust)}"></div></div><span class="score-num" style="color:${trustColor(p.trust)};font-size:.7rem">${p.trust}</span></div></div></div></div>`}).join('');
-  }else{remLabel.style.display='none';cardsEl.innerHTML=''}
+      <div class="meta">${p.strategy}<br><strong>ER:</strong> ${p.er} &middot; <strong>Min:</strong> ${fmt(p.min)} &middot; <strong>Cost:</strong> <span style="color:var(--navy);font-weight:700">${fmt(allInCost(p))}</span> &middot; ${riskBadge(p.risk)}
+        <div class="score-bar" style="margin-top:6px"><span style="font-size:.65rem;color:var(--gray)">Trust</span><div class="bar-track"><div class="bar-fill" style="width:${p.trust}%;background:${trustColor(p.trust)}"></div></div><span class="score-num" style="color:${trustColor(p.trust)};font-size:.7rem">${p.trust}</span></div>
+        <div class="trust-explainer">${trustExplain(p)}</div></div></div></div>`}).join('');
+  }else{seeMoreBtn.style.display='none';remLabel.style.display='none';cardsEl.innerHTML=''}
 
   // ── Compare Paths ─────────────────────────────────────────────────
   const divR=0.07,concR=0.07;
@@ -668,9 +718,9 @@ swapBtn.addEventListener('click',()=>{
       <ul class="pros-cons"><li class="pro">Simple — no special exchange process needed</li><li class="pro">Spreads tax payments over multiple years</li><li class="con">Tax drag reduces compounding from day one</li><li class="con">Concentrated risk persists until fully sold</li></ul>
       <div class="path-metric"><strong>Tax drag vs. 351:</strong> You start with ${fmt(Math.round(taxSaved))} less capital after tax on first sale</div></div>
     <div class="path-card"><h4>Step-Up & Hold</h4>
-      <p class="path-desc">Keep your concentrated stock position and wait for a step-up in basis at death. Heirs inherit at current market value with zero capital gains tax.</p>
+      <p class="path-desc">Keep your large single-stock position and wait for a step-up in basis at death. Heirs inherit at current market value with zero capital gains tax.</p>
       <ul class="pros-cons"><li class="pro">Zero tax drag — maximum compounding</li><li class="pro">At death, all accumulated gains are eliminated</li><li class="con">Full concentration risk — one stock determines your wealth</li><li class="con">Only works if you never need to sell</li></ul>
-      <div class="path-metric"><strong>Projected value at ${concR*100}% return:</strong><br>Year 5: ${su5} &middot; Year 10: ${su10} &middot; Year 15: ${su15}</div>
+      <div class="path-metric"><strong>Projected value at ${(concR*100).toFixed(1)}% return:</strong><br>Year 5: ${su5} &middot; Year 10: ${su10} &middot; Year 15: ${su15}</div>
       <p class="path-note">At death, heirs inherit at current market value — eliminating all accumulated capital gains tax.</p></div>`;
 
   // Show sections
