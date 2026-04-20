@@ -228,6 +228,8 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
 .fade-up{opacity:0;transform:translateY(24px);transition:all .6s cubic-bezier(.22,1,.36,1)}
 .fade-up.visible{opacity:1;transform:translateY(0)}
 .proj-chart-wrap{position:relative;width:100%;height:400px;margin-bottom:24px;background:var(--white);border-radius:var(--radius);border:1px solid var(--light-gray);padding:16px}
+.wealth-gap-callout{background:linear-gradient(135deg,var(--navy-dark),var(--navy));color:var(--white);border-left:4px solid var(--gold);border-radius:var(--radius);padding:18px 22px;margin:0 0 20px;font-size:1.02rem;font-weight:700;line-height:1.45}
+.wealth-gap-callout .gap-amount{color:var(--gold);font-weight:800}
 .proj-toggle{display:block;width:100%;padding:12px;border-radius:8px;border:1px solid var(--light-gray);background:var(--white);color:var(--navy);font-size:.85rem;font-weight:700;cursor:pointer;margin-bottom:16px;transition:all .2s;font-family:var(--font)}
 .proj-toggle:hover{border-color:var(--gold);color:var(--gold)}
 .proj-table-wrap.collapsed{display:none}
@@ -321,6 +323,7 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
       </div>
       <div class="form-group" style="margin-top:24px">
         <label>Additional Positions (to help meet 25/50 rule)</label>
+        <p style="font-size:.75rem;color:rgba(255,255,255,.55);margin:-4px 0 10px;line-height:1.45;font-weight:400;letter-spacing:0;text-transform:none">To qualify for a 351 exchange, your largest holding can't exceed 25% of your total portfolio. Add other investments below to bring your concentration down.</p>
         <div id="positionsList" class="positions-list"></div>
         <div style="display:grid;grid-template-columns:1fr 70px 70px 80px auto;gap:8px;margin-top:8px;align-items:end">
           <div><select id="addTicker" style="font-size:.85rem;padding:10px">
@@ -379,6 +382,7 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
     <div class="proj-ctrl"><label>Single-Stock Return: <span class="range-val" id="concRateVal">7%</span></label><input type="range" id="concRate" min="0" max="20" value="7" step="0.5"></div>
     <div class="proj-ctrl"><label>351 Exchange Provider</label><select id="projProvider"></select></div>
   </div>
+  <div class="wealth-gap-callout" id="wealthGapCallout" style="display:none"></div>
   <div class="proj-chart-wrap"><canvas id="projChart"></canvas></div>
   <button class="proj-toggle" id="projToggle" onclick="const w=document.getElementById('projTableWrap');const s=w.classList.toggle('collapsed');this.textContent=s?'Show Detailed Table':'Hide Detailed Table'">Show Detailed Table</button>
   <div class="proj-table-wrap collapsed" id="projTableWrap"><table class="proj-table" id="projTable"></table></div>
@@ -481,6 +485,9 @@ function estimateBasis(){
   recalc();
 }
 
+// ── Trust color (blue→gold gradient) ────────────────────────────────
+function trustColor(s){const t=Math.max(0,Math.min(100,s))/100;const R=Math.round(52+(201-52)*t);const G=Math.round(152+(168-152)*t);const B=Math.round(219+(76-219)*t);return `rgb(${R},${G},${B})`}
+
 // ── Trust explainer ─────────────────────────────────────────────────
 function trustExplain(p){
   const t=p.trust;
@@ -488,7 +495,7 @@ function trustExplain(p){
   if(t>=50)return p.yrs>=30?'Established firm with '+p.yrs+' years of experience and solid AUM.':'Well-established provider with growing track record.';
   if(t>=35)return p.yrs>=10?'Mid-size provider with '+p.yrs+' years operating — building credibility.':'Growing provider — check exchange window availability.';
   if(p.yrs<=2)return 'New fund launched '+(2026-p.yrs)+' — limited track record. Do extra due diligence.';
-  return p.aum<50?'Small fund with limited AUM — early-stage provider.':'Newer entrant — research thoroughly before committing.';
+  return p.aum<50?'Small fund with limited AUM — early-stage provider.':'Emerging fund: Lower fees, shorter track record.';
 }
 
 function fmt(n){if(n>=1e6)return '$'+(n/1e6).toFixed(2)+'M';return '$'+n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:0})}
@@ -573,7 +580,7 @@ function closeModal(){modalOverlay.classList.remove('show');document.body.style.
 
 function openProviderModal(idx){
   const p=lastMatched[idx];if(!p)return;
-  const trustScore=p.trust;const trustCol=trustScore>=60?'var(--green)':trustScore>=35?'var(--gold)':'var(--red)';
+  const trustScore=p.trust;const trustCol=trustColor(trustScore);
   const cost=Math.round(lastTotalVal*(p.erNum+p.placementPct)/100);
   const dataBadge=p.dataType==='actual'?'<span class="data-badge actual">Live Holdings</span>':p.dataType==='proxy'?'<span class="data-badge proxy">Benchmark Proxy</span>':'<span class="data-badge estimate">Strategy Estimate</span>';
   // Build user's too much in one stock for "before" donut
@@ -672,7 +679,6 @@ swapBtn.addEventListener('click',()=>{
   const featuredSet=new Set([bestOverall,lowestFees,highestTrust]);
   const remaining=matched.filter(p=>!featuredSet.has(p)).sort((a,b)=>b.overall-a.overall);
 
-  function trustColor(s){return s>=60?'var(--green)':s>=35?'var(--gold)':'var(--red)'}
   function riskBadge(r){return `<span class="match-badge ${r==='Low'?'high':r==='Medium'?'med':'low'}">${r} Risk</span>`}
 
   document.getElementById('featuredCards').innerHTML=featured.map((f,fi)=>{
@@ -817,6 +823,16 @@ function renderProjection(){
   }
   thtml+='</tbody>';
   document.getElementById('projTable').innerHTML=thtml;
+
+  // ── Wealth gap callout (Year 10: 351 vs Sell 7%) ──────────────────
+  const gapEl=document.getElementById('wealthGapCallout');
+  if(gapEl){
+    const gap10=Math.round((data351[10]||0)-(dataSell[1][10]||0));
+    if(gap10>0){
+      gapEl.innerHTML=`By Year 10, the 351 Exchange puts an extra <span class="gap-amount">${fmt(gap10)}</span> in your pocket compared to selling gradually.`;
+      gapEl.style.display='block';
+    }else{gapEl.style.display='none'}
+  }
 
   // ── Chart.js line graph ───────────────────────────────────────────
   if(projChartInstance){projChartInstance.destroy()}
