@@ -785,9 +785,7 @@ function renderProjection(){
   let prev351=null,crossoverYear=null;
 
   // Table data
-  let thtml='<thead><tr><th>Year</th><th>351 Exchange</th>';
-  withdrawRates.forEach(r=>thtml+=`<th>Sell ${(r*100).toFixed(0)}%/yr</th>`);
-  thtml+='<th>Hold & Step-Up</th></tr></thead><tbody>';
+  let thtml='<thead><tr><th>Year</th><th>351 Exchange</th><th>Standard Path (Sell &amp; Pay Tax)</th><th>Hold &amp; Step-Up</th></tr></thead><tbody>';
 
   for(let y=1;y<=15;y++){
     labels.push(String(y));
@@ -798,7 +796,6 @@ function renderProjection(){
     dataHoldHi.push(Math.round(pHoldHi));
     dataHoldLo.push(Math.round(pHoldLo));
 
-    const tvals=[Math.round(p351)];
     withdrawRates.forEach((wr,wi)=>{
       const sellAmt=pSell[wi]*wr;
       const taxOnSale=sellAmt*gainPct*taxRate;
@@ -806,9 +803,8 @@ function renderProjection(){
       const remaining=pSell[wi]-sellAmt;
       pSell[wi]=remaining*(1+concR)+afterTax*(1+divR);
       dataSell[wi].push(Math.round(pSell[wi]));
-      tvals.push(Math.round(pSell[wi]));
     });
-    tvals.push(Math.round(pHoldHi));
+    const tvals=[Math.round(p351),Math.round(pSell[1]),Math.round(pHoldHi)];
 
     // Crossover: 351 overtakes sell-7%
     if(!crossoverYear&&prev351!==null&&data351[y]>=dataSell[1][y])crossoverYear=y;
