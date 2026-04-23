@@ -178,6 +178,11 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .data-badge.actual{background:rgba(39,174,96,.1);color:var(--green)}
 .data-badge.proxy{background:rgba(52,152,219,.1);color:#2980b9}
 .data-badge.estimate{background:rgba(201,168,76,.15);color:var(--gold-dark)}
+.after-summary{text-align:left;max-width:220px;margin:0 auto}
+.after-summary .after-row{padding:10px 0;border-bottom:1px solid var(--light-gray)}
+.after-summary .after-row:last-child{border-bottom:none}
+.after-summary .after-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;color:var(--gray);margin-bottom:4px;font-weight:600}
+.after-summary .after-val{font-size:.9rem;color:var(--navy);font-weight:700;line-height:1.4}
 /* Compare Paths */
 .paths-section{display:none;background:var(--off-white)!important}.paths-section.show{display:block}
 .paths-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -639,10 +644,11 @@ function openProviderModal(idx){
         <div class="modal-arrow">\u2192</div>
         <div class="modal-donut-col">
           <h5>After 351 Exchange</h5>
-          <div class="modal-donut-wrap"><canvas id="modalAfterCanvas"></canvas></div>
-          <div class="modal-legend" id="modalLegend"></div>
-          ${dataBadge}
-          <div style="font-size:.65rem;color:var(--gray);margin-top:4px">${p.holdings?p.holdings+' holdings':'Diversified portfolio'}</div>
+          <div class="after-summary">
+            <div class="after-row"><div class="after-label">Holdings</div><div class="after-val">${p.holdings?p.holdings.toLocaleString():'Diversified portfolio'}</div></div>
+            <div class="after-row"><div class="after-label">Primary Strategy</div><div class="after-val">${p.strategy}</div></div>
+            <div class="after-row"><div class="after-label">Data Source</div><div class="after-val">${dataBadge}</div></div>
+          </div>
         </div>
       </div>
     </div>`;
@@ -654,13 +660,6 @@ function openProviderModal(idx){
     const bc=document.getElementById('modalBeforeCanvas');
     if(bc){bc.width=360;bc.height=360;const bctx=bc.getContext('2d');
       bctx.beginPath();bctx.arc(180,180,153,0,Math.PI*2);bctx.arc(180,180,99,0,Math.PI*2,true);bctx.closePath();bctx.fillStyle='#e74c3c';bctx.fill()}
-    // Draw after donut
-    const ac=document.getElementById('modalAfterCanvas');
-    if(ac&&p.sectors){
-      const slices=drawMiniDonut(ac,p.sectors,180);
-      const leg=document.getElementById('modalLegend');
-      if(leg)leg.innerHTML=slices.filter(s=>s.pct>.02).map(s=>`<span><span class="dot" style="background:${s.color}"></span>${s.name} ${(s.pct*100).toFixed(0)}%</span>`).join('');
-    }
   },50);
 }
 
