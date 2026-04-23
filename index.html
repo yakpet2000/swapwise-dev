@@ -772,15 +772,14 @@ function renderProjection(){
   const totalVal=lastTotalVal;const totalGain=lastTotalGain;
   const gainPct=totalVal>0?totalGain/totalVal:0;
 
-  const withdrawRates=[0.04,0.07,0.10];
   const labels=['0'];
   const data351=[totalVal*(1-provPlace)];
-  const dataSell=[[totalVal],[totalVal],[totalVal]];
+  const dataSell=[totalVal];
   const dataHoldHi=[totalVal];
   const dataHoldLo=[totalVal]; // 0% return floor
 
   let p351=totalVal*(1-provPlace);
-  let pSell=[totalVal,totalVal,totalVal];
+  let pSell=totalVal;
   let pHoldHi=totalVal,pHoldLo=totalVal;
   let prev351=null,crossoverYear=null;
 
@@ -796,18 +795,16 @@ function renderProjection(){
     dataHoldHi.push(Math.round(pHoldHi));
     dataHoldLo.push(Math.round(pHoldLo));
 
-    withdrawRates.forEach((wr,wi)=>{
-      const sellAmt=pSell[wi]*wr;
-      const taxOnSale=sellAmt*gainPct*taxRate;
-      const afterTax=sellAmt-taxOnSale;
-      const remaining=pSell[wi]-sellAmt;
-      pSell[wi]=remaining*(1+concR)+afterTax*(1+divR);
-      dataSell[wi].push(Math.round(pSell[wi]));
-    });
-    const tvals=[Math.round(p351),Math.round(pSell[1]),Math.round(pHoldHi)];
+    const sellAmt=pSell*0.07;
+    const taxOnSale=sellAmt*gainPct*taxRate;
+    const afterTax=sellAmt-taxOnSale;
+    const remaining=pSell-sellAmt;
+    pSell=remaining*(1+concR)+afterTax*(1+divR);
+    dataSell.push(Math.round(pSell));
+    const tvals=[Math.round(p351),Math.round(pSell),Math.round(pHoldHi)];
 
     // Crossover: 351 overtakes sell-7%
-    if(!crossoverYear&&prev351!==null&&data351[y]>=dataSell[1][y])crossoverYear=y;
+    if(!crossoverYear&&prev351!==null&&data351[y]>=dataSell[y])crossoverYear=y;
 
     const maxVal=Math.max(...tvals);
     thtml+='<tr>';thtml+=`<td>${y}</td>`;
@@ -824,7 +821,7 @@ function renderProjection(){
   // ── Wealth gap callout (Year 10: 351 vs Sell 7%) ──────────────────
   const gapEl=document.getElementById('wealthGapCallout');
   if(gapEl){
-    const gap10=Math.round((data351[10]||0)-(dataSell[1][10]||0));
+    const gap10=Math.round((data351[10]||0)-(dataSell[10]||0));
     if(gap10>0){
       gapEl.innerHTML=`By Year 10, the 351 Exchange puts an extra <span class="gap-amount">${fmt(gap10)}</span> in your pocket compared to selling gradually.`;
       gapEl.style.display='block';
@@ -851,9 +848,7 @@ function renderProjection(){
       labels,
       datasets:[
         {label:'351 Exchange',data:data351,borderColor:'#c9a84c',backgroundColor:'rgba(201,168,76,.1)',borderWidth:3,pointRadius:0,pointHoverRadius:5,tension:.3,order:1},
-        {label:'Sell 4%/yr',data:dataSell[0],borderColor:'#e67e73',borderWidth:1.5,borderDash:[6,3],pointRadius:0,tension:.3,order:2},
-        {label:'Sell 7%/yr',data:dataSell[1],borderColor:'#e74c3c',borderWidth:2,pointRadius:0,tension:.3,order:2},
-        {label:'Sell 10%/yr',data:dataSell[2],borderColor:'#c0392b',borderWidth:1.5,borderDash:[6,3],pointRadius:0,tension:.3,order:2},
+        {label:'Sell 7%/yr',data:dataSell,borderColor:'#e74c3c',borderWidth:2,pointRadius:0,tension:.3,order:2},
         {label:'Hold Single Stock (best case)',data:dataHoldHi,borderColor:'rgba(74,144,217,.6)',borderWidth:1,pointRadius:0,tension:.3,fill:'+1',backgroundColor:'rgba(74,144,217,.12)',order:3},
         {label:'Hold Single Stock (worst case)',data:dataHoldLo,borderColor:'rgba(74,144,217,.3)',borderWidth:1,pointRadius:0,tension:.3,fill:false,order:3},
       ]
