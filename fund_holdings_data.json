@@ -1,0 +1,302 @@
+{
+  "_metadata": {
+    "generated": "2026-03-31",
+    "notes": "Sector data sourced from Yahoo Finance, StockAnalysis, Benzinga, and ETF provider websites. HQQQ uses QQQ/Nasdaq-100 proxy since fund launched March 2026. CAMV ticker does not exist -- Cambria's value/momentum fund is VAMO. AAAA is a fund-of-funds (holds ETFs, not individual stocks), so sector data reflects look-through allocation."
+  },
+  "funds": {
+    "NPFE": {
+      "name": "NPF Core Equity ETF",
+      "provider": "NPF Investment Advisors",
+      "website": "npfinvest.com",
+      "launch_date": "2026-03-12",
+      "num_holdings": 468,
+      "aum_millions": 574.82,
+      "expense_ratio": 0.40,
+      "style": "Large Cap Blend",
+      "data_source": "actual_filings",
+      "data_source_detail": "StockAnalysis.com holdings + web search sector data (Yahoo Finance derived)",
+      "sector_allocation": {
+        "Technology": 34.71,
+        "Consumer Cyclical": 14.04,
+        "Healthcare": 13.41,
+        "Industrials": 12.78,
+        "Financials": 10.75,
+        "Materials": 6.88,
+        "Communications": 5.96,
+        "Energy": 0.91,
+        "Consumer Defensive": 0.39,
+        "Utilities": 0.12,
+        "Real Estate": 0.06
+      },
+      "top_holdings": [
+        {"ticker": "MSFT", "name": "Microsoft Corporation", "weight": 9.45},
+        {"ticker": "GOOGL", "name": "Alphabet Inc.", "weight": 5.57},
+        {"ticker": "COHR", "name": "Coherent Corp.", "weight": 5.32},
+        {"ticker": "BALL", "name": "Ball Corporation", "weight": 4.89},
+        {"ticker": "AMAT", "name": "Applied Materials, Inc.", "weight": 4.20},
+        {"ticker": "ALSN", "name": "Allison Transmission Holdings, Inc.", "weight": 4.02},
+        {"ticker": "TSM", "name": "Taiwan Semiconductor Manufacturing", "weight": 3.66},
+        {"ticker": "NVDA", "name": "NVIDIA Corporation", "weight": 3.65},
+        {"ticker": "BRK.B", "name": "Berkshire Hathaway Inc.", "weight": 3.47},
+        {"ticker": "JNJ", "name": "Johnson & Johnson", "weight": 3.24}
+      ]
+    },
+    "PCLG": {
+      "name": "Polen Focus Growth ETF",
+      "provider": "Polen Capital",
+      "website": "polencapital.com",
+      "num_holdings": 26,
+      "expense_ratio": null,
+      "aum_millions": 82.84,
+      "style": "Large Growth",
+      "data_source": "actual_filings",
+      "data_source_detail": "Yahoo Finance sector data + StockAnalysis.com holdings (as of 2026-01-31)",
+      "sector_allocation": {
+        "Technology": 44.61,
+        "Healthcare": 18.80,
+        "Financials": 16.21,
+        "Consumer Cyclical": 13.46,
+        "Communications": 5.40,
+        "Real Estate": 1.52,
+        "Industrials": 0.00,
+        "Energy": 0.00,
+        "Materials": 0.00,
+        "Consumer Defensive": 0.00,
+        "Utilities": 0.00
+      },
+      "top_holdings": [
+        {"ticker": "AMZN", "name": "Amazon.com, Inc.", "weight": 9.46},
+        {"ticker": "MSFT", "name": "Microsoft Corporation", "weight": 7.61},
+        {"ticker": "LLY", "name": "Eli Lilly and Company", "weight": 6.03},
+        {"ticker": "GOOG", "name": "Alphabet Inc.", "weight": 5.98},
+        {"ticker": "AVGO", "name": "Broadcom Inc.", "weight": 5.57},
+        {"ticker": "ORCL", "name": "Oracle Corporation", "weight": 5.33},
+        {"ticker": "MA", "name": "Mastercard Incorporated", "weight": 5.13},
+        {"ticker": "V", "name": "Visa Inc.", "weight": 4.81},
+        {"ticker": "NVDA", "name": "NVIDIA Corporation", "weight": 4.47},
+        {"ticker": "SHOP", "name": "Shopify Inc.", "weight": 4.21}
+      ]
+    },
+    "CHGX": {
+      "name": "Stance Sustainable Beta ETF",
+      "provider": "Stance Capital",
+      "website": "stancefunds.com",
+      "num_holdings": 105,
+      "expense_ratio": null,
+      "style": "ESG / Large Cap Equal-Weight",
+      "data_source": "actual_filings",
+      "data_source_detail": "Yahoo Finance sector data + StockAnalysis.com holdings (as of 2026-04-14)",
+      "sector_allocation": {
+        "Technology": 37.03,
+        "Financials": 14.54,
+        "Consumer Cyclical": 12.53,
+        "Healthcare": 11.11,
+        "Communications": 9.12,
+        "Industrials": 7.77,
+        "Consumer Defensive": 3.89,
+        "Real Estate": 2.03,
+        "Materials": 1.99,
+        "Utilities": 0.00,
+        "Energy": 0.00
+      },
+      "top_holdings": [
+        {"ticker": "SNDK", "name": "Sandisk Corporation", "weight": 1.47},
+        {"ticker": "MRVL", "name": "Marvell Technology, Inc.", "weight": 1.38},
+        {"ticker": "BE", "name": "Bloom Energy Corporation", "weight": 1.37},
+        {"ticker": "STX", "name": "Seagate Technology Holdings", "weight": 1.34},
+        {"ticker": "CIEN", "name": "Ciena Corporation", "weight": 1.34},
+        {"ticker": "WDC", "name": "Western Digital Corporation", "weight": 1.33},
+        {"ticker": "INTC", "name": "Intel Corporation", "weight": 1.32},
+        {"ticker": "MPWR", "name": "Monolithic Power Systems, Inc.", "weight": 1.25},
+        {"ticker": "DELL", "name": "Dell Technologies Inc.", "weight": 1.24},
+        {"ticker": "AMD", "name": "Advanced Micro Devices, Inc.", "weight": 1.21}
+      ]
+    },
+    "AAAA": {
+      "name": "Amplius Aggressive Asset Allocation ETF",
+      "provider": "Amplius Wealth Advisors",
+      "website": "ampliusetfs.com",
+      "num_holdings": 47,
+      "expense_ratio": 0.49,
+      "style": "Aggressive Allocation (Fund-of-Funds)",
+      "data_source": "actual_filings",
+      "data_source_detail": "Yahoo Finance sector data (look-through allocation). Note: AAAA holds ETFs not individual stocks. Sector data is look-through.",
+      "is_fund_of_funds": true,
+      "asset_allocation": {
+        "domestic_stock_pct": 63.1,
+        "foreign_stock_pct": 22.1,
+        "domestic_bond_pct": 7.4,
+        "foreign_bond_pct": 0.2,
+        "cash_pct": 7.3
+      },
+      "sector_allocation": {
+        "Technology": 31.75,
+        "Financials": 15.77,
+        "Consumer Cyclical": 9.92,
+        "Communications": 9.55,
+        "Industrials": 9.12,
+        "Healthcare": 8.89,
+        "Consumer Defensive": 5.30,
+        "Energy": 3.14,
+        "Materials": 3.12,
+        "Real Estate": 1.86,
+        "Utilities": 1.58
+      },
+      "top_holdings": [
+        {"ticker": "IOO", "name": "iShares Global 100 ETF", "weight": 13.77},
+        {"ticker": "QQQ", "name": "Invesco QQQ Trust Series I", "weight": 10.34},
+        {"ticker": "OEF", "name": "iShares S&P 100 ETF", "weight": 10.21},
+        {"ticker": "IEMG", "name": "iShares Core MSCI Emerging Markets ETF", "weight": 7.56},
+        {"ticker": "IEFA", "name": "iShares Core MSCI EAFE ETF", "weight": 7.43},
+        {"ticker": "STIP", "name": "iShares 0-5 Year TIPS Bond ETF", "weight": 6.45},
+        {"ticker": "SGOV", "name": "iShares 0-3 Month Treasury Bond ETF", "weight": 6.38},
+        {"ticker": "IJR", "name": "iShares Core S&P Small Cap ETF", "weight": 5.44},
+        {"ticker": "IJH", "name": "iShares Core S&P Mid-Cap ETF", "weight": 5.44},
+        {"ticker": "VT", "name": "Vanguard Total World Stock ETF", "weight": 3.25}
+      ]
+    },
+    "TSPX": {
+      "name": "Twin Oak Active Opportunities ETF",
+      "provider": "Twin Oak ETFs",
+      "website": "twinoaketfs.com",
+      "num_holdings": null,
+      "expense_ratio": null,
+      "style": "Multi-Asset (Equity + Fixed Income)",
+      "data_source": "actual_filings",
+      "data_source_detail": "Yahoo Finance / search results sector data. Fund holds equity and bonds.",
+      "asset_allocation": {
+        "domestic_stock_pct": 74.7,
+        "domestic_bond_pct": 9.6,
+        "foreign_bond_pct": 4.4,
+        "cash_pct": 10.8
+      },
+      "sector_allocation": {
+        "Technology": 37.18,
+        "Financials": 12.50,
+        "Consumer Cyclical": 10.75,
+        "Communications": 10.47,
+        "Healthcare": 8.93,
+        "Industrials": 6.93,
+        "Consumer Defensive": 4.71,
+        "Energy": 2.81,
+        "Utilities": 2.36,
+        "Real Estate": 1.85,
+        "Materials": 1.50
+      },
+      "top_holdings": []
+    },
+    "CTIF": {
+      "name": "Castellan Targeted Income ETF",
+      "provider": "Castellan ETFs",
+      "website": "castellanetf.com",
+      "num_holdings": 46,
+      "expense_ratio": null,
+      "style": "Equity Income / Industrials-Heavy",
+      "data_source": "actual_filings",
+      "data_source_detail": "StockAnalysis.com holdings + search results sector data",
+      "sector_allocation": {
+        "Industrials": 42.97,
+        "Technology": 25.93,
+        "Financials": 12.73,
+        "Consumer Defensive": 9.79,
+        "Materials": 4.25,
+        "Healthcare": 3.79,
+        "Communications": 0.20,
+        "Consumer Cyclical": 0.19,
+        "Energy": 0.07,
+        "Utilities": 0.05,
+        "Real Estate": 0.04
+      },
+      "top_holdings": [
+        {"ticker": "ADI", "name": "Analog Devices", "weight": 6.80},
+        {"ticker": "CAT", "name": "Caterpillar", "weight": 6.70},
+        {"ticker": "PH", "name": "Parker-Hannifin", "weight": 6.24},
+        {"ticker": "ETN", "name": "Eaton Corporation", "weight": 6.00},
+        {"ticker": "SNA", "name": "Snap-on", "weight": 5.68},
+        {"ticker": "HUBB", "name": "Hubbell Incorporated", "weight": 5.59},
+        {"ticker": "KR", "name": "The Kroger Co.", "weight": 5.29},
+        {"ticker": "AVGO", "name": "Broadcom Inc.", "weight": 5.10},
+        {"ticker": "GWW", "name": "W.W. Grainger, Inc.", "weight": 5.09},
+        {"ticker": "GD", "name": "General Dynamics Corporation", "weight": 4.76}
+      ]
+    },
+    "HQQQ": {
+      "name": "Toews Agility Shares Hedged Nasdaq-100 ETF",
+      "provider": "Toews Asset Management",
+      "website": "toewsetfs.com",
+      "launch_date": "2026-03-09",
+      "num_holdings": null,
+      "expense_ratio": null,
+      "style": "Hedged Nasdaq-100 (Options Overlay)",
+      "data_source": "estimated_from_strategy",
+      "data_source_detail": "HQQQ launched 2026-03-09. No public holdings/sector data yet available. Sector allocation estimated from Nasdaq-100 index composition (QQQ proxy). The fund holds Nasdaq-100 stocks/ETFs/futures plus options overlay.",
+      "sector_allocation": {
+        "Technology": 49.00,
+        "Consumer Cyclical": 16.00,
+        "Communications": 15.00,
+        "Healthcare": 6.00,
+        "Consumer Defensive": 5.00,
+        "Industrials": 4.00,
+        "Financials": 2.00,
+        "Utilities": 1.50,
+        "Energy": 0.80,
+        "Real Estate": 0.40,
+        "Materials": 0.30
+      },
+      "sector_allocation_note": "ESTIMATED based on Nasdaq-100 index weights. Actual allocations may differ due to options overlay and hedging positions. Will update when N-PORT filing is available.",
+      "top_holdings": [
+        {"ticker": "AAPL", "name": "Apple Inc.", "weight_est": 8.5},
+        {"ticker": "MSFT", "name": "Microsoft Corporation", "weight_est": 7.8},
+        {"ticker": "NVDA", "name": "NVIDIA Corporation", "weight_est": 7.2},
+        {"ticker": "AMZN", "name": "Amazon.com, Inc.", "weight_est": 5.5},
+        {"ticker": "META", "name": "Meta Platforms, Inc.", "weight_est": 4.8},
+        {"ticker": "AVGO", "name": "Broadcom Inc.", "weight_est": 4.5},
+        {"ticker": "GOOG", "name": "Alphabet Inc.", "weight_est": 4.2},
+        {"ticker": "COST", "name": "Costco Wholesale", "weight_est": 2.8},
+        {"ticker": "TSLA", "name": "Tesla, Inc.", "weight_est": 2.7},
+        {"ticker": "NFLX", "name": "Netflix, Inc.", "weight_est": 2.5}
+      ],
+      "top_holdings_note": "ESTIMATED from Nasdaq-100 weights. HQQQ may hold these via direct stock, QQQ/QQQM ETF shares, or futures."
+    },
+    "CAMV": {
+      "name": "TICKER NOT FOUND",
+      "provider": "Cambria Funds (assumed)",
+      "website": "cambriafunds.com",
+      "data_source": "not_available",
+      "data_source_detail": "No ETF with ticker CAMV exists. Cambria's Value & Momentum fund trades under ticker VAMO. Cambria's Section 351 program is for GEQ (Cambria Global Equal Weight 2 ETF, launching June 2026). Data below is for VAMO as closest match.",
+      "ticker_correction": "VAMO",
+      "closest_match": {
+        "ticker": "VAMO",
+        "name": "Cambria Value and Momentum ETF",
+        "num_holdings": 104,
+        "style": "Equity Hedged / Long-Short Value+Momentum",
+        "data_source": "actual_filings",
+        "note": "VAMO holds ~65% cash offset (hedging), with ~20% in individual value/momentum stocks and ~8% in money market. Sector data below is for the equity sleeve only.",
+        "sector_allocation": {
+          "Financials": 26.29,
+          "Consumer Cyclical": 16.62,
+          "Industrials": 15.50,
+          "Healthcare": 9.93,
+          "Technology": 6.23,
+          "Consumer Defensive": 6.13,
+          "Energy": 6.05,
+          "Communications": 5.94,
+          "Materials": 4.19,
+          "Utilities": 3.12,
+          "Real Estate": 0.00
+        },
+        "top_holdings": [
+          {"ticker": "CASH", "name": "Cash Offset", "weight": 65.03},
+          {"ticker": "FTOXX", "name": "First American Treasury Obligations Fund", "weight": 7.96},
+          {"ticker": "AA", "name": "Alcoa Corporation", "weight": 1.08},
+          {"ticker": "SNX", "name": "TD SYNNEX Corporation", "weight": 1.05},
+          {"ticker": "NEM", "name": "Newmont Corporation", "weight": 1.01},
+          {"ticker": "GIII", "name": "G-III Apparel Group, Ltd.", "weight": 0.95},
+          {"ticker": "URBN", "name": "Urban Outfitters, Inc.", "weight": 0.95},
+          {"ticker": "KAR", "name": "OPENLANE, Inc.", "weight": 0.94},
+          {"ticker": "PRIM", "name": "Primoris Services Corporation", "weight": 0.93}
+        ]
+      }
+    }
+  }
+}
