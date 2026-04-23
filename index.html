@@ -214,6 +214,17 @@ input::placeholder{color:rgba(255,255,255,.3)}
 .proj-table td:first-child{text-align:center;font-weight:700;color:var(--gray)}
 .proj-table tr:nth-child(even){background:var(--off-white)}
 .proj-table .gold-cell{background:rgba(201,168,76,.12)!important;font-weight:700;color:var(--gold-dark)}
+.proj-table th .drawer-toggle{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;margin-left:6px;border-radius:4px;border:1px solid rgba(255,255,255,.3);background:transparent;color:var(--white);font-size:.9rem;line-height:1;cursor:pointer;padding:0;vertical-align:middle;font-family:var(--font);transition:all .15s}
+.proj-table th .drawer-toggle:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.6)}
+.proj-table th .drawer-toggle.active{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.proj-drawer{margin-top:16px;background:var(--off-white);border:1px solid var(--light-gray);border-radius:8px;padding:16px}
+.proj-drawer h5{margin:0 0 12px;font-size:.85rem;color:var(--navy);font-weight:700}
+.proj-drawer .drawer-table{width:100%;border-collapse:collapse;font-size:.78rem}
+.proj-drawer .drawer-table th{background:rgba(26,39,68,.06);color:var(--navy);padding:8px 10px;text-align:right;font-size:.68rem;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--light-gray);white-space:nowrap;font-weight:700}
+.proj-drawer .drawer-table th:first-child{text-align:left}
+.proj-drawer .drawer-table td{padding:7px 10px;text-align:right;border-bottom:1px solid rgba(0,0,0,.04);white-space:nowrap}
+.proj-drawer .drawer-table td:first-child{text-align:left;font-weight:600;color:var(--navy)}
+.proj-drawer .drawer-table tfoot td{font-weight:800;color:var(--navy);border-top:2px solid var(--light-gray);border-bottom:none;padding-top:9px}
 .proj-note{font-size:.72rem;color:var(--gray);font-style:italic}
 footer{background:var(--navy-dark);color:rgba(255,255,255,.5);padding:48px 24px;text-align:center;font-size:.8rem}
 footer .logo-footer{font-size:1.2rem;font-weight:800;color:var(--white);margin-bottom:8px}footer .logo-footer span{color:var(--gold)}
@@ -398,7 +409,7 @@ footer .links a{color:rgba(255,255,255,.4);font-size:.75rem}footer .links a:hove
   <div class="wealth-gap-callout" id="wealthGapCallout" style="display:none"></div>
   <div class="proj-chart-wrap"><canvas id="projChart"></canvas></div>
   <button class="proj-toggle" id="projToggle" onclick="const w=document.getElementById('projTableWrap');const s=w.classList.toggle('collapsed');this.textContent=s?'Show Detailed Table':'Hide Detailed Table'">Show Detailed Table</button>
-  <div class="proj-table-wrap collapsed" id="projTableWrap"><table class="proj-table" id="projTable"></table></div>
+  <div class="proj-table-wrap collapsed" id="projTableWrap"><table class="proj-table" id="projTable"></table><div id="projDrawer" class="proj-drawer" style="display:none"></div></div>
   <p class="proj-note">The shaded band on "Hold Single Stock" shows the range of outcomes from 0% to your selected return rate — reflecting the uncertainty of holding one stock. The 351 Exchange line shows steady, predictable growth after fees.</p>
 </div></section>
 
@@ -782,6 +793,9 @@ function populateProviderDropdown(matched,featured){
   projProviderSel.appendChild(grpA);
 }
 
+const HIST_RETURNS={AAPL:.28,MSFT:.27,NVDA:.68,AMZN:.22,META:.32,GOOGL:.19,TSLA:.35,ORCL:.18,CRM:.20,CSCO:.08,INTC:-.02,AMD:.35,NFLX:.28,ADBE:.18,PYPL:.05,V:.20,MA:.22,JPM:.15,BAC:.10,WFC:.08,GS:.12,MS:.14,'BRK.B':.12,XOM:.08,CVX:.07,JNJ:.07,UNH:.18,PFE:.02,MRK:.08,HD:.18,LOW:.22,WMT:.12,TGT:.08,DIS:.05,T:.02,VZ:.02,BA:.05,CAT:.12,GE:.10,VTI:.12,VOO:.12,QQQ:.18,VEA:.07,BND:.02,GLD:.06,AGG:.02,CASH:0};
+let openDrawer=null;
+function toggleDrawer(which){openDrawer=(openDrawer===which)?null:which;renderProjection()}
 let projChartInstance=null;
 function renderProjection(){
   if(!lastTotalVal)return;
@@ -805,7 +819,9 @@ function renderProjection(){
   let prev351=null,crossoverYear=null;
 
   // Table data
-  let thtml='<thead><tr><th>Year</th><th>351 Exchange</th><th>Standard Path (Sell &amp; Pay Tax)</th><th>Hold &amp; Step-Up</th></tr></thead><tbody>';
+  const sellToggle=`<button type="button" class="drawer-toggle${openDrawer==='sell'?' active':''}" onclick="toggleDrawer('sell')" aria-label="Toggle per-position breakdown">${openDrawer==='sell'?'\u00D7':'+'}</button>`;
+  const holdToggle=`<button type="button" class="drawer-toggle${openDrawer==='hold'?' active':''}" onclick="toggleDrawer('hold')" aria-label="Toggle per-position breakdown">${openDrawer==='hold'?'\u00D7':'+'}</button>`;
+  let thtml=`<thead><tr><th>Year</th><th>351 Exchange</th><th>Standard Path (Sell &amp; Pay Tax) ${sellToggle}</th><th>Hold &amp; Step-Up ${holdToggle}</th></tr></thead><tbody>`;
 
   for(let y=1;y<=projectionYears;y++){
     labels.push(String(y));
@@ -838,6 +854,51 @@ function renderProjection(){
   }
   thtml+='</tbody>';
   document.getElementById('projTable').innerHTML=thtml;
+
+  // ── Per-position drawer ───────────────────────────────────────────
+  const drawerEl=document.getElementById('projDrawer');
+  if(!openDrawer){drawerEl.style.display='none'}
+  else{
+    const y1=Math.max(1,Math.round(projectionYears/3));
+    const y2=Math.max(1,Math.round(projectionYears*2/3));
+    const y3=projectionYears;
+    const allPositions=[];
+    if(primaryStock&&primaryShares>0)allPositions.push({ticker:primaryStock.ticker,name:primaryStock.name,value:primaryStock.price*primaryShares});
+    positions.forEach(p=>{if(p.value>0)allPositions.push(p)});
+    const title=openDrawer==='sell'?'Per-Position Breakdown — Standard Path (7% annual sell-down, 23.8% tax on gains)':'Per-Position Breakdown — Hold &amp; Step-Up (buy-and-hold at historical returns)';
+    if(!allPositions.length){
+      drawerEl.innerHTML=`<h5>${title}</h5><p style="color:var(--gray);font-size:.85rem;margin:0">Add positions above to see per-holding projections.</p>`;
+    }else{
+      const totals=[0,0,0];
+      const rows=allPositions.map(pos=>{
+        const knownR=HIST_RETURNS[pos.ticker];
+        const rate=knownR!==undefined?knownR:divR;
+        const note=knownR===undefined?' <span style="font-size:.65rem;color:var(--gray);font-weight:400">(est. from growth slider)</span>':'';
+        let v1=0,v2=0,v3=0;
+        if(openDrawer==='sell'){
+          let pv=pos.value,cash=0;
+          for(let y=1;y<=y3;y++){
+            pv*=(1+rate);
+            const sellAmt=pv*0.07;
+            const tax=sellAmt*gainPct*taxRate;
+            pv-=sellAmt;
+            cash+=(sellAmt-tax);
+            if(y===y1)v1=pv+cash;
+            if(y===y2)v2=pv+cash;
+            if(y===y3)v3=pv+cash;
+          }
+        }else{
+          v1=pos.value*Math.pow(1+rate,y1);
+          v2=pos.value*Math.pow(1+rate,y2);
+          v3=pos.value*Math.pow(1+rate,y3);
+        }
+        totals[0]+=v1;totals[1]+=v2;totals[2]+=v3;
+        return `<tr><td>${pos.ticker}${note}</td><td>${(rate*100).toFixed(1)}%</td><td>${fmt(Math.round(v1))}</td><td>${fmt(Math.round(v2))}</td><td>${fmt(Math.round(v3))}</td></tr>`;
+      }).join('');
+      drawerEl.innerHTML=`<h5>${title}</h5><table class="drawer-table"><thead><tr><th>Position</th><th>Annual Return</th><th>Year ${y1}</th><th>Year ${y2}</th><th>Year ${y3}</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td>Total</td><td></td><td>${fmt(Math.round(totals[0]))}</td><td>${fmt(Math.round(totals[1]))}</td><td>${fmt(Math.round(totals[2]))}</td></tr></tfoot></table>`;
+    }
+    drawerEl.style.display='block';
+  }
 
   // ── Wealth gap callout (Year 10: 351 vs Sell 7%) ──────────────────
   const gapEl=document.getElementById('wealthGapCallout');
